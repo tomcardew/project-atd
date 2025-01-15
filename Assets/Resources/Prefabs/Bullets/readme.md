@@ -18,6 +18,6 @@ Deal damage to light enemies.
 
 Deal damage to structures.
 
-| Speed | Damage | Used By |
-| ----- | ------ | ------- |
-| 8     | 10     | Tank    |
+| Speed | Damage | Used By                                 |
+| ----- | ------ | --------------------------------------- |
+| 8     | 10     | [Tank](../Units/Enemies/readme.md#tank) |

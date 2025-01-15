@@ -8,7 +8,7 @@ Generate some kind of resource, like wood, faith or minerals.
 
 ### Trees
 
-There three variants of this:
+It can be used to generate Wood. There three variants of this:
 
 #### Small Tree
 

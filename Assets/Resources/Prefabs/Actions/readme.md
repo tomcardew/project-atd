@@ -8,7 +8,7 @@ This are effects that affect the game in some way. The spirit is to be a little 
 
 ### Plant A Seed
 
-Generates a random Wood Resources after 30 seconds.
+Generates a random [Tree](../Resources/readme.md#trees) after 30 seconds.
 
 ### Repair An Structure
 
