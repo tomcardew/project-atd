@@ -64,14 +64,14 @@ public static class Cards
             Prefabs.ArcherTower_Droppable
         );
 
-    public static Card SoldierPost { get; } =
+    public static Card SoldierTent { get; } =
         new Card(
-            "Soldier Post",
+            "Soldier",
             "Add +1 soldier",
-            "Structures/Soldier Post",
+            "Structures/Soldier Tent",
             new CardResourceItem[] { new(ResourceType.Money, 10), new(ResourceType.Wood, 10) },
-            Prefabs.SoldierPost,
-            Prefabs.SoldierPost_Droppable
+            Prefabs.SoldierTent,
+            Prefabs.SoldierTent_Droppable
         );
 
     public static Card Church { get; } =
@@ -105,7 +105,7 @@ public static class Cards
         );
 
     public static Card[] AllCards { get; } =
-        new Card[] { House, ArcherTower, SoldierPost, Church, PlantASeed, RepairAnStructure };
+        new Card[] { House, ArcherTower, SoldierTent, Church, PlantASeed, RepairAnStructure };
 
     public static Card[] StartDeck { get; } =
         new Card[]
@@ -121,10 +121,10 @@ public static class Cards
             ArcherTower,
             ArcherTower,
             ArcherTower,
-            SoldierPost,
-            SoldierPost,
-            SoldierPost,
-            SoldierPost,
+            SoldierTent,
+            SoldierTent,
+            SoldierTent,
+            SoldierTent,
             Church,
             PlantASeed,
             PlantASeed,

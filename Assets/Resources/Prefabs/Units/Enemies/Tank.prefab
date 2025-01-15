@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5847879971352548504}
   - component: {fileID: 5458593018757405193}
   - component: {fileID: 5473679788720884544}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -277,8 +277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  initialSpeed: 0.4
-  speedSpreadRate: 0.05
+  initialSpeed: 0.3
+  speedSpreadRate: 0.02
   speedMultiplier: 1
   shouldAvoidObstacles: 1
   targetDetectionDistance: 3.4028235e+38

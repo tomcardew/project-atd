@@ -4,7 +4,6 @@ public class TankMovable : Movable
 {
     // Private properties
     private Attacker attacker;
-    private RotateTowards rotateTowards;
 
     public override void Init()
     {

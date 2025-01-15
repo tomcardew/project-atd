@@ -16,17 +16,15 @@ public class SoldierMovable : Movable
 
     public override GameObject NextTarget(GameObject _target)
     {
+        if (rotateTowards != null)
+            rotateTowards.target = target;
         if (_target != null)
         {
             attacker.targetDamageable = _target.GetComponentInChildren<Damageable>();
         }
         else
         {
-            return Utils.FindTheNearestGameObjectWithTag(
-                transform,
-                Tags.Structure,
-                targetDetectionDistance
-            );
+            return Utils.FindTheNearestGameObjectWithTag(transform, Tags.Structure, float.MaxValue);
         }
         return _target;
     }

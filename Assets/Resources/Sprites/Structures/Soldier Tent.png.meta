@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3559f9c1263f84db6a3a9610b3a23a0a
+guid: 82ebf8c5e20e0472984892ac907a0cf7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2220142277572778724
-    second: Soldier Post2_0
+      213: -4238762649066405001
+    second: Group 50_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Soldier Post2_0
+      name: Group 50_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 783
-        height: 513
+        width: 431
+        height: 389
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c15a2728c587031e0800000000000000
-      internalID: -2220142277572778724
+      spriteID: 773043f14d3ec25c0800000000000000
+      internalID: -4238762649066405001
       vertices: []
       indices: 
       edges: []
@@ -150,24 +150,40 @@ TextureImporter:
     outline: []
     customData: 
     physicsShape:
-    - - {x: 391.5, y: -28.5}
-      - {x: 389.5, y: -17.5}
-      - {x: 298.5, y: 175.5}
-      - {x: 292.5, y: 184.5}
-      - {x: 337.5, y: 234.5}
-      - {x: 336.5, y: 237.5}
-      - {x: 263.5, y: 256.5}
-      - {x: 256.5, y: 253.5}
-      - {x: 257.5, y: 184.5}
-      - {x: -263.5, y: 218.5}
-      - {x: -196.5, y: 233.5}
-      - {x: -190.5, y: 235.5}
-      - {x: -196.5, y: 243.5}
-      - {x: -262.5, y: 256.5}
-      - {x: -271.5, y: 256.5}
-      - {x: -391.5, y: -16.5}
-      - {x: -391.5, y: -256.5}
-      - {x: 391.5, y: -256.5}
+    - - {x: 197.5, y: -36.5}
+      - {x: 195.5, y: -26.5}
+      - {x: 145.5, y: 119.5}
+      - {x: 143.5, y: 156.5}
+      - {x: 192.5, y: 167.5}
+      - {x: 210.5, y: 171.5}
+      - {x: 215.5, y: 174.5}
+      - {x: 214.5, y: 177.5}
+      - {x: 209.5, y: 178.5}
+      - {x: 148.5, y: 194.5}
+      - {x: 137.5, y: 194.5}
+      - {x: 134.5, y: 193.5}
+      - {x: 135.5, y: 122.5}
+      - {x: -6.5, y: 156.5}
+      - {x: 60.5, y: 171.5}
+      - {x: 65.5, y: 174.5}
+      - {x: 64.5, y: 178.5}
+      - {x: -4.5, y: 194.5}
+      - {x: -12.5, y: 194.5}
+      - {x: -14.5, y: 192.5}
+      - {x: -14.5, y: 122.5}
+      - {x: -156.5, y: 122.5}
+      - {x: -154.5, y: 154.5}
+      - {x: -80.5, y: 173.5}
+      - {x: -89.5, y: 180.5}
+      - {x: -147.5, y: 192.5}
+      - {x: -158.5, y: 194.5}
+      - {x: -163.5, y: 194.5}
+      - {x: -164.5, y: 192.5}
+      - {x: -167.5, y: 114.5}
+      - {x: -212.5, y: -10.5}
+      - {x: -215.5, y: -19.5}
+      - {x: -215.5, y: -194.5}
+      - {x: 197.5, y: -194.5}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 1537655665
@@ -179,7 +195,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Soldier Post2_0: -2220142277572778724
+      Group 50_0: -4238762649066405001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -19,6 +19,8 @@ public class PersonMovable : Movable
     // Update the target position based on the current state
     public override GameObject NextTarget(GameObject _target)
     {
+        if (rotateTowards != null)
+            rotateTowards.target = target;
         if (isGoingHome)
         {
             // If the person has no population, destroy the game object

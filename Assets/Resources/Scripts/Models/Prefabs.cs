@@ -15,8 +15,8 @@ public static class Prefabs
     // Structures
     public static GameObject Castle { get; } =
         Resources.Load<GameObject>("Prefabs/Structures/Castle");
-    public static GameObject SoldierPost { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/SoldierPost");
+    public static GameObject SoldierTent { get; } =
+        Resources.Load<GameObject>("Prefabs/Structures/SoldierTent");
     public static GameObject House { get; } =
         Resources.Load<GameObject>("Prefabs/Structures/House");
     public static GameObject ArcherTower { get; } =
@@ -25,8 +25,8 @@ public static class Prefabs
         Resources.Load<GameObject>("Prefabs/Structures/Church");
 
     // Structure droppables
-    public static GameObject SoldierPost_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierPost");
+    public static GameObject SoldierTent_Droppable { get; } =
+        Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierTent");
     public static GameObject House_Droppable { get; } =
         Resources.Load<GameObject>("Prefabs/Structures/Droppables/House");
     public static GameObject ArcherTower_Droppable { get; } =

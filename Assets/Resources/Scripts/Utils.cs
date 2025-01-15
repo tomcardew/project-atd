@@ -87,6 +87,32 @@ public class Utils
     }
 
     /// <summary>
+    /// The function finds the nearest Movable GameObject with a specific internal name within a certain maximum distance
+    /// from a given origin Transform.
+    /// </summary>
+    /// <param name="origin">The starting point or origin from which you want to find the nearest Movable GameObject.</param>
+    /// <param name="name">The internal name of the Movable GameObject you want to find.</param>
+    /// <param name="distance">The maximum distance from the origin within which you want to find the Movable GameObject.</param>
+    /// <returns>The nearest Movable GameObject with the specified internal name.</returns>
+    public static GameObject FindMovableGameObjectsWithInternalName(
+        Transform origin,
+        string name,
+        float distance = float.MaxValue
+    )
+    {
+        Movable[] movables = GameObject.FindObjectsByType<Movable>(FindObjectsSortMode.None);
+        Movable found = movables
+            .Where(m => m.internalName == name)
+            .OrderBy(m => Vector2.Distance(m.transform.position, origin.position))
+            .FirstOrDefault();
+        if (found != null)
+        {
+            return found.gameObject.transform.parent.gameObject;
+        }
+        return null;
+    }
+
+    /// <summary>
     /// The function `FindAllNearGameObjectsWithTag` finds all game objects with a specified tag within
     /// a certain maximum distance from a given origin point.
     /// </summary>
@@ -415,8 +441,8 @@ public class Utils
 
         foreach (var obj in objects)
         {
-            // float distanceSquared = (origin - obj.transform.position).sqrMagnitude;
-            if (Vector2.Distance(origin, obj.transform.position) <= maxDistanceSquared)
+            float distanceSquared = (origin - obj.transform.position).sqrMagnitude;
+            if (distanceSquared <= maxDistanceSquared)
             {
                 nearObjects.Add(obj);
             }

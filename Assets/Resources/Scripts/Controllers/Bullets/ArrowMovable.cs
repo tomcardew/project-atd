@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ArrowMovable : Movable
 {
-    private RotateTowards rotateTowards;
-
     public override void Init()
     {
         rotateTowards = GetComponentInChildren<RotateTowards>();

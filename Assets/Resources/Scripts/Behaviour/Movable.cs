@@ -41,6 +41,7 @@ public abstract class Movable : MonoBehaviour
     private float spreadedSpeed;
     private float rayDistance = 0.5f; // Distance for raycasting to detect obstacles
     private Coroutine targetUpdateCoroutine; // Coroutine for updating the target
+    protected RotateTowards rotateTowards; // RotateTowards component
 
     // Computed property to get the current speed
     private float CurrentSpeed
@@ -51,8 +52,9 @@ public abstract class Movable : MonoBehaviour
     private void Start()
     {
         // Initialize properties and start the target update coroutine
-        Init();
+        rotateTowards = GetComponent<RotateTowards>();
         spreadedSpeed = UnityEngine.Random.Range(-speedSpreadRate, speedSpreadRate);
+        Init();
         targetUpdateCoroutine = StartCoroutine(CheckForTargetUpdates());
     }
 
