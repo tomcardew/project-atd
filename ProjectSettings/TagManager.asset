@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Structure
+  - Resource
+  - Enemy
+  - Worker
+  - Soldier
+  - Bullet
+  - Castle
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Collidables
+  - Damagers
+  - Workers
+  - Managers
+  - Detectors
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Units
+    uniqueID: 3208594015
+    locked: 0
+  - name: Environment
+    uniqueID: 4054938141
+    locked: 0
+  - name: UI Canvas
+    uniqueID: 3784335971
+    locked: 0
+  - name: UI
+    uniqueID: 1351571799
+    locked: 0
+  m_RenderingLayers:
+  - Default
