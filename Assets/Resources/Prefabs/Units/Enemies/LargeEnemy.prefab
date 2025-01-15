@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  initialSpeed: 0.4
+  initialSpeed: 0.3
   speedSpreadRate: 0.05
   speedMultiplier: 1
   shouldAvoidObstacles: 1

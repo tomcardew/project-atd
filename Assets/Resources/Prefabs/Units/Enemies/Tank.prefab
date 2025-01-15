@@ -771,7 +771,6 @@ GameObject:
   - component: {fileID: 5129443359794500280}
   - component: {fileID: 4447100892123362388}
   - component: {fileID: 2867207159359641515}
-  - component: {fileID: 6923096011045894182}
   m_Layer: 7
   m_Name: Damageable
   m_TagString: Untagged
@@ -846,20 +845,3 @@ MonoBehaviour:
   lifeMultiplier: 1
   healtbar: {fileID: 3537423849383732822}
   receivedDamage: 0
---- !u!114 &6923096011045894182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9176606303929069856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e84042b87e641f8b4864a3001e33be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDamage: 10
-  damageMultiplier: 1
-  initialDamageDelay: 6
-  initialDamageDelayMultiplier: 1
-  targetDamageable: {fileID: 0}

@@ -362,15 +362,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5385652367264544446, guid: 48cfade7e16a54567bfa7168f0f38ab1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5865471
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5385652367264544446, guid: 48cfade7e16a54567bfa7168f0f38ab1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2611969
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5385652367264544446, guid: 48cfade7e16a54567bfa7168f0f38ab1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.07907666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5385652367264544446, guid: 48cfade7e16a54567bfa7168f0f38ab1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -404,10 +404,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 8549047616187445877, guid: 48cfade7e16a54567bfa7168f0f38ab1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -424,10 +420,6 @@ PrefabInstance:
     - target: {fileID: 6753868817317951769, guid: 30204171b119e4ac4a4aee93dcdb7603, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6753868817317951769, guid: 30204171b119e4ac4a4aee93dcdb7603, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8703680180543754254, guid: 30204171b119e4ac4a4aee93dcdb7603, type: 3}
       propertyPath: m_LocalPosition.x
