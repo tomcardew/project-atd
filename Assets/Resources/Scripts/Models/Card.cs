@@ -145,7 +145,7 @@ public static class Cards
             AntitankSoldierTent,
             AntitankSoldierTent,
             AntitankSoldierTent,
-            Church,
+            PlantASeed,
             PlantASeed,
             PlantASeed,
             RepairAnStructure,
