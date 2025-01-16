@@ -40,6 +40,16 @@ public class Manager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // Initialize the ResourcesManager reference
+        Resources = FindFirstObjectByType<ResourcesManager>();
+        Game = FindFirstObjectByType<GameManager>();
+        Population = FindFirstObjectByType<PopulationManager>();
+        Cards = FindFirstObjectByType<CardsManager>();
+        Cursor = FindFirstObjectByType<CursorManager>();
+        Round = FindFirstObjectByType<RoundManager>();
+        Interactions = FindFirstObjectByType<InteractionsManager>();
+        UI = FindFirstObjectByType<UIManager>();
     }
 
     // Static reference to the ResourcesManager
@@ -61,16 +71,6 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the ResourcesManager reference
-        Resources = FindFirstObjectByType<ResourcesManager>();
-        Game = FindFirstObjectByType<GameManager>();
-        Population = FindFirstObjectByType<PopulationManager>();
-        Cards = FindFirstObjectByType<CardsManager>();
-        Cursor = FindFirstObjectByType<CursorManager>();
-        Round = FindFirstObjectByType<RoundManager>();
-        Interactions = FindFirstObjectByType<InteractionsManager>();
-        UI = FindFirstObjectByType<UIManager>();
-
         Game.StartGame();
     }
 }

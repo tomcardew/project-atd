@@ -104,8 +104,27 @@ public static class Cards
             Prefabs.RepairAnStructure_Droppable
         );
 
+    public static Card AntitankSoldierTent { get; } =
+        new Card(
+            "Antitank Soldier",
+            "Add +1 soldier with an antitank weapon",
+            "Structures/AntitankSoldier Tent",
+            new CardResourceItem[] { new(ResourceType.Money, 30), new(ResourceType.Wood, 20) },
+            Prefabs.AntitankSoldierTent,
+            Prefabs.AntitankSoldierTent_Droppable
+        );
+
     public static Card[] AllCards { get; } =
-        new Card[] { House, ArcherTower, SoldierTent, Church, PlantASeed, RepairAnStructure };
+        new Card[]
+        {
+            House,
+            ArcherTower,
+            SoldierTent,
+            Church,
+            PlantASeed,
+            RepairAnStructure,
+            AntitankSoldierTent
+        };
 
     public static Card[] StartDeck { get; } =
         new Card[]
@@ -114,10 +133,7 @@ public static class Cards
             House,
             House,
             House,
-            House,
-            House,
-            House,
-            House,
+            ArcherTower,
             ArcherTower,
             ArcherTower,
             ArcherTower,
@@ -125,10 +141,13 @@ public static class Cards
             SoldierTent,
             SoldierTent,
             SoldierTent,
+            AntitankSoldierTent,
+            AntitankSoldierTent,
+            AntitankSoldierTent,
+            AntitankSoldierTent,
             Church,
             PlantASeed,
             PlantASeed,
             RepairAnStructure,
-            RepairAnStructure
         };
 }

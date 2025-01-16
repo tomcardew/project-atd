@@ -138,12 +138,7 @@ public abstract class Movable : MonoBehaviour
             GameObject nextTarget = NextTarget(GetTarget()); // Get the next target
             if (nextTarget != null)
             {
-                move = true;
                 target = nextTarget.transform.position; // Update the target position
-            }
-            else
-            {
-                move = false;
             }
             yield return new WaitForSeconds(0.1f); // Wait for 1 second before the next update
         }

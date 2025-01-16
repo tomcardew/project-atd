@@ -2,12 +2,15 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class ArcherTowerController : MonoBehaviour
+public class AntitankSoldierControlller : MonoBehaviour
 {
+    // Public properties
     public Vector3 firePointOffset; // Where bullets are instantiated
     public float fireRate;
     public float fireRateMultiplier = 1.0f;
 
+    // Private properties
+    private AntitankSoldierMovable movable;
     private GameObject targetEnemy;
     private Coroutine attackCoroutine;
     private bool hasBeenEnabled = false;
@@ -19,7 +22,13 @@ public class ArcherTowerController : MonoBehaviour
 
     private void Start()
     {
+        movable = GetComponentInParent<AntitankSoldierMovable>();
         attackCoroutine = StartCoroutine(AttackCoroutine());
+    }
+
+    private void Update()
+    {
+        movable.move = !hasBeenEnabled;
     }
 
     private void OnDisable()
@@ -33,7 +42,10 @@ public class ArcherTowerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.parent.CompareTag(Tags.Enemy))
+        var names = new string[] { "Tank" };
+        GameObject obj = other.transform.parent.gameObject;
+        var movable = obj.GetComponent<Movable>();
+        if (movable != null && names.Contains(movable.internalName))
         {
             hasBeenEnabled = true;
         }
@@ -41,10 +53,9 @@ public class ArcherTowerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        string[] names = { "Enemy", "LargeEnemy" }; // Only light armor
+        var names = new string[] { "Tank" };
         GameObject obj = other.transform.parent.gameObject;
-        Movable movable = obj.GetComponent<Movable>();
-
+        var movable = obj.GetComponent<Movable>();
         if (hasBeenEnabled && movable != null && names.Contains(movable.internalName))
         {
             float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
@@ -74,17 +85,22 @@ public class ArcherTowerController : MonoBehaviour
             {
                 Shoot();
             }
+            else
+            {
+                hasBeenEnabled = false;
+            }
         }
     }
 
     private void Shoot()
     {
-        GameObject arrow = Instantiate(
-            Prefabs.Arrow,
+        Debug.Log("Shooting antitank soldier");
+        GameObject bullet = Instantiate(
+            Prefabs.AntitankBullet,
             transform.position + firePointOffset,
             Quaternion.identity
         );
-        ArrowMovable arrowMovable = arrow.GetComponent<ArrowMovable>();
-        arrowMovable.target = targetEnemy.transform.position;
+        AntitankBulletMovable bulletMovable = bullet.GetComponent<AntitankBulletMovable>();
+        bulletMovable.target = targetEnemy.transform.position;
     }
 }
