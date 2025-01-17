@@ -26,13 +26,15 @@ public class GameManager : MonoBehaviour
 
     // Private properties
     private int currentRound = 0;
-    private SpawnerController mainSpawner;
+    private EnemyRoundSpawner mainSpawner;
     private LineController lineController;
     private Coroutine endGameRoutine;
     private Coroutine waveRoutine;
 
     public float timeBeforeNextWave = 0;
     public float baseCountingTime = 0;
+    public bool isOnRestTime = false;
+    public bool isOnWave = false;
 
     public delegate void WaveEventHandler();
     public static event WaveEventHandler OnWaveStart;
@@ -94,21 +96,28 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeFirstWave);
         while (true)
         {
+            isOnWave = true;
             OnWaveStart?.Invoke();
             AudioSource.PlayClipAtPoint(
                 Resources.Load<AudioClip>("Sounds/round-start"),
                 Camera.main.transform.position,
                 2f
             );
-            mainSpawner.shouldGenerate = true;
-            mainSpawner.currentWave = currentRound;
+            mainSpawner.shouldSpawn = true;
+            mainSpawner.currentRound = currentRound;
+            baseCountingTime = CurrentWaveDuration;
+            timeBeforeNextWave = CurrentWaveDuration;
             yield return new WaitForSeconds(CurrentWaveDuration);
-            mainSpawner.shouldGenerate = false;
+            mainSpawner.shouldSpawn = false;
             OnWaveEnd?.Invoke();
-            currentRound++;
             baseCountingTime = CurrentWaveRestDuration;
             timeBeforeNextWave = CurrentWaveRestDuration;
+            isOnWave = false;
+            isOnRestTime = true;
             yield return new WaitForSeconds(CurrentWaveRestDuration);
+            currentRound++;
+            isOnRestTime = false;
+            isOnWave = true;
         }
     }
 
@@ -142,17 +151,18 @@ public class GameManager : MonoBehaviour
         GenerateResources();
     }
 
-    private SpawnerController CreateMainSpawner(Vector3 position)
+    private EnemyRoundSpawner CreateMainSpawner(Vector3 position)
     {
-        GameObject spawner = Instantiate(Prefabs.Spawner, position, Quaternion.identity);
-        SpawnerController ctrl = spawner.GetComponent<SpawnerController>();
-        ctrl.prefabs = Enemies.All.Select(unit => unit.prefab).ToArray();
-        ctrl.delay = CurrentDelay;
-        ctrl.quantity = (int)CurrentQuantity;
-        ctrl.infiniteObjects = true;
-        ctrl.shouldGenerate = false; // wait to start generating
-        ctrl.spawnRadius = 0.5f;
-        ctrl.useEnemySpawnConfiguration = true;
+        GameObject spawner = new GameObject("MainSpawner");
+        spawner.transform.position = position;
+
+        EnemyRoundSpawner ctrl = spawner.AddComponent<EnemyRoundSpawner>();
+        ctrl.initialDelay = CurrentDelay;
+        ctrl.initialQuantity = (int)CurrentQuantity;
+        ctrl.currentRound = currentRound;
+        ctrl.isInfinite = true;
+        ctrl.shouldSpawn = false;
+
         return ctrl;
     }
 

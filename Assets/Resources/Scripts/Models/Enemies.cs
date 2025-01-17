@@ -21,7 +21,7 @@ public struct Unit
 public static class Enemies
 {
     public static Unit Enemy { get; } = new Unit("Enemy", Prefabs.Enemy, 1.0f, 0);
-    public static Unit LargeEnemy { get; } = new Unit("Large Enemy", Prefabs.LargeEnemy, 0.9f, 2);
+    public static Unit LargeEnemy { get; } = new Unit("LargeEnemy", Prefabs.LargeEnemy, 0.9f, 2);
     public static Unit Assasin { get; } = new Unit("Assasin", Prefabs.Assasin, 0.3f, 5);
     public static Unit Tank { get; } = new Unit("Tank", Prefabs.Tank, 0.5f, 8);
 

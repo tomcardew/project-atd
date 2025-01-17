@@ -48,9 +48,24 @@ public class MainUIController : MonoBehaviour
         // Update the round progress bar value
         if (Manager.Game != null)
         {
-            roundProgressBar.title = $"Next Wave: {(int)Manager.Game.timeBeforeNextWave}";
-            roundProgressBar.value =
-                1 - Manager.Game.timeBeforeNextWave / Manager.Game.baseCountingTime;
+            if (Manager.Game.isOnRestTime)
+            {
+                roundProgressBar.title = $"Next Wave: {(int)Manager.Game.timeBeforeNextWave}";
+                roundProgressBar.value =
+                    1 - Manager.Game.timeBeforeNextWave / Manager.Game.baseCountingTime;
+            }
+            else if (Manager.Game.isOnWave)
+            {
+                roundProgressBar.title = $"{(int)Manager.Game.timeBeforeNextWave}";
+                roundProgressBar.value =
+                    Manager.Game.timeBeforeNextWave / Manager.Game.baseCountingTime;
+            }
+            else
+            {
+                roundProgressBar.title = $"Preparation: {(int)Manager.Game.timeBeforeNextWave}";
+                roundProgressBar.value =
+                    1 - Manager.Game.timeBeforeNextWave / Manager.Game.baseCountingTime;
+            }
         }
     }
 }

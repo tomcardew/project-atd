@@ -38,7 +38,7 @@ It uses an [Arrow](../Bullets/readme.md#arrow) projectile to attack light enemie
 
 | Life | Damage | Damage Interval | Generates | Can Attack |
 | ---- | ------ | --------------- | --------- | ---------- |
-| 50   | -      | 1               | -         | Light      |
+| 50   | -      | 2               | -         | Light      |
 
 ### Church
 

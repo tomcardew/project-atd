@@ -436,6 +436,7 @@ MonoBehaviour:
   initialLife: 50
   lifeMultiplier: 1
   healtbar: {fileID: 1231939056110686854}
+  receivedDamage: 0
 --- !u!50 &610317058870911350
 Rigidbody2D:
   serializedVersion: 5
@@ -545,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePointOffset: {x: 0, y: 0.3, z: 0}
-  fireRate: 1
+  fireRate: 2
   fireRateMultiplier: 1
 --- !u!1 &4692108285893618832
 GameObject:
