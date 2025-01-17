@@ -40,7 +40,7 @@ It uses an [Arrow](../Bullets/readme.md#arrow) projectile to attack light enemie
 | ---- | ------ | --------------- | --------- | ---------- |
 | 50   | -      | 2               | -         | Light      |
 
-### Church
+### Church (not included on v0.1)
 
 It generates Faith.
 

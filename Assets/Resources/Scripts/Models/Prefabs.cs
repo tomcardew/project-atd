@@ -69,7 +69,9 @@ public static class Prefabs
 
     public enum SoundType
     {
-        Alert
+        Alert,
+        CardFlip,
+        CardDiscarded
     }
 
     public static GameObject GetPrefab(UnitType unitType)
@@ -218,6 +220,10 @@ public static class Prefabs
         {
             case SoundType.Alert:
                 return Resources.Load<AudioClip>("Sounds/alert2");
+            case SoundType.CardFlip:
+                return Resources.Load<AudioClip>("Sounds/cardflip");
+            case SoundType.CardDiscarded:
+                return Resources.Load<AudioClip>("Sounds/discarded");
             default:
                 return null;
         }

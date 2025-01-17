@@ -29,12 +29,31 @@ public class CardUIController : MonoBehaviour
         SetData();
     }
 
-    public void MoveToPosition(Vector3 targetPosition, float duration, float delay)
+    void OnDestroy()
     {
-        StartCoroutine(MoveCoroutine(targetPosition, duration, delay));
+        AudioSource.PlayClipAtPoint(
+            Prefabs.GetSound(Prefabs.SoundType.CardDiscarded),
+            transform.position,
+            5f
+        );
     }
 
-    private IEnumerator MoveCoroutine(Vector3 targetPosition, float duration, float delay)
+    public void MoveToPosition(
+        Vector3 targetPosition,
+        float duration,
+        float delay,
+        bool playSound = false
+    )
+    {
+        StartCoroutine(MoveCoroutine(targetPosition, duration, delay, playSound));
+    }
+
+    private IEnumerator MoveCoroutine(
+        Vector3 targetPosition,
+        float duration,
+        float delay,
+        bool playSound
+    )
     {
         yield return new WaitForSeconds(delay);
         Vector3 startPosition = transform.parent.position;
@@ -49,6 +68,14 @@ public class CardUIController : MonoBehaviour
             );
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+        if (playSound)
+        {
+            AudioSource.PlayClipAtPoint(
+                Prefabs.GetSound(Prefabs.SoundType.CardFlip),
+                transform.position,
+                3f
+            );
         }
 
         transform.parent.position = targetPosition;
