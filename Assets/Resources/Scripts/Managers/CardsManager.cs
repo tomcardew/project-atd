@@ -138,7 +138,7 @@ public class CardsManager : MonoBehaviour
     private GameObject SpawnCounters()
     {
         GameObject _counters = Instantiate(
-            Prefabs.CardBackCounters,
+            Prefabs.GetPrefab(Prefabs.OtherType.CardBackCounters),
             Vector3.zero,
             Quaternion.identity,
             cardsHolder.transform
@@ -166,7 +166,7 @@ public class CardsManager : MonoBehaviour
     {
         // Instantiate the card UI prefab at the origin
         GameObject _card = Instantiate(
-            Prefabs.CardUI,
+            Prefabs.GetPrefab(Prefabs.OtherType.CardUI),
             deckHolder.position,
             Quaternion.identity,
             cardsHolder.transform

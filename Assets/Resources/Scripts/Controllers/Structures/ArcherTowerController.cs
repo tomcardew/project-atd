@@ -80,7 +80,7 @@ public class ArcherTowerController : MonoBehaviour
     private void Shoot()
     {
         GameObject arrow = Instantiate(
-            Prefabs.Arrow,
+            Prefabs.GetPrefab(Prefabs.BulletType.Arrow),
             transform.position + firePointOffset,
             Quaternion.identity
         );

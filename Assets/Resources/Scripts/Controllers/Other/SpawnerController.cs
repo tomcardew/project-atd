@@ -116,7 +116,8 @@ public class SpawnerController : MonoBehaviour
         var _prefabs = new List<GameObject>(prefabs);
         if (useEnemySpawnConfiguration)
         {
-            _prefabs = Enemies.All
+            _prefabs = Enemies
+                .GetAll()
                 .Where(unit => unit.appearAtRound <= currentWave)
                 .Select(unit => unit.prefab)
                 .ToList();

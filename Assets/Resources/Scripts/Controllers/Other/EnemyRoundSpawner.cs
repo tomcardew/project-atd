@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyRoundSpawner : PrefabSpawner
 {
     public int currentRound = 0; // Current round number
-    private List<Unit> prefabs = Enemies.All.ToList(); // List of all enemy prefabs
+    private List<Unit> prefabs; // List of all enemy prefabs
     private int availablePrefabsCount; // Count of available prefabs for the current round
     private bool hasAddedCards = false; // Flag to check if new cards have been added
 
     public override void Init()
     {
+        prefabs = Enemies.GetAll().ToList();
         availablePrefabsCount = 0; // Initialize available prefabs count
         GameManager.OnWaveEnd += HandleWaveEnd; // Subscribe to the OnWaveEnd event
     }

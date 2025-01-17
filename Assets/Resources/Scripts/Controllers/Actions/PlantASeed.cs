@@ -18,7 +18,12 @@ public class PlantASeed : MonoBehaviour
 
     private void Start()
     {
-        resources = new() { Prefabs.SmallTree, Prefabs.MediumTree, Prefabs.LargeTree };
+        resources = new()
+        {
+            Prefabs.GetPrefab(Prefabs.ResourceType.SmallTree),
+            Prefabs.GetPrefab(Prefabs.ResourceType.MediumTree),
+            Prefabs.GetPrefab(Prefabs.ResourceType.LargeTree),
+        };
         loadingBar = GetComponentInChildren<SliderController>();
         loadingBar.ChangeColor(Color.yellow);
         growRoutine = StartCoroutine(GrowRoutine());

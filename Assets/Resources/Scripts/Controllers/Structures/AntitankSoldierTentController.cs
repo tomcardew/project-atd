@@ -12,6 +12,6 @@ public class AntitankSoldierTentController : PrefabSpawner
 
     public override GameObject GetPrefab()
     {
-        return Prefabs.AntitankSoldier;
+        return Prefabs.GetPrefab(Prefabs.UnitType.AntitankSoldier);
     }
 }

@@ -13,6 +13,6 @@ public class SoldierTentController : PrefabSpawner
 
     public override GameObject GetPrefab()
     {
-        return Prefabs.Soldier;
+        return Prefabs.GetPrefab(Prefabs.UnitType.Soldier);
     }
 }

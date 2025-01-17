@@ -92,7 +92,7 @@ public class TankControlller : MonoBehaviour
     private void Shoot()
     {
         GameObject bullet = Instantiate(
-            Prefabs.TankBullet,
+            Prefabs.GetPrefab(Prefabs.BulletType.TankBullet),
             transform.position + firePointOffset,
             Quaternion.identity
         );

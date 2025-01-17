@@ -92,7 +92,7 @@ public class ResourceGenerator : MonoBehaviour
                     worker.rest = 0;
                     workers.RemoveAt(i);
                     GameObject p = Instantiate(
-                        Prefabs.Person,
+                        Prefabs.GetPrefab(Prefabs.UnitType.Person),
                         transform.position,
                         Quaternion.identity
                     );
@@ -127,7 +127,11 @@ public class ResourceGenerator : MonoBehaviour
         // Handle the state when the resource generator is empty
         foreach (var worker in workers)
         {
-            GameObject p = Instantiate(Prefabs.Person, transform.position, Quaternion.identity);
+            GameObject p = Instantiate(
+                Prefabs.GetPrefab(Prefabs.UnitType.Person),
+                transform.position,
+                Quaternion.identity
+            );
             PersonMovable pm = p.GetComponent<PersonMovable>();
             pm.person = worker;
             pm.isGoingHome = true;

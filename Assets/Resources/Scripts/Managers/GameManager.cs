@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -98,11 +96,6 @@ public class GameManager : MonoBehaviour
         {
             isOnWave = true;
             OnWaveStart?.Invoke();
-            AudioSource.PlayClipAtPoint(
-                Resources.Load<AudioClip>("Sounds/round-start"),
-                Camera.main.transform.position,
-                2f
-            );
             mainSpawner.shouldSpawn = true;
             mainSpawner.currentRound = currentRound;
             baseCountingTime = CurrentWaveDuration;
@@ -142,7 +135,11 @@ public class GameManager : MonoBehaviour
     private void InstantiateEssentials()
     {
         Vector3 castlePosition = Utils.GetPositionOnBorder(Camera.main, 2f, 300f);
-        GameObject castle = Instantiate(Prefabs.Castle, castlePosition, Quaternion.identity);
+        GameObject castle = Instantiate(
+            Prefabs.GetPrefab(Prefabs.StructureType.Castle),
+            castlePosition,
+            Quaternion.identity
+        );
 
         Vector3 oppositePosition = Utils.GetOppositeCornerOutsideView(castlePosition, 3f);
         mainSpawner = CreateMainSpawner(oppositePosition);
@@ -168,7 +165,7 @@ public class GameManager : MonoBehaviour
 
     private LineController CreateLineDrawer(GameObject a, GameObject b)
     {
-        GameObject lineDrawer = Instantiate(Prefabs.LineDrawer);
+        GameObject lineDrawer = Instantiate(Prefabs.GetPrefab(Prefabs.OtherType.LineDrawer));
         LineController ctrl = lineDrawer.GetComponent<LineController>();
         ctrl.start = a;
         ctrl.end = b;
@@ -179,9 +176,9 @@ public class GameManager : MonoBehaviour
     {
         List<GameObject> trees = new List<GameObject>
         {
-            Prefabs.LargeTree,
-            Prefabs.MediumTree,
-            Prefabs.SmallTree
+            Prefabs.GetPrefab(Prefabs.ResourceType.SmallTree),
+            Prefabs.GetPrefab(Prefabs.ResourceType.MediumTree),
+            Prefabs.GetPrefab(Prefabs.ResourceType.LargeTree),
         };
 
         List<Vector3> generatedPositions = new List<Vector3>();
