@@ -48,7 +48,7 @@ public class EnemyRoundSpawner : PrefabSpawner
         }
         else
         {
-            delayMultiplier = Mathf.Max(0.1f, delayMultiplier - 0.01f * currentRound); // Decrease delay multiplier with a minimum of 0.1f
+            delayMultiplier = Mathf.Max(0.5f, delayMultiplier - (0.001f * currentRound)); // Decrease delay multiplier with a minimum of 0.1f
             quantityMultiplier = 1 + (int)currentRound / 5; // Increase quantity multiplier
         }
     }
