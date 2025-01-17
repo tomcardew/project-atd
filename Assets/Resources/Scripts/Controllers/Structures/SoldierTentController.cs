@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SoldierTentController : PrefabSpawner
 {
+    public override void Init() { }
+
     public override void DidSpawnPrefab(GameObject prefab)
     {
         SoldierMovable soldierMovable = prefab.GetComponent<SoldierMovable>();

@@ -15,6 +15,8 @@ public static class Prefabs
         Resources.Load<GameObject>("Prefabs/Units/Enemies/LargeEnemy");
     public static GameObject Tank { get; } =
         Resources.Load<GameObject>("Prefabs/Units/Enemies/Tank");
+    public static GameObject Assasin { get; } =
+        Resources.Load<GameObject>("Prefabs/Units/Enemies/Assasin");
 
     // Structures
     public static GameObject Castle { get; } =

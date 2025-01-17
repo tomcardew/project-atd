@@ -14,7 +14,7 @@ public class ArrowAttacker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.transform.parent.CompareTag("Enemy"))
+        if (other.gameObject.transform.parent.CompareTag(Tags.Enemy))
         {
             Damageable dmg = other.GetComponentInParent<Damageable>();
             dmg.ReceiveDamage(CurrentDamage);

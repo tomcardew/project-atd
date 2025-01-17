@@ -47,7 +47,6 @@ public class Manager : MonoBehaviour
         Population = FindFirstObjectByType<PopulationManager>();
         Cards = FindFirstObjectByType<CardsManager>();
         Cursor = FindFirstObjectByType<CursorManager>();
-        Round = FindFirstObjectByType<RoundManager>();
         Interactions = FindFirstObjectByType<InteractionsManager>();
         UI = FindFirstObjectByType<UIManager>();
     }
@@ -62,8 +61,6 @@ public class Manager : MonoBehaviour
     public static CardsManager Cards { get; private set; }
 
     public static CursorManager Cursor { get; private set; }
-
-    public static RoundManager Round { get; private set; }
 
     public static InteractionsManager Interactions { get; private set; }
 

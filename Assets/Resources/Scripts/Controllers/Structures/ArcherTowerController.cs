@@ -41,7 +41,7 @@ public class ArcherTowerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        string[] names = { "Enemy", "LargeEnemy" }; // Only light armor
+        string[] names = { Enemies.Enemy.name, Enemies.LargeEnemy.name, Enemies.Assasin.name }; // Only light armor
         GameObject obj = other.transform.parent.gameObject;
         Movable movable = obj.GetComponent<Movable>();
 
