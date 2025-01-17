@@ -5,7 +5,7 @@ public class AntitankSoldierMovable : Movable
     public override void Init()
     {
         useTargetIdentifiers = true;
-        targetIdentifiers = new() { "Tank" }; // only heavy enemies
+        targetIdentifiers = new() { Enemies.Tank.name }; // only heavy enemies
         rotateTowards = GetComponentInChildren<RotateTowards>();
     }
 

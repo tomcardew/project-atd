@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AntitankSoldierTentController : PrefabSpawner
 {
+    public override void Init() { }
+
     public override void DidSpawnPrefab(GameObject gameobject)
     {
         AntitankSoldierMovable soldierMovable = gameobject.GetComponent<AntitankSoldierMovable>();
@@ -10,6 +12,6 @@ public class AntitankSoldierTentController : PrefabSpawner
 
     public override GameObject GetPrefab()
     {
-        return Prefabs.AntitankSoldier;
+        return Prefabs.GetPrefab(Prefabs.UnitType.AntitankSoldier);
     }
 }

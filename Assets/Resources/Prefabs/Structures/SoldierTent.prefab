@@ -613,10 +613,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialQuantity: 1
   quantityMultiplier: 1
-  initialDelay: 5
+  initialDelay: 10
   delayMultiplier: 1
-  initialMaxSoldiers: 1
-  maxSoldiersMultiplier: 1
+  isInfinite: 0
+  initialMaxQuantity: 1
+  maxQuantityMultiplier: 1
+  shouldSpawn: 1
 --- !u!58 &2911675302722441189
 CircleCollider2D:
   m_ObjectHideFlags: 0

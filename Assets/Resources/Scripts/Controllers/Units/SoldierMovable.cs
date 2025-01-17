@@ -9,7 +9,12 @@ public class SoldierMovable : Movable
 
     public override void Init()
     {
-        targetIdentifiers = new() { "Enemy", "LargeEnemy" };
+        targetIdentifiers = new()
+        {
+            Enemies.Enemy.name,
+            Enemies.LargeEnemy.name,
+            Enemies.Tank.name
+        };
         useTargetIdentifiers = true;
         attacker = GetComponentInChildren<Attacker>();
     }

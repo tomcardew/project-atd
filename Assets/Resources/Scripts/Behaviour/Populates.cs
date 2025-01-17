@@ -94,7 +94,7 @@ public class Populates : MonoBehaviour
                 if (generator != null)
                 {
                     GameObject _person = Instantiate(
-                        Prefabs.Person,
+                        Prefabs.GetPrefab(Prefabs.UnitType.Person),
                         transform.position,
                         Quaternion.identity
                     );

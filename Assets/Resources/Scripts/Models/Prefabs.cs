@@ -2,78 +2,224 @@ using UnityEngine;
 
 public static class Prefabs
 {
-    // Units
-    public static GameObject Person { get; } = Resources.Load<GameObject>("Prefabs/Units/Person");
-    public static GameObject Soldier { get; } = Resources.Load<GameObject>("Prefabs/Units/Soldier");
-    public static GameObject AntitankSoldier { get; } =
-        Resources.Load<GameObject>("Prefabs/Units/AntitankSoldier");
+    public enum UnitType
+    {
+        Person,
+        Soldier,
+        AntitankSoldier
+    }
 
-    // Enemies
-    public static GameObject Enemy { get; } =
-        Resources.Load<GameObject>("Prefabs/Units/Enemies/Enemy");
-    public static GameObject LargeEnemy { get; } =
-        Resources.Load<GameObject>("Prefabs/Units/Enemies/LargeEnemy");
-    public static GameObject Tank { get; } =
-        Resources.Load<GameObject>("Prefabs/Units/Enemies/Tank");
+    public enum EnemyType
+    {
+        Enemy,
+        LargeEnemy,
+        Tank,
+        Assasin
+    }
 
-    // Structures
-    public static GameObject Castle { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Castle");
-    public static GameObject SoldierTent { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/SoldierTent");
-    public static GameObject AntitankSoldierTent { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/AntitankSoldierTent");
-    public static GameObject House { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/House");
-    public static GameObject ArcherTower { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/ArcherTower");
-    public static GameObject Church { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Church");
+    public enum StructureType
+    {
+        Castle,
+        SoldierTent,
+        AntitankSoldierTent,
+        House,
+        ArcherTower,
+        Church,
+        SoldierTent_Droppable,
+        AntitankSoldierTent_Droppable,
+        House_Droppable,
+        ArcherTower_Droppable,
+        Church_Droppable
+    }
 
-    // Structure droppables
-    public static GameObject SoldierTent_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierTent");
-    public static GameObject AntitankSoldierTent_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/AntitankSoldierTent");
-    public static GameObject House_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/House");
-    public static GameObject ArcherTower_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/ArcherTower");
-    public static GameObject Church_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Structures/Droppables/Church");
+    public enum ActionType
+    {
+        PlantASeed,
+        RepairAnStructure,
+        PlantASeed_Droppable,
+        RepairAnStructure_Droppable
+    }
 
-    // Actions
-    public static GameObject PlantASeed { get; } =
-        Resources.Load<GameObject>("Prefabs/Actions/PlantASeed");
-    public static GameObject RepairAnStructure { get; } =
-        Resources.Load<GameObject>("Prefabs/Actions/RepairAnStructure");
+    public enum ResourceType
+    {
+        LargeTree,
+        MediumTree,
+        SmallTree
+    }
 
-    // Action droppables
-    public static GameObject PlantASeed_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Actions/Droppables/PlantASeed");
-    public static GameObject RepairAnStructure_Droppable { get; } =
-        Resources.Load<GameObject>("Prefabs/Actions/Droppables/RepairAnStructure");
+    public enum BulletType
+    {
+        Arrow,
+        TankBullet,
+        AntitankBullet
+    }
 
-    // Resources
-    public static GameObject LargeTree { get; } =
-        Resources.Load<GameObject>("Prefabs/Resources/LargeTree");
-    public static GameObject MediumTree { get; } =
-        Resources.Load<GameObject>("Prefabs/Resources/MediumTree");
-    public static GameObject SmallTree { get; } =
-        Resources.Load<GameObject>("Prefabs/Resources/SmallTree");
+    public enum OtherType
+    {
+        Spawner,
+        LineDrawer,
+        CardUI,
+        CardBackCounters
+    }
 
-    // Bullets
-    public static GameObject Arrow { get; } = Resources.Load<GameObject>("Prefabs/Bullets/Arrow");
-    public static GameObject TankBullet { get; } =
-        Resources.Load<GameObject>("Prefabs/Bullets/TankBullet");
-    public static GameObject AntitankBullet { get; } =
-        Resources.Load<GameObject>("Prefabs/Bullets/AntitankBullet");
+    public enum AlertType
+    {
+        WaveIsComing
+    }
 
-    // Other
-    public static GameObject Spawner { get; } = Resources.Load<GameObject>("Prefabs/Utils/Spawner");
-    public static GameObject LineDrawer { get; } =
-        Resources.Load<GameObject>("Prefabs/Utils/LineDrawer");
-    public static GameObject CardUI { get; } = Resources.Load<GameObject>("Prefabs/UI/Card");
-    public static GameObject CardBackCounters { get; } =
-        Resources.Load<GameObject>("Prefabs/UI/CardBackCounters");
+    public enum SoundType
+    {
+        Alert
+    }
+
+    public static GameObject GetPrefab(UnitType unitType)
+    {
+        switch (unitType)
+        {
+            case UnitType.Person:
+                return Resources.Load<GameObject>("Prefabs/Units/Person");
+            case UnitType.Soldier:
+                return Resources.Load<GameObject>("Prefabs/Units/Soldier");
+            case UnitType.AntitankSoldier:
+                return Resources.Load<GameObject>("Prefabs/Units/AntitankSoldier");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(EnemyType enemyType)
+    {
+        switch (enemyType)
+        {
+            case EnemyType.Enemy:
+                return Resources.Load<GameObject>("Prefabs/Units/Enemies/Enemy");
+            case EnemyType.LargeEnemy:
+                return Resources.Load<GameObject>("Prefabs/Units/Enemies/LargeEnemy");
+            case EnemyType.Tank:
+                return Resources.Load<GameObject>("Prefabs/Units/Enemies/Tank");
+            case EnemyType.Assasin:
+                return Resources.Load<GameObject>("Prefabs/Units/Enemies/Assasin");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(StructureType structureType)
+    {
+        switch (structureType)
+        {
+            case StructureType.Castle:
+                return Resources.Load<GameObject>("Prefabs/Structures/Castle");
+            case StructureType.SoldierTent:
+                return Resources.Load<GameObject>("Prefabs/Structures/SoldierTent");
+            case StructureType.AntitankSoldierTent:
+                return Resources.Load<GameObject>("Prefabs/Structures/AntitankSoldierTent");
+            case StructureType.House:
+                return Resources.Load<GameObject>("Prefabs/Structures/House");
+            case StructureType.ArcherTower:
+                return Resources.Load<GameObject>("Prefabs/Structures/ArcherTower");
+            case StructureType.Church:
+                return Resources.Load<GameObject>("Prefabs/Structures/Church");
+            case StructureType.SoldierTent_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierTent");
+            case StructureType.AntitankSoldierTent_Droppable:
+                return Resources.Load<GameObject>(
+                    "Prefabs/Structures/Droppables/AntitankSoldierTent"
+                );
+            case StructureType.House_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/House");
+            case StructureType.ArcherTower_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/ArcherTower");
+            case StructureType.Church_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Church");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(ActionType actionType)
+    {
+        switch (actionType)
+        {
+            case ActionType.PlantASeed:
+                return Resources.Load<GameObject>("Prefabs/Actions/PlantASeed");
+            case ActionType.RepairAnStructure:
+                return Resources.Load<GameObject>("Prefabs/Actions/RepairAnStructure");
+            case ActionType.PlantASeed_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/PlantASeed");
+            case ActionType.RepairAnStructure_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/RepairAnStructure");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(ResourceType resourceType)
+    {
+        switch (resourceType)
+        {
+            case ResourceType.LargeTree:
+                return Resources.Load<GameObject>("Prefabs/Resources/LargeTree");
+            case ResourceType.MediumTree:
+                return Resources.Load<GameObject>("Prefabs/Resources/MediumTree");
+            case ResourceType.SmallTree:
+                return Resources.Load<GameObject>("Prefabs/Resources/SmallTree");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(BulletType bulletType)
+    {
+        switch (bulletType)
+        {
+            case BulletType.Arrow:
+                return Resources.Load<GameObject>("Prefabs/Bullets/Arrow");
+            case BulletType.TankBullet:
+                return Resources.Load<GameObject>("Prefabs/Bullets/TankBullet");
+            case BulletType.AntitankBullet:
+                return Resources.Load<GameObject>("Prefabs/Bullets/AntitankBullet");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(OtherType otherType)
+    {
+        switch (otherType)
+        {
+            case OtherType.Spawner:
+                return Resources.Load<GameObject>("Prefabs/Utils/Spawner");
+            case OtherType.LineDrawer:
+                return Resources.Load<GameObject>("Prefabs/Utils/LineDrawer");
+            case OtherType.CardUI:
+                return Resources.Load<GameObject>("Prefabs/UI/Card");
+            case OtherType.CardBackCounters:
+                return Resources.Load<GameObject>("Prefabs/UI/CardBackCounters");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(AlertType alertType)
+    {
+        switch (alertType)
+        {
+            case AlertType.WaveIsComing:
+                return Resources.Load<GameObject>("Prefabs/UI/Alerts/WaveIsComing");
+            default:
+                return null;
+        }
+    }
+
+    public static AudioClip GetSound(SoundType soundType)
+    {
+        switch (soundType)
+        {
+            case SoundType.Alert:
+                return Resources.Load<AudioClip>("Sounds/alert2");
+            default:
+                return null;
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class AntitankBulletAttacker : MonoBehaviour
     {
         GameObject obj = other.gameObject.transform.parent.gameObject;
         Movable movable = obj.GetComponent<Movable>();
-        if (movable.internalName == "Tank")
+        if (movable != null && movable.internalName == Enemies.Tank.name)
         {
             Damageable dmg = obj.GetComponentInChildren<Damageable>();
             dmg.ReceiveDamage(CurrentDamage);

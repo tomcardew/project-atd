@@ -96,7 +96,7 @@ public class AntitankSoldierControlller : MonoBehaviour
     {
         Debug.Log("Shooting antitank soldier");
         GameObject bullet = Instantiate(
-            Prefabs.AntitankBullet,
+            Prefabs.GetPrefab(Prefabs.BulletType.AntitankBullet),
             transform.position + firePointOffset,
             Quaternion.identity
         );
