@@ -37,7 +37,7 @@ public class CardHolderController : MonoBehaviour
             card.GetComponent<CanvasScaler>()
         );
         hand.Add(card);
-        cardUIController.MoveToPosition(nextPosition, 0.5f, 0.1f * (hand.Count - 1));
+        cardUIController.MoveToPosition(nextPosition, 0.5f, 0.1f * (hand.Count - 1), true);
         UpdateIndexes();
     }
 
@@ -49,7 +49,11 @@ public class CardHolderController : MonoBehaviour
             card.GetComponent<RectTransform>(),
             card.GetComponent<CanvasScaler>()
         );
-        card.GetComponentInChildren<CardUIController>().MoveToPosition(nextPosition, 0.5f, 0);
+        AudioSource.PlayClipAtPoint(
+            Prefabs.GetSound(Prefabs.SoundType.CardFlip),
+            transform.position
+        );
+        card.GetComponentInChildren<CardUIController>().MoveToPosition(nextPosition, 0.5f, 0, true);
         UpdateIndexes();
     }
 
