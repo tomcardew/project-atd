@@ -21,3 +21,11 @@ Deal damage to structures.
 | Speed | Damage | Used By                                 |
 | ----- | ------ | --------------------------------------- |
 | 8     | 10     | [Tank](../Units/Enemies/readme.md#tank) |
+
+### Antitank Bullet
+
+Deal damage to tanks.
+
+| Speed | Damage | Used By                                                 |
+| ----- | ------ | ------------------------------------------------------- |
+| 4     | 20     | [Antitank Soldier](../Units/readme.md#antitank-soldier) |

@@ -1,32 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardsManager : MonoBehaviour
 {
-    public List<Card> destroyed; // It will contain the destroyed cards
+    public List<Card> discarded; // It will contain the discarded cards
     public List<Card> deck; // It will contain the current set of cards
     public List<Card> hand; // It will contain the current hand of cards
+    private List<GameObject> handCards;
+
+    private CardHolderController cardsHolder;
+
+    public Transform deckHolder;
+    public Transform discardedHolder;
+
     private GameObject draggingCard; // It will contain the current dragging card
-    private GameObject cardsHolder;
 
     private void Awake()
     {
         // Initialize the deck with all available cards
-        destroyed = new List<Card>();
+        discarded = new List<Card>();
         hand = new List<Card>();
+        handCards = new List<GameObject>();
         deck = new List<Card>();
         deck = Utils.ShuffleList(Cards.StartDeck.ToList());
-        cardsHolder = new GameObject("CardsHolder");
+
+        var _cardHolder = new GameObject("CardsHolder");
+        cardsHolder = _cardHolder.AddComponent<CardHolderController>();
+
+        SpawnCounters();
 
         for (int i = 0; i < 5; i++)
         {
             Draw();
         }
-
-        RenderCards();
     }
 
     private void OnEnable()
@@ -54,19 +64,9 @@ public class CardsManager : MonoBehaviour
 
     private void HandleWaveEnd()
     {
-        Debug.Log("Wave ended!");
         for (int i = hand.Count; i < 5; i++)
         {
             Draw();
-        }
-    }
-
-    private void RenderCards()
-    {
-        Utils.DestroyAllChildren(cardsHolder);
-        for (int i = 0; i < hand.Count; i++)
-        {
-            SpawnCard(hand[i], i);
         }
     }
 
@@ -79,16 +79,17 @@ public class CardsManager : MonoBehaviour
     {
         if (deck.Count == 0)
         {
-            if (destroyed.Count == 0)
+            if (discarded.Count == 0)
             {
                 throw new System.Exception("No cards available");
             }
-            deck = Utils.ShuffleList(destroyed);
-            destroyed.Clear();
+            deck = Utils.ShuffleList(discarded);
+            discarded.Clear();
         }
+        SpawnCard(deck[0], hand.Count);
+
         hand.Add(deck[0]);
         deck.RemoveAt(0);
-        RenderCards();
     }
 
     public void RegisterDraggingCard(GameObject card)
@@ -103,31 +104,62 @@ public class CardsManager : MonoBehaviour
             throw new System.Exception("No dragging card found");
         }
         CardUIController cardUI = draggingCard.GetComponentInChildren<CardUIController>();
+        cardsHolder.GoToWaitingPosition(cardUI.index);
         if (cardUI != null && Manager.Resources.CanPay(cardUI.card))
         {
             Card card = cardUI.card;
             Droppable dp = new GameObject("Droppable").AddComponent<Droppable>();
             dp.card = card;
+            dp.index = cardUI.index;
             dp.OnDropFinished += EndDrop;
-            Destroy(draggingCard);
         }
         else
         {
-            Destroy(draggingCard);
-            RenderCards();
+            cardsHolder.MoveBackToHand(cardUI.index);
         }
         draggingCard = null;
     }
 
-    private void EndDrop(Card card, bool success)
+    private void EndDrop(Card card, int index, bool success)
     {
         if (success)
         {
-            destroyed.Add(card);
-            hand.RemoveAt(hand.FindIndex(c => c.name == card.name));
+            discarded.Add(card);
+            hand.RemoveAt(index);
+            cardsHolder.MoveToDiscarded(index);
         }
-        RenderCards();
+        else
+        {
+            cardsHolder.MoveBackToHand(index);
+        }
         Manager.Cursor.SetDefaultCursor();
+    }
+
+    private GameObject SpawnCounters()
+    {
+        GameObject _counters = Instantiate(
+            Prefabs.CardBackCounters,
+            Vector3.zero,
+            Quaternion.identity,
+            cardsHolder.transform
+        );
+
+        // Update the holder references
+        deckHolder = _counters.transform.GetChild(0);
+        cardsHolder.deck = deckHolder;
+
+        discardedHolder = _counters.transform.GetChild(1);
+        cardsHolder.discarded = discardedHolder;
+
+        // Calculate the initial position based on the camera's viewport
+        Vector2 position = Camera.main.ViewportToWorldPoint(
+            new Vector3(1, 0, Camera.main.nearClipPlane)
+        );
+
+        position += new Vector2(-0.8f, 1.6f);
+
+        _counters.transform.position = position;
+        return _counters;
     }
 
     private void SpawnCard(Card card, int index)
@@ -135,31 +167,18 @@ public class CardsManager : MonoBehaviour
         // Instantiate the card UI prefab at the origin
         GameObject _card = Instantiate(
             Prefabs.CardUI,
-            Vector3.zero,
+            deckHolder.position,
             Quaternion.identity,
             cardsHolder.transform
         );
-
-        // Calculate the initial position based on the camera's viewport
-        Vector2 position = Camera.main.ViewportToWorldPoint(
-            new Vector3(0, 0, Camera.main.nearClipPlane)
-        );
-
-        // Get the RectTransform and CanvasScaler components
-        RectTransform rect = _card.GetComponent<RectTransform>();
-        float scaler = _card.GetComponent<CanvasScaler>().referencePixelsPerUnit;
-        float rate = rect.sizeDelta.y / rect.sizeDelta.x;
-
-        // Calculate the offset for the card's position
-        Vector2 offset = new Vector2(0.1f + (1.5f * index), 0.5f);
-        position += new Vector2(rect.localScale.x * scaler, rect.localScale.y * scaler * rate);
-        position += offset;
-
-        // Set the card's position
-        _card.transform.position = position;
+        handCards.Add(_card);
 
         // Assign the card data to the UI controller
         CardUIController cardUI = _card.GetComponentInChildren<CardUIController>();
         cardUI.card = card;
+        cardUI.index = index;
+
+        // Add to cardholder
+        cardsHolder.AddToHand(_card);
     }
 }

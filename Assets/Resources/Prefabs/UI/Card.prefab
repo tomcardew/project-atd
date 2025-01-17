@@ -85,7 +85,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &274875884454550722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,6 +1008,7 @@ MonoBehaviour:
     iconPath: 
     prefab: {fileID: 0}
     droppablePrefab: {fileID: 0}
+  index: 0
   icon: {fileID: 5226745878662580662}
   slotA: {fileID: 5169002715959315803}
   slotB: {fileID: 7672743889653162781}

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class AntitankSoldierTentController : SoldierSpawner
+public class AntitankSoldierTentController : PrefabSpawner
 {
-    public override void DidSpawnSoldier(GameObject soldier)
+    public override void DidSpawnPrefab(GameObject gameobject)
     {
-        AntitankSoldierMovable soldierMovable = soldier.GetComponent<AntitankSoldierMovable>();
+        AntitankSoldierMovable soldierMovable = gameobject.GetComponent<AntitankSoldierMovable>();
         // TODO: Make soldier return to tent
     }
 

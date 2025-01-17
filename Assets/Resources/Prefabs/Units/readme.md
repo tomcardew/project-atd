@@ -17,3 +17,11 @@ This is your basic attack unit. They can attack light units, but they are helple
 | Life | Damage | Damage Interval | Speed | Can Attack                               |
 | ---- | ------ | --------------- | ----- | ---------------------------------------- |
 | 1    | 1      | 1               | 0.6   | [Castle](../Structures/readme.md#castle) |
+
+### Antitank Soldier
+
+This unit specialty are tanks.
+
+| Life | Damage | Damage Interval | Speed | Can Attack                              |
+| ---- | ------ | --------------- | ----- | --------------------------------------- |
+| 1    | -      | 5               | 0.6   | [Tank](../Units/Enemies/readme.md#tank) |

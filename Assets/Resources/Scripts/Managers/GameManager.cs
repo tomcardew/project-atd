@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
                     position,
                     lineController.start.transform.position,
                     lineController.end.transform.position
-                ) || IsPositionTooClose(position, generatedPositions, 1f)
+                ) || IsPositionTooClose(position, generatedPositions, 2f)
             );
 
             generatedPositions.Add(position);

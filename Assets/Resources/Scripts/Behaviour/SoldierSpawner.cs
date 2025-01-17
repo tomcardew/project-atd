@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class SoldierSpawner : MonoBehaviour
+public abstract class PrefabSpawner : MonoBehaviour
 {
     // Public properties
     [Header("Spawn settings")]
@@ -14,7 +14,7 @@ public abstract class SoldierSpawner : MonoBehaviour
     public float maxSoldiersMultiplier = 1.0f;
 
     public abstract GameObject GetPrefab(); // Get the prefab to spawn
-    public abstract void DidSpawnSoldier(GameObject soldier); // Called when a soldier is spawned
+    public abstract void DidSpawnPrefab(GameObject prefab); // Called when a prefab is spawned
 
     // Private properties
     private float CurrentQuantity
@@ -33,12 +33,12 @@ public abstract class SoldierSpawner : MonoBehaviour
     }
 
     private Coroutine spawnRoutine;
-    private GameObject soldierHolder;
+    private GameObject prefabHolder;
 
     private void Start()
     {
         spawnRoutine = StartCoroutine(SpawnRoutine());
-        soldierHolder = new GameObject("SoldierHolder");
+        prefabHolder = new GameObject("PrefabHolder");
     }
 
     private void OnDisable()
@@ -55,15 +55,15 @@ public abstract class SoldierSpawner : MonoBehaviour
         yield return new WaitForSeconds(CurrentDelay);
         for (int i = 0; i < CurrentQuantity; i++)
         {
-            if (soldierHolder.transform.childCount < CurrentMaxSoldiers)
+            if (prefabHolder.transform.childCount < CurrentMaxSoldiers)
             {
-                GameObject soldier = Instantiate(
+                GameObject prefab = Instantiate(
                     GetPrefab(),
                     transform.position,
                     Quaternion.identity,
-                    soldierHolder.transform
+                    prefabHolder.transform
                 );
-                DidSpawnSoldier(soldier);
+                DidSpawnPrefab(prefab);
             }
         }
     }

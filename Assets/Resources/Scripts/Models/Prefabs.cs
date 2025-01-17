@@ -74,4 +74,6 @@ public static class Prefabs
     public static GameObject LineDrawer { get; } =
         Resources.Load<GameObject>("Prefabs/Utils/LineDrawer");
     public static GameObject CardUI { get; } = Resources.Load<GameObject>("Prefabs/UI/Card");
+    public static GameObject CardBackCounters { get; } =
+        Resources.Load<GameObject>("Prefabs/UI/CardBackCounters");
 }

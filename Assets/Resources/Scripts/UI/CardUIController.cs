@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +9,7 @@ public class CardUIController : MonoBehaviour
 {
     // Public properties
     public Card card;
+    public int index;
     public RawImage icon;
 
     public GameObject slotA;
@@ -26,6 +29,31 @@ public class CardUIController : MonoBehaviour
         description = labels[1];
 
         SetData();
+    }
+
+    public void MoveToPosition(Vector3 targetPosition, float duration, float delay)
+    {
+        StartCoroutine(MoveCoroutine(targetPosition, duration, delay));
+    }
+
+    private IEnumerator MoveCoroutine(Vector3 targetPosition, float duration, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Vector3 startPosition = transform.parent.position;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            transform.parent.position = Vector3.Lerp(
+                startPosition,
+                targetPosition,
+                elapsedTime / duration
+            );
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.parent.position = targetPosition;
     }
 
     private void SetData()

@@ -7,8 +7,9 @@ using System.Collections.Generic;
 public class Droppable : MonoBehaviour
 {
     // Public properties
+    public int index;
     public Card card; // Card to pay when the object is dropped
-    public delegate void DropFinished(Card card, bool success);
+    public delegate void DropFinished(Card card, int index, bool success);
     public event DropFinished OnDropFinished;
 
     // Private properties
@@ -57,7 +58,7 @@ public class Droppable : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // Deactivate the droppable functionality
-                OnDropFinished?.Invoke(card, false);
+                OnDropFinished?.Invoke(card, index, false);
                 Destroy(gameObject);
             }
         }
@@ -86,7 +87,7 @@ public class Droppable : MonoBehaviour
             Manager.UI.ClearTooltip();
             // Instantiate the active prefab at the last known position
             Manager.Resources.Pay(card);
-            OnDropFinished?.Invoke(card, true);
+            OnDropFinished?.Invoke(card, index, true);
             Instantiate(card.prefab, position, rotation);
             // Destroy this script's game object
             DestroyImmediate(gameObject);
