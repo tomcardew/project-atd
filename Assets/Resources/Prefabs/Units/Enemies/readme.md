@@ -31,3 +31,11 @@ The tank uses the Tank Bullet as projectile to deal damage.
 | Life | Damage | Damage Interval | Speed | Can Attack                                                                            |
 | ---- | ------ | --------------- | ----- | ------------------------------------------------------------------------------------- |
 | 30   | -      | 5               | 0.3   | [Structures](../../Structures/readme.md), [Castle](../../Structures/readme.md#castle) |
+
+### Assasin
+
+This is a light enemy that attacks both the castle and your soldiers. It's slighly faster, aswell.
+
+| Life | Damage | Damage Interval | Speed | Can Attack                                                            |
+| ---- | ------ | --------------- | ----- | --------------------------------------------------------------------- |
+| 1    | 5      | 1               | 0.6   | [Castle](../../Structures/readme.md#castle), [Soldiers](../readme.md) |
