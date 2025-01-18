@@ -13,7 +13,7 @@ public class SoldierMovable : Movable
         {
             Enemies.Enemy.name,
             Enemies.LargeEnemy.name,
-            Enemies.Tank.name
+            Enemies.Assasin.name
         };
         useTargetIdentifiers = true;
         attacker = GetComponentInChildren<Attacker>();

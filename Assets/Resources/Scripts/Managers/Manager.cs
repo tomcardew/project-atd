@@ -28,6 +28,23 @@ public class Manager : MonoBehaviour
         }
     }
 
+    // Static reference to the ResourcesManager
+    public static ResourcesManager Resources { get; private set; }
+
+    public static GameManager Game { get; private set; }
+
+    public static PopulationManager Population { get; private set; }
+
+    public static CardsManager Cards { get; private set; }
+
+    public static CursorManager Cursor { get; private set; }
+
+    public static InteractionsManager Interactions { get; private set; }
+
+    public static UIManager UI { get; private set; }
+
+    public static TimeManager Time { get; private set; }
+
     // Ensure the instance is not destroyed on scene load
     private void Awake()
     {
@@ -49,25 +66,6 @@ public class Manager : MonoBehaviour
         Cursor = FindFirstObjectByType<CursorManager>();
         Interactions = FindFirstObjectByType<InteractionsManager>();
         UI = FindFirstObjectByType<UIManager>();
-    }
-
-    // Static reference to the ResourcesManager
-    public static ResourcesManager Resources { get; private set; }
-
-    public static GameManager Game { get; private set; }
-
-    public static PopulationManager Population { get; private set; }
-
-    public static CardsManager Cards { get; private set; }
-
-    public static CursorManager Cursor { get; private set; }
-
-    public static InteractionsManager Interactions { get; private set; }
-
-    public static UIManager UI { get; private set; }
-
-    private void Start()
-    {
-        Game.StartGame();
+        Time = FindFirstObjectByType<TimeManager>();
     }
 }

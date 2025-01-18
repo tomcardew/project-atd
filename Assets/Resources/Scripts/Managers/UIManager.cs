@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -10,12 +11,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        GameManager.OnWaveStart += HandleWaveEnd;
+        GameManager.OnWaveStart += HandleWaveStart;
     }
 
     private void OnDisable()
     {
-        GameManager.OnWaveStart -= HandleWaveEnd;
+        GameManager.OnWaveStart -= HandleWaveStart;
     }
 
     public void SetTooltip(string text)
@@ -33,7 +34,31 @@ public class UIManager : MonoBehaviour
         tooltip = "";
     }
 
-    private void HandleWaveEnd()
+    public void ShowFirstDrawModal(Card[] cards)
+    {
+        Manager.Time.isPaused = true;
+        var modal = Instantiate(
+            Prefabs.GetPrefab(Prefabs.Modals.FirstDraw),
+            Vector2.zero,
+            Quaternion.identity
+        );
+        FirstDrawModalController ctrl = modal.GetComponent<FirstDrawModalController>();
+        ctrl.cards = cards;
+    }
+
+    public void ShowAddCardModal(Card[] cards)
+    {
+        Manager.Time.isPaused = true;
+        var modal = Instantiate(
+            Prefabs.GetPrefab(Prefabs.Modals.AddCard),
+            Vector2.zero,
+            Quaternion.identity
+        );
+        AddCardModalController ctrl = modal.GetComponent<AddCardModalController>();
+        ctrl.cards = cards;
+    }
+
+    private void HandleWaveStart()
     {
         StartCoroutine(PlaySoundForDuration(Prefabs.GetSound(Prefabs.SoundType.Alert), 2.3f));
         var alert = Instantiate(

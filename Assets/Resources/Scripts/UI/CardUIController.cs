@@ -66,7 +66,7 @@ public class CardUIController : MonoBehaviour
                 targetPosition,
                 elapsedTime / duration
             );
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Manager.Time.pausableDeltaTime;
             yield return null;
         }
         if (playSound)

@@ -24,11 +24,13 @@ public static class Prefabs
         AntitankSoldierTent,
         House,
         ArcherTower,
+        BomberTower,
         Church,
         SoldierTent_Droppable,
         AntitankSoldierTent_Droppable,
         House_Droppable,
         ArcherTower_Droppable,
+        BomberTower_Droppable,
         Church_Droppable
     }
 
@@ -51,7 +53,8 @@ public static class Prefabs
     {
         Arrow,
         TankBullet,
-        AntitankBullet
+        AntitankBullet,
+        Bomb
     }
 
     public enum OtherType
@@ -59,12 +62,18 @@ public static class Prefabs
         Spawner,
         LineDrawer,
         CardUI,
-        CardBackCounters
+        CardBackCounters,
     }
 
     public enum AlertType
     {
         WaveIsComing
+    }
+
+    public enum Modals
+    {
+        FirstDraw,
+        AddCard
     }
 
     public enum SoundType
@@ -120,6 +129,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/House");
             case StructureType.ArcherTower:
                 return Resources.Load<GameObject>("Prefabs/Structures/ArcherTower");
+            case StructureType.BomberTower:
+                return Resources.Load<GameObject>("Prefabs/Structures/BomberTower");
             case StructureType.Church:
                 return Resources.Load<GameObject>("Prefabs/Structures/Church");
             case StructureType.SoldierTent_Droppable:
@@ -132,6 +143,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/House");
             case StructureType.ArcherTower_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/ArcherTower");
+            case StructureType.BomberTower_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/BomberTower");
             case StructureType.Church_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Church");
             default:
@@ -181,6 +194,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Bullets/TankBullet");
             case BulletType.AntitankBullet:
                 return Resources.Load<GameObject>("Prefabs/Bullets/AntitankBullet");
+            case BulletType.Bomb:
+                return Resources.Load<GameObject>("Prefabs/Bullets/Bomb");
             default:
                 return null;
         }
@@ -209,6 +224,19 @@ public static class Prefabs
         {
             case AlertType.WaveIsComing:
                 return Resources.Load<GameObject>("Prefabs/UI/Alerts/WaveIsComing");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(Modals modal)
+    {
+        switch (modal)
+        {
+            case Modals.FirstDraw:
+                return Resources.Load<GameObject>("Prefabs/UI/Modals/FirstDrawModal");
+            case Modals.AddCard:
+                return Resources.Load<GameObject>("Prefabs/UI/Modals/AddCardModal");
             default:
                 return null;
         }

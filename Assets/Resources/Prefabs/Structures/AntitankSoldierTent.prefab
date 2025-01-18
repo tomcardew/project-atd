@@ -611,12 +611,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311c226c4dda7443e85169d58a43aa04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialQuantity: 1
+  initialQuantity: 2
   quantityMultiplier: 1
   initialDelay: 10
   delayMultiplier: 1
   isInfinite: 0
-  initialMaxQuantity: 1
+  initialMaxQuantity: 2
   maxQuantityMultiplier: 1
   shouldSpawn: 1
 --- !u!58 &2911675302722441189

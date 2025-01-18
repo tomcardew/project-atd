@@ -69,7 +69,7 @@ public abstract class Movable : MonoBehaviour
             {
                 direction = FindBestDirection(direction, layer); // Update direction to avoid collision
             }
-            transform.position += direction * CurrentSpeed * Time.fixedDeltaTime; // Move the object
+            transform.position += direction * CurrentSpeed * Manager.Time.pausableFixedDeltaTime; // Move the object
         }
     }
 

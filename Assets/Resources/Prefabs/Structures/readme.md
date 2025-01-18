@@ -40,6 +40,14 @@ It uses an [Arrow](../Bullets/readme.md#arrow) projectile to attack light enemie
 | ---- | ------ | --------------- | --------- | ---------- |
 | 50   | -      | 2               | -         | Light      |
 
+### Bomber Tower
+
+It uses an [Bomb](../Bullets/readme.md#bomb) projectile to attack light enemies from a distance.
+
+| Life | Damage | Damage Interval | Generates | Can Attack  |
+| ---- | ------ | --------------- | --------- | ----------- |
+| 30   | -      | 3               | -         | All Enemies |
+
 ### Church (not included on v0.1)
 
 It generates Faith.

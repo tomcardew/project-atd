@@ -10,16 +10,15 @@ public class CardsManager : MonoBehaviour
     public List<Card> discarded; // It will contain the discarded cards
     public List<Card> deck; // It will contain the current set of cards
     public List<Card> hand; // It will contain the current hand of cards
-    private List<GameObject> handCards;
-
-    private CardHolderController cardsHolder;
 
     public Transform deckHolder;
     public Transform discardedHolder;
 
+    private List<GameObject> handCards;
+    private CardHolderController cardsHolder;
     private GameObject draggingCard; // It will contain the current dragging card
 
-    private void Awake()
+    private void Start()
     {
         // Initialize the deck with all available cards
         discarded = new List<Card>();
@@ -33,10 +32,9 @@ public class CardsManager : MonoBehaviour
 
         SpawnCounters();
 
-        for (int i = 0; i < 5; i++)
-        {
-            Draw();
-        }
+        // Call the FirstDrawModalController to select the first draw cards
+        List<Card> cards = deck.Take(5).ToList();
+        Manager.UI.ShowFirstDrawModal(cards.ToArray());
     }
 
     private void OnEnable()
@@ -49,6 +47,38 @@ public class CardsManager : MonoBehaviour
     {
         GameManager.OnWaveStart -= HandleWaveStart;
         GameManager.OnWaveEnd -= HandleWaveEnd;
+    }
+
+    public void SetFirstDrawCards(Card[] selected, Card[] unselected)
+    {
+        hand.Clear();
+        hand.AddRange(selected);
+        discarded.Clear();
+        discarded.AddRange(unselected);
+        deck.RemoveRange(0, 5);
+
+        for (int i = 0; i < selected.Length; i++)
+        {
+            var item = selected[i];
+            SpawnCard(item, i);
+        }
+        for (int i = selected.Length; i < 5; i++)
+        {
+            Draw();
+        }
+        Manager.Game.StartGame();
+    }
+
+    public void SetAddCard(Card card)
+    {
+        if (card != null)
+            deck.Insert(0, card);
+
+        Manager.Game.waitingForDraw = false;
+        for (int i = hand.Count; i < 5; i++)
+        {
+            Draw();
+        }
     }
 
     private void HandleWaveStart()
@@ -64,10 +94,9 @@ public class CardsManager : MonoBehaviour
 
     private void HandleWaveEnd()
     {
-        for (int i = hand.Count; i < 5; i++)
-        {
-            Draw();
-        }
+        Card[] availableCards = Cards.GetAvailableCardAtRound(Manager.Game.currentRound).ToArray();
+        Card[] cardsToShow = Utils.ShuffleList(availableCards.ToList()).Take(3).ToArray();
+        Manager.UI.ShowAddCardModal(cardsToShow);
     }
 
     public void ShuffleDeck()
@@ -76,6 +105,15 @@ public class CardsManager : MonoBehaviour
     }
 
     public void Draw()
+    {
+        var card = GetNextDrawCard();
+        SpawnCard(card, hand.Count);
+
+        hand.Add(card);
+        deck.RemoveAt(0);
+    }
+
+    private Card GetNextDrawCard()
     {
         if (deck.Count == 0)
         {
@@ -86,10 +124,7 @@ public class CardsManager : MonoBehaviour
             deck = Utils.ShuffleList(discarded);
             discarded.Clear();
         }
-        SpawnCard(deck[0], hand.Count);
-
-        hand.Add(deck[0]);
-        deck.RemoveAt(0);
+        return deck[0];
     }
 
     public void RegisterDraggingCard(GameObject card)

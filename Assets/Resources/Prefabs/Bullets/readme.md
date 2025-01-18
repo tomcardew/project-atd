@@ -29,3 +29,11 @@ Deal damage to tanks.
 | Speed | Damage | Used By                                                 |
 | ----- | ------ | ------------------------------------------------------- |
 | 4     | 20     | [Antitank Soldier](../Units/readme.md#antitank-soldier) |
+
+### Bomb
+
+Deal damage to all enemies on the damage area.
+
+| Speed | Damage | Used By                                                 |
+| ----- | ------ | ------------------------------------------------------- |
+| 3     | 5      | [Antitank Soldier](../Units/readme.md#antitank-soldier) |
