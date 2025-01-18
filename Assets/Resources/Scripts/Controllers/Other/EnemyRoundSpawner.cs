@@ -29,7 +29,7 @@ public class EnemyRoundSpawner : PrefabSpawner
             .ToList();
 
         // Check if the count of available prefabs has changed
-        if (availablePrefabsCount < availablePrefabs.Count)
+        if (availablePrefabsCount < availablePrefabs.Count && lastCurrentRound < currentRound)
         {
             availablePrefabsCount = availablePrefabs.Count; // Update the count
             hasAddedCards = true; // Set the flag to true
@@ -46,13 +46,16 @@ public class EnemyRoundSpawner : PrefabSpawner
         {
             delayMultiplier = 1.0f; // Reset delay multiplier
             quantityMultiplier = 1.0f; // Reset quantity multiplier
-            hasAddedCards = false; // Reset the flag
             lastCurrentRound = currentRound; // Update the last round
+            hasAddedCards = false; // Reset the flag
         }
         else
         {
             delayMultiplier = Mathf.Max(0.1f, delayMultiplier - 0.1f); // Decrease delay multiplier with a minimum of 0.1f
             quantityMultiplier = 1 + (int)currentRound / 5; // Increase quantity multiplier
         }
+        Debug.Log(
+            $"Delay multiplier: {delayMultiplier}, Quantity multiplier: {quantityMultiplier}"
+        );
     }
 }

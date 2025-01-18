@@ -32,7 +32,7 @@ public class PlantASeed : MonoBehaviour
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
+        currentTime += Manager.Time.pausableDeltaTime;
         var value = currentTime / CurrentDurationBeforeGrowing;
         loadingBar.SetValue(value);
     }

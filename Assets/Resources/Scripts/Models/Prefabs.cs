@@ -62,12 +62,18 @@ public static class Prefabs
         Spawner,
         LineDrawer,
         CardUI,
-        CardBackCounters
+        CardBackCounters,
     }
 
     public enum AlertType
     {
         WaveIsComing
+    }
+
+    public enum Modals
+    {
+        FirstDraw,
+        AddCard
     }
 
     public enum SoundType
@@ -218,6 +224,19 @@ public static class Prefabs
         {
             case AlertType.WaveIsComing:
                 return Resources.Load<GameObject>("Prefabs/UI/Alerts/WaveIsComing");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(Modals modal)
+    {
+        switch (modal)
+        {
+            case Modals.FirstDraw:
+                return Resources.Load<GameObject>("Prefabs/UI/Modals/FirstDrawModal");
+            case Modals.AddCard:
+                return Resources.Load<GameObject>("Prefabs/UI/Modals/AddCardModal");
             default:
                 return null;
         }

@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePointOffset: {x: 0.04, y: 0.07, z: 0}
-  fireRate: 5
+  fireRate: 3
   fireRateMultiplier: 1
 --- !u!1 &2879631704654605365
 GameObject:

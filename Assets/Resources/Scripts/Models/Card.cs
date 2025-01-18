@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class CardResourceItem
@@ -23,6 +24,7 @@ public class Card
     public CardResourceItem[] resources;
     public GameObject prefab;
     public GameObject droppablePrefab;
+    public int appearsAtRound;
 
     public Card(
         string name,
@@ -30,7 +32,8 @@ public class Card
         string iconPath,
         CardResourceItem[] resources,
         GameObject prefab,
-        GameObject droppablePrefab
+        GameObject droppablePrefab,
+        int appearsAtRound = 0
     )
     {
         this.name = name;
@@ -39,6 +42,7 @@ public class Card
         this.resources = resources;
         this.prefab = prefab;
         this.droppablePrefab = droppablePrefab;
+        this.appearsAtRound = appearsAtRound;
     }
 }
 
@@ -61,7 +65,8 @@ public static class Cards
             "Structures/ArcherTower",
             new CardResourceItem[] { new(ResourceType.Money, 25), new(ResourceType.Wood, 15) },
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
-            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable)
+            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
+            1
         );
 
     public static Card BomberTower { get; } =
@@ -71,7 +76,8 @@ public static class Cards
             "Structures/BomberTower",
             new CardResourceItem[] { new(ResourceType.Money, 35), new(ResourceType.Wood, 20) },
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
-            Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable)
+            Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable),
+            1
         );
 
     public static Card SoldierTent { get; } =
@@ -111,7 +117,8 @@ public static class Cards
             "Actions/repair",
             new CardResourceItem[] { new(ResourceType.Money, 30) },
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure),
-            Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable)
+            Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable),
+            1
         );
 
     public static Card AntitankSoldierTent { get; } =
@@ -121,7 +128,8 @@ public static class Cards
             "Structures/AntitankSoldier Tent",
             new CardResourceItem[] { new(ResourceType.Money, 30), new(ResourceType.Wood, 20) },
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
-            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable)
+            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
+            1
         );
 
     public static Card[] AllCards { get; } =
@@ -144,21 +152,27 @@ public static class Cards
             House,
             House,
             House,
-            ArcherTower,
-            ArcherTower,
-            ArcherTower,
+            // ArcherTower,
+            // ArcherTower,
+            // ArcherTower,
             SoldierTent,
             SoldierTent,
-            SoldierTent,
-            AntitankSoldierTent,
-            AntitankSoldierTent,
-            AntitankSoldierTent,
-            BomberTower,
-            BomberTower,
-            BomberTower,
+            // SoldierTent,
+            // SoldierTent,
+            // AntitankSoldierTent,
+            // AntitankSoldierTent,
+            // AntitankSoldierTent,
+            // BomberTower,
+            // BomberTower,
+            // BomberTower,
+            // PlantASeed,
             PlantASeed,
             PlantASeed,
-            PlantASeed,
-            RepairAnStructure,
+            // RepairAnStructure,
         };
+
+    public static Card[] GetAvailableCardAtRound(int round)
+    {
+        return AllCards.Where(c => c.appearsAtRound <= round).ToArray();
+    }
 }

@@ -59,7 +59,7 @@ public class NewResourceUIController : MonoBehaviour
                 elapsedTime / duration
             );
             canvasGroup.alpha = 1 - (elapsedTime / duration); // Disminuir alpha lentamente
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Manager.Time.pausableDeltaTime;
             yield return null;
         }
 

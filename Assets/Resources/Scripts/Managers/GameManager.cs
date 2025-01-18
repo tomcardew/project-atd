@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -23,11 +24,16 @@ public class GameManager : MonoBehaviour
     public int numberOfTrees;
 
     // Private properties
-    private int currentRound = 0;
+    [NonSerialized]
+    public int currentRound = 0;
+
     private EnemyRoundSpawner mainSpawner;
     private LineController lineController;
     private Coroutine endGameRoutine;
     private Coroutine waveRoutine;
+
+    public bool hasBeenStarted = false;
+    public bool waitingForDraw = false;
 
     public float timeBeforeNextWave = 0;
     public float baseCountingTime = 0;
@@ -58,18 +64,11 @@ public class GameManager : MonoBehaviour
         get { return waveRestDuration * waveRestDurationMultiplier; }
     }
 
-    private void Awake()
-    {
-        waveRoutine = StartCoroutine(InternalWaveRoutine());
-        endGameRoutine = StartCoroutine(EndGameRoutine());
-        timeBeforeNextWave = timeBeforeFirstWave;
-    }
-
     private void Update()
     {
         if (timeBeforeNextWave > 0)
         {
-            timeBeforeNextWave -= Time.deltaTime;
+            timeBeforeNextWave -= Manager.Time.pausableDeltaTime;
         }
     }
 
@@ -94,19 +93,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeFirstWave);
         while (true)
         {
-            isOnWave = true;
-            OnWaveStart?.Invoke();
-            mainSpawner.shouldSpawn = true;
-            mainSpawner.currentRound = currentRound;
-            baseCountingTime = CurrentWaveDuration;
-            timeBeforeNextWave = CurrentWaveDuration;
+            StartWave();
             yield return new WaitForSeconds(CurrentWaveDuration);
-            mainSpawner.shouldSpawn = false;
-            OnWaveEnd?.Invoke();
-            baseCountingTime = CurrentWaveRestDuration;
-            timeBeforeNextWave = CurrentWaveRestDuration;
-            isOnWave = false;
-            isOnRestTime = true;
+            EndWave();
+            while (waitingForDraw)
+            {
+                yield return null;
+            }
             yield return new WaitForSeconds(CurrentWaveRestDuration);
             currentRound++;
             isOnRestTime = false;
@@ -114,12 +107,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void StartWave()
+    {
+        isOnWave = true;
+        OnWaveStart?.Invoke();
+        mainSpawner.shouldSpawn = true;
+        mainSpawner.currentRound = currentRound;
+        baseCountingTime = CurrentWaveDuration;
+        timeBeforeNextWave = CurrentWaveDuration;
+    }
+
+    private void EndWave()
+    {
+        mainSpawner.shouldSpawn = false;
+        OnWaveEnd?.Invoke();
+        baseCountingTime = CurrentWaveRestDuration;
+        timeBeforeNextWave = CurrentWaveRestDuration;
+        isOnWave = false;
+        isOnRestTime = true;
+        waitingForDraw = true;
+    }
+
     private IEnumerator EndGameRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if (Manager.Population.GetPopulation() <= 0)
+            if (hasBeenStarted && Manager.Population.GetPopulation() <= 0)
             {
                 Debug.Log("Game Over!");
                 ExitGame();
@@ -129,6 +143,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        waveRoutine = StartCoroutine(InternalWaveRoutine());
+        endGameRoutine = StartCoroutine(EndGameRoutine());
+        timeBeforeNextWave = timeBeforeFirstWave;
         InstantiateEssentials();
     }
 
@@ -198,7 +215,11 @@ public class GameManager : MonoBehaviour
             );
 
             generatedPositions.Add(position);
-            Instantiate(trees[Random.Range(0, trees.Count)], position, Quaternion.identity);
+            Instantiate(
+                trees[UnityEngine.Random.Range(0, trees.Count)],
+                position,
+                Quaternion.identity
+            );
         }
     }
 

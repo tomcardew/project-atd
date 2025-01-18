@@ -24,7 +24,7 @@ public class EmptyTreeController : MonoBehaviour
             tmpColor.a = Mathf.Lerp(startAlpha, 0, progress);
             spriteRenderer.color = tmpColor;
 
-            progress += rate * Time.deltaTime;
+            progress += rate * Manager.Time.pausableDeltaTime;
 
             yield return null;
         }
