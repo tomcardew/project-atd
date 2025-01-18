@@ -64,6 +64,16 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable)
         );
 
+    public static Card BomberTower { get; } =
+        new Card(
+            "Bomber Tower",
+            "Throw bombs and watch them in pieces",
+            "Structures/BomberTower",
+            new CardResourceItem[] { new(ResourceType.Money, 35), new(ResourceType.Wood, 20) },
+            Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
+            Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable)
+        );
+
     public static Card SoldierTent { get; } =
         new Card(
             "Soldier",
@@ -119,6 +129,7 @@ public static class Cards
         {
             House,
             ArcherTower,
+            BomberTower,
             SoldierTent,
             // Church,
             PlantASeed,
@@ -136,15 +147,15 @@ public static class Cards
             ArcherTower,
             ArcherTower,
             ArcherTower,
-            ArcherTower,
-            SoldierTent,
             SoldierTent,
             SoldierTent,
             SoldierTent,
             AntitankSoldierTent,
             AntitankSoldierTent,
             AntitankSoldierTent,
-            AntitankSoldierTent,
+            BomberTower,
+            BomberTower,
+            BomberTower,
             PlantASeed,
             PlantASeed,
             PlantASeed,

@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyRoundSpawner : PrefabSpawner
 {
     public int currentRound = 0; // Current round number
+
+    private int lastCurrentRound = 0;
     private List<Unit> prefabs; // List of all enemy prefabs
     private int availablePrefabsCount; // Count of available prefabs for the current round
     private bool hasAddedCards = false; // Flag to check if new cards have been added
@@ -45,10 +47,11 @@ public class EnemyRoundSpawner : PrefabSpawner
             delayMultiplier = 1.0f; // Reset delay multiplier
             quantityMultiplier = 1.0f; // Reset quantity multiplier
             hasAddedCards = false; // Reset the flag
+            lastCurrentRound = currentRound; // Update the last round
         }
         else
         {
-            delayMultiplier = Mathf.Max(0.5f, delayMultiplier - (0.001f * currentRound)); // Decrease delay multiplier with a minimum of 0.1f
+            delayMultiplier = Mathf.Max(0.1f, delayMultiplier - 0.1f); // Decrease delay multiplier with a minimum of 0.1f
             quantityMultiplier = 1 + (int)currentRound / 5; // Increase quantity multiplier
         }
     }

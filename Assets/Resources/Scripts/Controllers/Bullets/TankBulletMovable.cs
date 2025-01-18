@@ -6,7 +6,10 @@ public class TankBulletMovable : Movable
 
     public override GameObject NextTarget(GameObject _target)
     {
-        if (Vector2.Distance(transform.position, _target.transform.position) < 0.2f)
+        if (
+            _target != null
+            && Vector2.Distance(transform.position, _target.transform.position) < 0.2f
+        )
         {
             GetComponentInChildren<Collider2D>().enabled = false;
             GetComponentInChildren<TankBulletAttacker>().enabled = false;

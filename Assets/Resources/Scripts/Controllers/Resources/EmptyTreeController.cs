@@ -9,7 +9,7 @@ public class EmptyTreeController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        StartCoroutine(FadeOutAndDestroy());
+        // StartCoroutine(FadeOutAndDestroy());
     }
 
     private IEnumerator FadeOutAndDestroy()
