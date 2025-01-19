@@ -743,7 +743,7 @@ MonoBehaviour:
   totalResources: 50
   isInfinite: 0
   tiringRate: 0.1
-  initialGenerationQuantity: 0.2
+  initialGenerationQuantity: 0.1
   generationQuantityMultiplier: 1
   initialGenerationDelay: 1
   generationDelayMultiplier: 1

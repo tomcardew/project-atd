@@ -9,10 +9,6 @@ public class TankBulletMovable : Movable
 
     public override GameObject NextTarget(GameObject _target)
     {
-        if (_target == null)
-        {
-            Destroy(gameObject);
-        }
         if (
             _target != null
             && Vector2.Distance(transform.position, _target.transform.position) < 0.2f

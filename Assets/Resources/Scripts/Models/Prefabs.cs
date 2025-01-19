@@ -37,8 +37,14 @@ public static class Prefabs
     public enum ActionType
     {
         PlantASeed,
-        RepairAnStructure,
         PlantASeed_Droppable,
+        SmallTrees,
+        SmallTrees_Droppable,
+        MediumTrees,
+        MediumTrees_Droppable,
+        LargeTrees,
+        LargeTrees_Droppable,
+        RepairAnStructure,
         RepairAnStructure_Droppable
     }
 
@@ -158,12 +164,24 @@ public static class Prefabs
         {
             case ActionType.PlantASeed:
                 return Resources.Load<GameObject>("Prefabs/Actions/PlantASeed");
-            case ActionType.RepairAnStructure:
-                return Resources.Load<GameObject>("Prefabs/Actions/RepairAnStructure");
             case ActionType.PlantASeed_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Actions/Droppables/PlantASeed");
+            case ActionType.RepairAnStructure:
+                return Resources.Load<GameObject>("Prefabs/Actions/RepairAnStructure");
             case ActionType.RepairAnStructure_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Actions/Droppables/RepairAnStructure");
+            case ActionType.SmallTrees:
+                return Resources.Load<GameObject>("Prefabs/Actions/SmallTrees");
+            case ActionType.SmallTrees_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/SmallTrees");
+            case ActionType.MediumTrees:
+                return Resources.Load<GameObject>("Prefabs/Actions/MediumTrees");
+            case ActionType.MediumTrees_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/MediumTrees");
+            case ActionType.LargeTrees:
+                return Resources.Load<GameObject>("Prefabs/Actions/LargeTrees");
+            case ActionType.LargeTrees_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/LargeTrees");
             default:
                 return null;
         }
