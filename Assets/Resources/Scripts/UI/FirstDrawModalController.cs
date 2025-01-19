@@ -64,7 +64,6 @@ public class FirstDrawModalController : MonoBehaviour
 
     private void HandleCardSelected(int index, bool selected)
     {
-        Debug.Log($"Card {index} selected: {selected}");
         selectedCards[index] = selected;
     }
 }

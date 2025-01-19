@@ -9,6 +9,9 @@ public class CastleController : MonoBehaviour
     public float taxDelay; // Delay between tax collections
     public float taxDelayMultiplier = 1.0f; // Multiplier for the tax delay
 
+    [Header("Entrance settings")]
+    public Vector3 entranceOffset; // Offset for the entrance position
+
     // Private properties
     private Coroutine taxRoutine; // Coroutine for tax collection
     private NewResourceUIController newResourceUI;
@@ -40,6 +43,11 @@ public class CastleController : MonoBehaviour
             StopCoroutine(taxRoutine); // Stop the tax routine
             taxRoutine = null;
         }
+    }
+
+    public Vector3 GetEntrancePosition()
+    {
+        return transform.position + entranceOffset;
     }
 
     // Tax collection routine

@@ -6,6 +6,7 @@ public class CursorManager : MonoBehaviour
     public Texture2D handCursor;
     public Texture2D grabCursor;
     public Texture2D selectCursor;
+    public Texture2D forbiddenCursor;
 
     private void Awake()
     {
@@ -15,6 +16,11 @@ public class CursorManager : MonoBehaviour
     public void SetDefaultCursor()
     {
         Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void SetForbiddenCursor()
+    {
+        Cursor.SetCursor(forbiddenCursor, Vector2.zero, CursorMode.Auto);
     }
 
     public void SetHandCursor()

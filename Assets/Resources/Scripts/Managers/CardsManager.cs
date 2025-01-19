@@ -11,11 +11,11 @@ public class CardsManager : MonoBehaviour
     public List<Card> deck; // It will contain the current set of cards
     public List<Card> hand; // It will contain the current hand of cards
 
-    public Transform deckHolder;
-    public Transform discardedHolder;
+    public Transform deckHolder; // where is located the deck holder
+    public Transform discardedHolder; // where is located the discarded holder
 
-    private List<GameObject> handCards;
-    private CardHolderController cardsHolder;
+    private CardHolderController cardsHolder; //cards container reference
+    private List<GameObject> handCards; // internal list of card objects
     private GameObject draggingCard; // It will contain the current dragging card
 
     private void Start()
@@ -83,7 +83,6 @@ public class CardsManager : MonoBehaviour
 
     private void HandleWaveStart()
     {
-        Debug.Log("Wave started!");
         // Implement additional logic for when a wave starts
         // Refill your hand with cards
         for (int i = hand.Count; i < 5; i++)

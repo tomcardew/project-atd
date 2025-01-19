@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class SoldierMovable : Movable
@@ -9,13 +7,9 @@ public class SoldierMovable : Movable
 
     public override void Init()
     {
-        targetIdentifiers = new()
-        {
-            Enemies.Enemy.name,
-            Enemies.LargeEnemy.name,
-            Enemies.Assasin.name
-        };
-        useTargetIdentifiers = true;
+        targetArmorLevelTag = Tags.Enemy;
+        targetArmorLevel = ArmorLevel.Light;
+        useTargetArmorLevel = true;
         attacker = GetComponentInChildren<Attacker>();
     }
 
@@ -29,7 +23,7 @@ public class SoldierMovable : Movable
         }
         else
         {
-            return Utils.FindTheNearestGameObjectWithTag(transform, Tags.Structure, float.MaxValue);
+            return Utils.FindTheNearestGameObjectWithTag(transform, Tags.Structure, 10f);
         }
         return _target;
     }

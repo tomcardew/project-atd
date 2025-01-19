@@ -35,6 +35,12 @@ public class Droppable : MonoBehaviour
         {
             // Update the position to the cursor's position
             position = GetCursorPosition();
+
+            // // Snap the position to the nearest grid point
+            // float gridSize = 0.5f; // Tamaño de la cuadrícula
+            // position.x = Mathf.Round(position.x / gridSize) * gridSize;
+            // position.y = Mathf.Round(position.y / gridSize) * gridSize;
+
             if (mainObject != null)
             {
                 // Move the main object to the cursor's position

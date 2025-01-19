@@ -15,10 +15,9 @@ public class AntitankBulletAttacker : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         GameObject obj = other.gameObject.transform.parent.gameObject;
-        Movable movable = obj.GetComponent<Movable>();
-        if (movable != null && movable.internalName == Enemies.Tank.name)
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (dmg != null && dmg.armorLevel == ArmorLevel.Heavy && obj.CompareTag(Tags.Enemy)) // only attack heavy armor
         {
-            Damageable dmg = obj.GetComponentInChildren<Damageable>();
             dmg.ReceiveDamage(CurrentDamage);
 
             gameObject.GetComponent<Collider2D>().enabled = false;

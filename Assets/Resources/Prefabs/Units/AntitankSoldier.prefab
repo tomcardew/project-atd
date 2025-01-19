@@ -401,6 +401,7 @@ MonoBehaviour:
   initialLife: 1
   lifeMultiplier: 1
   healtbar: {fileID: 0}
+  armorLevel: 1
   receivedDamage: 0
 --- !u!114 &6923096011045894182
 MonoBehaviour:
@@ -418,4 +419,3 @@ MonoBehaviour:
   damageMultiplier: 1
   initialDamageDelay: 1
   initialDamageDelayMultiplier: 1
-  targetDamageable: {fileID: 0}

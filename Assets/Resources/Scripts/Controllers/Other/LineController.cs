@@ -6,8 +6,8 @@ using Unity.VisualScripting;
 public class LineController : MonoBehaviour
 {
     // Public variables
-    public GameObject start;
-    public GameObject end;
+    public Vector3 start;
+    public Vector3 end;
     public float lineWidth = 2f;
     public Color lineColor = Color.white;
 
@@ -31,8 +31,8 @@ public class LineController : MonoBehaviour
     private void GetPoints()
     {
         points = new List<Vector2>();
-        points.Add(start.transform.position);
-        points.Add(end.transform.position);
+        points.Add(start);
+        points.Add(end);
     }
 
     private void DrawPath()

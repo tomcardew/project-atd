@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum ArmorLevel
+{
+    None = 0, // can be damaged by all
+    Light = 1, // can be damaged by light and heavy
+    Heavy = 2 // can be damaged by heavy
+}
+
 /* Damageable makes an object have a life and be a target for Attackers objects */
 public class Damageable : MonoBehaviour
 {
@@ -7,6 +14,7 @@ public class Damageable : MonoBehaviour
     public float initialLife; // Initial life of the object
     public float lifeMultiplier = 1f; // Multiplier to adjust the life
     public SliderController healtbar; // Reference to the health bar
+    public ArmorLevel armorLevel; // Armor level of the object
 
     // Private properties
     private GameObject parent; // Reference to the parent GameObject

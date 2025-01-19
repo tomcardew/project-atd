@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,9 +15,10 @@ public class ArrowAttacker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.transform.parent.CompareTag(Tags.Enemy))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (dmg != null && dmg.armorLevel == ArmorLevel.Light && obj.CompareTag(Tags.Enemy)) // only attack light armor
         {
-            Damageable dmg = other.GetComponentInParent<Damageable>();
             dmg.ReceiveDamage(CurrentDamage);
 
             gameObject.GetComponent<Collider2D>().enabled = false;

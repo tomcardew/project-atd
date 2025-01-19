@@ -226,5 +226,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 0}
   end: {fileID: 0}
-  lineWidth: 1
-  lineColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+  lineWidth: 0.2
+  lineColor: {r: 0.87058824, g: 0.72156864, b: 0.5803922, a: 0.5882353}

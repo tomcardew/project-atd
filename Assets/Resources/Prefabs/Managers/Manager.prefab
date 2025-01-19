@@ -181,6 +181,7 @@ MonoBehaviour:
   handCursor: {fileID: 2800000, guid: 5abbb798fd2d444cbb22f2d8ef9e035d, type: 3}
   grabCursor: {fileID: 2800000, guid: 89a4afa3ec4b14713959fc2eba6d37cc, type: 3}
   selectCursor: {fileID: 2800000, guid: b3997033a02f34f8080a47e2abde392c, type: 3}
+  forbiddenCursor: {fileID: 2800000, guid: 203602f3b393f43b5b13d1f858dca8e9, type: 3}
 --- !u!1 &7304741679638081402
 GameObject:
   m_ObjectHideFlags: 0
