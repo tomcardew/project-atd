@@ -231,11 +231,11 @@ MonoBehaviour:
   waveDurationMultiplier: 1
   waveRestDuration: 45
   waveRestDurationMultiplier: 1
-  delay: 3
+  delay: 1
   delayMultiplier: 1
   quantity: 1
   quantityMultiplier: 1
-  numberOfTrees: 15
+  numberOfTrees: 10
   hasBeenStarted: 0
   waitingForDraw: 0
   timeBeforeNextWave: 0
@@ -383,6 +383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744032d6b13c6448186416743c403531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackAudioSource: {fileID: 0}
+  resourcesAudioSource: {fileID: 0}
+  alertsAudioSource: {fileID: 0}
+  uiAudioSource: {fileID: 0}
 --- !u!1 &9053438218966363062
 GameObject:
   m_ObjectHideFlags: 0

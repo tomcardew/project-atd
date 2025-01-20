@@ -53,7 +53,7 @@ public static class Cards
             "House",
             "Add +1 population",
             "Structures/House",
-            new CardResourceItem[] { new(ResourceType.Wood, 3) },
+            new CardResourceItem[] { new(ResourceType.Wood, 10) },
             Prefabs.GetPrefab(Prefabs.StructureType.House),
             Prefabs.GetPrefab(Prefabs.StructureType.House_Droppable)
         );
@@ -63,7 +63,7 @@ public static class Cards
             "Soldier",
             "Add +1 soldier",
             "Structures/Soldier Tent",
-            new CardResourceItem[] { new(ResourceType.Money, 10), new(ResourceType.Wood, 10) },
+            new CardResourceItem[] { new(ResourceType.Money, 20), new(ResourceType.Wood, 10) },
             Prefabs.GetPrefab(Prefabs.StructureType.SoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.SoldierTent_Droppable)
         );
@@ -73,7 +73,7 @@ public static class Cards
             "Small Trees",
             "Plant a small group of trees",
             "Resources/Small Trees",
-            new CardResourceItem[] { new(ResourceType.Money, 5) },
+            new CardResourceItem[] { new(ResourceType.Money, 20) },
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees_Droppable)
         );
@@ -94,7 +94,7 @@ public static class Cards
             "Archer Tower",
             "Throw arrows from the distance",
             "Structures/ArcherTower",
-            new CardResourceItem[] { new(ResourceType.Money, 25), new(ResourceType.Wood, 15) },
+            new CardResourceItem[] { new(ResourceType.Money, 40), new(ResourceType.Wood, 30) },
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
             2
@@ -105,7 +105,7 @@ public static class Cards
             "Medium Trees",
             "Plant a medium group of trees",
             "Resources/Medium Trees",
-            new CardResourceItem[] { new(ResourceType.Money, 10) },
+            new CardResourceItem[] { new(ResourceType.Money, 40) },
             Prefabs.GetPrefab(Prefabs.ActionType.MediumTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.MediumTrees_Droppable),
             3
@@ -116,7 +116,7 @@ public static class Cards
             "Renewal",
             "Discard all and draw 5",
             "HandActions/discard-all-and-draw-5",
-            new CardResourceItem[] { new(ResourceType.Money, 10) },
+            new CardResourceItem[] { new(ResourceType.Money, 50) },
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5_Droppable),
             4
@@ -127,7 +127,7 @@ public static class Cards
             "Antitank Soldier",
             "Add +1 soldier with an antitank weapon",
             "Structures/AntitankSoldier Tent",
-            new CardResourceItem[] { new(ResourceType.Money, 30), new(ResourceType.Wood, 20) },
+            new CardResourceItem[] { new(ResourceType.Money, 100), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
             5
@@ -138,7 +138,7 @@ public static class Cards
             "Large Trees",
             "Plant a large group of trees",
             "Resources/Large Trees",
-            new CardResourceItem[] { new(ResourceType.Money, 15) },
+            new CardResourceItem[] { new(ResourceType.Money, 60) },
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees_Droppable),
             6
@@ -149,7 +149,7 @@ public static class Cards
             "Bomber Tower",
             "Throw bombs and watch them explode",
             "Structures/BomberTower",
-            new CardResourceItem[] { new(ResourceType.Money, 35), new(ResourceType.Wood, 20) },
+            new CardResourceItem[] { new(ResourceType.Money, 120), new(ResourceType.Wood, 100) },
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable),
             7
@@ -170,7 +170,7 @@ public static class Cards
             "Repair An Structure",
             "Restore an structure's health back to 100%",
             "Actions/repair",
-            new CardResourceItem[] { new(ResourceType.Money, 30) },
+            new CardResourceItem[] { new(ResourceType.Money, 100) },
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure),
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable),
             9
@@ -181,7 +181,7 @@ public static class Cards
             "Plant A Seed",
             "Create a random group of trees",
             "Actions/small-tree",
-            new CardResourceItem[] { new(ResourceType.Money, 10) },
+            new CardResourceItem[] { new(ResourceType.Money, 40) },
             Prefabs.GetPrefab(Prefabs.ActionType.PlantASeed),
             Prefabs.GetPrefab(Prefabs.ActionType.PlantASeed_Droppable),
             10

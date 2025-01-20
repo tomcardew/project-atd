@@ -17,6 +17,8 @@ public class ResourceGenerator : MonoBehaviour
     public float generationDelayMultiplier = 1.0f;
     public GameObject emptyPrefab;
     public SliderController sliderBar; // Reference to the health bar
+    public bool isPaused = false;
+    private bool _oldIsPaused = false;
 
     // Private properties
     private Resource _resource;
@@ -24,6 +26,7 @@ public class ResourceGenerator : MonoBehaviour
     private int remainingResources;
     private float load = 0;
     private NewResourceUIController newResourceUI;
+    private UIHideShow pausedIndicator;
 
     [SerializeField]
     private List<Person> workers;
@@ -55,7 +58,24 @@ public class ResourceGenerator : MonoBehaviour
             sliderBar = GetComponentInChildren<SliderController>();
         }
         newResourceUI = transform.parent.GetComponentInChildren<NewResourceUIController>();
+        pausedIndicator = transform.parent.GetComponentInChildren<UIHideShow>();
         generationCoroutine = StartCoroutine(GenerationCoroutine());
+    }
+
+    private void Update()
+    {
+        if (isPaused != _oldIsPaused)
+        {
+            if (isPaused)
+            {
+                pausedIndicator.Show();
+            }
+            else
+            {
+                pausedIndicator.Hide();
+            }
+            _oldIsPaused = isPaused;
+        }
     }
 
     private void OnDisable()
@@ -78,7 +98,19 @@ public class ResourceGenerator : MonoBehaviour
         // Coroutine to generate resources over time
         while (isInfinite || remainingResources > 0)
         {
+            isPaused =
+                Manager.Resources.HasReachedLimit(resource)
+                && (remainingResources < totalResources);
             yield return new WaitForSeconds(CurrentGenerationDelay);
+            if (isPaused)
+            {
+                for (int i = 0; i < workers.Count; i++)
+                {
+                    SendWorkerHome(workers[i]);
+                    workers.RemoveAt(i);
+                }
+                continue;
+            }
             for (int i = 0; i < workers.Count; i++)
             {
                 var worker = workers[i];
@@ -120,6 +152,18 @@ public class ResourceGenerator : MonoBehaviour
                 HandleEmptyState();
             }
         }
+    }
+
+    private void SendWorkerHome(Person worker)
+    {
+        GameObject p = Instantiate(
+            Prefabs.GetPrefab(Prefabs.UnitType.Person),
+            transform.position,
+            Quaternion.identity
+        );
+        PersonMovable pm = p.GetComponent<PersonMovable>();
+        pm.person = worker;
+        pm.isGoingHome = true;
     }
 
     private void HandleEmptyState()

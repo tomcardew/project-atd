@@ -92,6 +92,36 @@ public abstract class Movable : MonoBehaviour
         }
     }
 
+    private int timesHaveDisabledColliders = 0;
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.contacts.Length > 1) // Check if colliding with more than 1 items
+        {
+            if (timesHaveDisabledColliders > 10)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            StartCoroutine(DisableTemporarily());
+        }
+    }
+
+    private IEnumerator DisableTemporarily()
+    {
+        var rigid = GetComponent<Rigidbody2D>();
+        var collider = GetComponent<Collider2D>();
+        var _shouldAvoidObstacles = shouldAvoidObstacles; // Store the current value
+        shouldAvoidObstacles = false; // Disable obstacle avoidance
+        collider.enabled = false; // Disable the collision
+        rigid.simulated = false;
+        yield return new WaitForSeconds(3.0f); // Wait for 2 seconds
+        rigid.simulated = true;
+        collider.enabled = true; // Re-enable the collision
+        shouldAvoidObstacles = _shouldAvoidObstacles; // Restore the original value
+        timesHaveDisabledColliders++;
+    }
+
     /// <summary>
     /// Checks if moving in the given direction will result in a collision.
     /// </summary>

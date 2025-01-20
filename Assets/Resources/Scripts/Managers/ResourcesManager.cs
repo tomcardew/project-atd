@@ -8,11 +8,13 @@ public class ResourceToQuantity
 {
     public ResourceType Resource { get; }
     public int Quantity { get; set; }
+    public int Limit { get; set; }
 
-    public ResourceToQuantity(ResourceType resource, int quantity)
+    public ResourceToQuantity(ResourceType resource, int quantity, int limit)
     {
         Resource = resource;
         Quantity = quantity;
+        Limit = limit;
     }
 }
 
@@ -28,21 +30,34 @@ public class ResourcesManager : MonoBehaviour
     {
         resources = new List<ResourceToQuantity>
         {
-            new(ResourceType.Money, 0),
-            new(ResourceType.Wood, 0),
-            new(ResourceType.Faith, 0),
+            new(ResourceType.Money, 0, 1000),
+            new(ResourceType.Wood, 0, 100),
+            new(ResourceType.Faith, 0, 100),
         };
     }
 
     public void AddToResource(ResourceType resource, int value)
     {
         var r = resources.First(r => r.Resource == resource);
-        r.Quantity += value;
+        if (r.Quantity + value <= r.Limit)
+        {
+            r.Quantity += value;
+        }
+        else
+        {
+            r.Quantity = r.Limit;
+        }
     }
 
     public int GetResourceValue(ResourceType resource)
     {
         return resources.First(r => r.Resource == resource).Quantity;
+    }
+
+    public bool HasReachedLimit(ResourceType resource)
+    {
+        ResourceToQuantity r = resources.First(r => r.Resource == resource);
+        return r.Quantity == r.Limit;
     }
 
     public bool CanPay(Card card)
