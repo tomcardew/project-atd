@@ -844,4 +844,5 @@ MonoBehaviour:
   initialLife: 30
   lifeMultiplier: 1
   healtbar: {fileID: 3537423849383732822}
+  armorLevel: 2
   receivedDamage: 0

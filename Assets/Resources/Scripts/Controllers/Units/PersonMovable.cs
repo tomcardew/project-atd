@@ -10,11 +10,7 @@ public class PersonMovable : Movable
     public bool isGoingHome = false;
 
     // Initialize the PersonMovable object
-    public override void Init()
-    {
-        useTargetIdentifiers = false;
-        useTargetTags = false;
-    }
+    public override void Init() { }
 
     // Update the target position based on the current state
     public override GameObject NextTarget(GameObject _target)

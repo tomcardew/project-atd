@@ -43,11 +43,10 @@ public class BomberTowerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        string[] names = Enemies.GetAll().Select(s => s.name).ToArray(); // Only light armor
         GameObject obj = other.transform.parent.gameObject;
         Movable movable = obj.GetComponent<Movable>();
 
-        if (hasBeenEnabled && movable != null && names.Contains(movable.internalName))
+        if (hasBeenEnabled && movable != null && other.transform.parent.CompareTag(Tags.Enemy))
         {
             targetEnemyDirection = (obj.transform.position - movable.target).normalized;
             float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);

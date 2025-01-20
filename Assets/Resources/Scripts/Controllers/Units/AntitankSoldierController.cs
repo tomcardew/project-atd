@@ -42,10 +42,9 @@ public class AntitankSoldierControlller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var names = new string[] { "Tank" };
-        GameObject obj = other.transform.parent.gameObject;
-        var movable = obj.GetComponent<Movable>();
-        if (movable != null && names.Contains(movable.internalName))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (dmg != null && dmg.armorLevel == ArmorLevel.Heavy) // only attack heavy armor
         {
             hasBeenEnabled = true;
         }
@@ -53,10 +52,14 @@ public class AntitankSoldierControlller : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        var names = new string[] { "Tank" };
-        GameObject obj = other.transform.parent.gameObject;
-        var movable = obj.GetComponent<Movable>();
-        if (hasBeenEnabled && movable != null && names.Contains(movable.internalName))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (
+            hasBeenEnabled
+            && dmg != null
+            && dmg.armorLevel == ArmorLevel.Heavy
+            && obj.CompareTag(Tags.Enemy)
+        )
         {
             float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
             if (
@@ -94,7 +97,6 @@ public class AntitankSoldierControlller : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shooting antitank soldier");
         GameObject bullet = Instantiate(
             Prefabs.GetPrefab(Prefabs.BulletType.AntitankBullet),
             transform.position + firePointOffset,

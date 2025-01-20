@@ -9,8 +9,11 @@ public class Attacker : MonoBehaviour
     public float initialDamageDelay; // Initial delay before attacking
     public float initialDamageDelayMultiplier = 1.0f; // Multiplier to adjust the damage delay
 
-    // Private properties
+    [System.NonSerialized]
     public Damageable targetDamageable; // Reference to the target Damageable object
+
+    // Private properties
+    private Damageable ownDamageable;
     private bool canDealDamage = false; // Flag to determine if the attacker can deal damage
     private Coroutine dealDamageRoutine; // Coroutine for dealing damage
 
@@ -28,6 +31,7 @@ public class Attacker : MonoBehaviour
 
     private void Start()
     {
+        ownDamageable = transform.parent.GetComponentInChildren<Damageable>();
         // Start the damage routine coroutine
         dealDamageRoutine = StartCoroutine(DamageRoutine());
     }
@@ -72,7 +76,7 @@ public class Attacker : MonoBehaviour
     private void UpdateCanDealDamage(Collider2D collider, bool value)
     {
         Damageable dmg = collider.transform.parent.GetComponentInChildren<Damageable>();
-        if (dmg != null && targetDamageable == dmg)
+        if (dmg != null && targetDamageable == dmg && ownDamageable.armorLevel >= dmg.armorLevel)
         {
             canDealDamage = value;
         }

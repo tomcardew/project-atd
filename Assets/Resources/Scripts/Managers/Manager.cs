@@ -45,6 +45,8 @@ public class Manager : MonoBehaviour
 
     public static TimeManager Time { get; private set; }
 
+    public static SoundManager Sound { get; private set; }
+
     // Ensure the instance is not destroyed on scene load
     private void Awake()
     {
@@ -67,5 +69,6 @@ public class Manager : MonoBehaviour
         Interactions = FindFirstObjectByType<InteractionsManager>();
         UI = FindFirstObjectByType<UIManager>();
         Time = FindFirstObjectByType<TimeManager>();
+        Sound = FindFirstObjectByType<SoundManager>();
     }
 }

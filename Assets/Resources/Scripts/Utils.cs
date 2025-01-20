@@ -424,6 +424,42 @@ public class Utils
         return nearestObj;
     }
 
+    public static GameObject FindTheNearestObjectWithTargetArmorLevel(
+        Transform origin,
+        ArmorLevel targetArmorLevel,
+        float maxDistance = float.MaxValue,
+        string filterByTag = null
+    )
+    {
+        GameObject nearestObj = null;
+        float maxDistanceSquared = maxDistance * maxDistance;
+        float shortestDistanceSquared = maxDistanceSquared;
+
+        Damageable[] objects = GameObject
+            .FindObjectsByType<Damageable>(FindObjectsSortMode.None)
+            .Select(o => o.GetComponentInChildren<Damageable>())
+            .Where(d => d.armorLevel <= targetArmorLevel)
+            .ToArray();
+
+        if (filterByTag != null)
+        {
+            objects = objects
+                .Where(o => o.transform.parent.gameObject.CompareTag(filterByTag))
+                .ToArray();
+        }
+        foreach (var obj in objects)
+        {
+            float distanceSquared = (origin.position - obj.transform.position).sqrMagnitude;
+            if (distanceSquared < shortestDistanceSquared)
+            {
+                nearestObj = obj.transform.parent.gameObject;
+                shortestDistanceSquared = distanceSquared;
+            }
+        }
+
+        return nearestObj;
+    }
+
     /// <summary>
     /// The function `FindAllNearObjectsOfType` finds all objects of a specified type within
     /// a certain maximum distance from a given origin point.
@@ -549,13 +585,12 @@ public class Utils
     /// <param name="list">The list to shuffle.</param>
     public static List<T> ShuffleList<T>(List<T> list)
     {
-        System.Random rng = new System.Random();
         List<T> _list = new List<T>(list);
         int n = _list.Count;
         while (n > 1)
         {
             n--;
-            int k = rng.Next(n + 1);
+            int k = UnityEngine.Random.Range(0, n + 1);
             T value = _list[k];
             _list[k] = _list[n];
             _list[n] = value;

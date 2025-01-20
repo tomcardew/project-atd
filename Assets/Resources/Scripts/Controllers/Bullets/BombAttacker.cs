@@ -49,9 +49,10 @@ public class BombAttacker : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (explode && other.gameObject.transform.parent.CompareTag(Tags.Enemy))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (explode && dmg != null) // damages any unit
         {
-            Damageable dmg = other.GetComponentInParent<Damageable>();
             dmg.ReceiveDamage(CurrentDamage);
         }
     }

@@ -588,6 +588,8 @@ MonoBehaviour:
   initialLife: 10
   lifeMultiplier: 1
   healtbar: {fileID: 7786723460889297359}
+  armorLevel: 0
+  receivedDamage: 0
 --- !u!1 &6913607454531857190
 GameObject:
   m_ObjectHideFlags: 0

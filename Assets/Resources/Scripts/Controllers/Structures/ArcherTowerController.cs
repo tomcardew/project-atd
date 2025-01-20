@@ -33,7 +33,9 @@ public class ArcherTowerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.parent.CompareTag(Tags.Enemy))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (dmg != null && dmg.armorLevel <= ArmorLevel.Light && obj.CompareTag(Tags.Enemy)) // attack light armor or lower
         {
             hasBeenEnabled = true;
         }
@@ -41,11 +43,14 @@ public class ArcherTowerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        string[] names = { Enemies.Enemy.name, Enemies.LargeEnemy.name, Enemies.Assasin.name }; // Only light armor
-        GameObject obj = other.transform.parent.gameObject;
-        Movable movable = obj.GetComponent<Movable>();
-
-        if (hasBeenEnabled && movable != null && names.Contains(movable.internalName))
+        GameObject obj = other.gameObject.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (
+            hasBeenEnabled
+            && dmg != null
+            && dmg.armorLevel <= ArmorLevel.Light
+            && obj.CompareTag(Tags.Enemy)
+        ) // attack light armor or lower
         {
             float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
             if (

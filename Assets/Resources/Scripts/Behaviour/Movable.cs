@@ -22,6 +22,12 @@ public abstract class Movable : MonoBehaviour
     public List<string> targetIdentifiers;
 
     [NonSerialized]
+    public ArmorLevel targetArmorLevel;
+
+    [NonSerialized]
+    public string targetArmorLevelTag = null;
+
+    [NonSerialized]
     public List<string> targetTags;
 
     [NonSerialized]
@@ -29,6 +35,9 @@ public abstract class Movable : MonoBehaviour
 
     [NonSerialized]
     public bool useTargetTags = false;
+
+    [NonSerialized]
+    public bool useTargetArmorLevel = false;
 
     [NonSerialized]
     public bool move = true; // Allow movement or not
@@ -155,6 +164,10 @@ public abstract class Movable : MonoBehaviour
         {
             targets.Add(FindNextTargetWithTags());
         }
+        if (useTargetArmorLevel)
+        {
+            targets.Add(FindNextTargetWithArmorLevel());
+        }
         var _t = targets
             .NotNull()
             .OrderBy(t => Vector2.Distance(t.transform.position, transform.position))
@@ -184,6 +197,16 @@ public abstract class Movable : MonoBehaviour
             transform,
             targetTags.ToArray(),
             targetDetectionDistance
+        );
+    }
+
+    private GameObject FindNextTargetWithArmorLevel()
+    {
+        return Utils.FindTheNearestObjectWithTargetArmorLevel(
+            transform,
+            targetArmorLevel,
+            targetDetectionDistance,
+            targetArmorLevelTag
         );
     }
 

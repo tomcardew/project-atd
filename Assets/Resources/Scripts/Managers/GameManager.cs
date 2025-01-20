@@ -135,7 +135,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (hasBeenStarted && Manager.Population.GetPopulation() <= 0)
             {
-                Debug.Log("Game Over!");
                 ExitGame();
             }
         }
@@ -157,11 +156,12 @@ public class GameManager : MonoBehaviour
             castlePosition,
             Quaternion.identity
         );
+        Vector3 entrance = castle.GetComponent<CastleController>().GetEntrancePosition();
 
         Vector3 oppositePosition = Utils.GetOppositeCornerOutsideView(castlePosition, 3f);
         mainSpawner = CreateMainSpawner(oppositePosition);
 
-        lineController = CreateLineDrawer(mainSpawner.gameObject, castle);
+        lineController = CreateLineDrawer(mainSpawner.gameObject.transform.position, entrance);
         GenerateResources();
     }
 
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         return ctrl;
     }
 
-    private LineController CreateLineDrawer(GameObject a, GameObject b)
+    private LineController CreateLineDrawer(Vector3 a, Vector3 b)
     {
         GameObject lineDrawer = Instantiate(Prefabs.GetPrefab(Prefabs.OtherType.LineDrawer));
         LineController ctrl = lineDrawer.GetComponent<LineController>();
@@ -207,11 +207,8 @@ public class GameManager : MonoBehaviour
             {
                 position = Utils.GetRandomPositionInsideCamera(Camera.main, 3f);
             } while (
-                IsPositionOnLine(
-                    position,
-                    lineController.start.transform.position,
-                    lineController.end.transform.position
-                ) || IsPositionTooClose(position, generatedPositions, 2f)
+                IsPositionOnLine(position, lineController.start, lineController.end)
+                || IsPositionTooClose(position, generatedPositions, 2f)
             );
 
             generatedPositions.Add(position);
@@ -247,7 +244,6 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Exiting game...");
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else
