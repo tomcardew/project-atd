@@ -31,8 +31,9 @@ public class CardUIController : MonoBehaviour
 
     void OnDestroy()
     {
-        AudioSource.PlayClipAtPoint(
+        Manager.Sound.Play(
             Prefabs.GetSound(Prefabs.SoundType.CardDiscarded),
+            AudioSourceType.UI,
             transform.position,
             5f
         );
@@ -71,8 +72,9 @@ public class CardUIController : MonoBehaviour
         }
         if (playSound)
         {
-            AudioSource.PlayClipAtPoint(
+            Manager.Sound.Play(
                 Prefabs.GetSound(Prefabs.SoundType.CardFlip),
+                AudioSourceType.UI,
                 transform.position,
                 3f
             );

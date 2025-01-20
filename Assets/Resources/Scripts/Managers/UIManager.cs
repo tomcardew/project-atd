@@ -6,11 +6,9 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     private string tooltip;
-    private AudioSource audioSource;
 
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
         GameManager.OnWaveStart += HandleWaveStart;
     }
 
@@ -71,6 +69,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator PlaySoundForDuration(AudioClip clip, float duration)
     {
+        AudioSource audioSource = Manager.Sound.alertsAudioSource;
         audioSource.clip = clip;
         audioSource.loop = true;
         audioSource.Play();

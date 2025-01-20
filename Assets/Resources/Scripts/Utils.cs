@@ -585,13 +585,12 @@ public class Utils
     /// <param name="list">The list to shuffle.</param>
     public static List<T> ShuffleList<T>(List<T> list)
     {
-        System.Random rng = new System.Random();
         List<T> _list = new List<T>(list);
         int n = _list.Count;
         while (n > 1)
         {
             n--;
-            int k = rng.Next(n + 1);
+            int k = UnityEngine.Random.Range(0, n + 1);
             T value = _list[k];
             _list[k] = _list[n];
             _list[n] = value;

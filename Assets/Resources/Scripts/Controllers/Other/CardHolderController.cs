@@ -49,8 +49,9 @@ public class CardHolderController : MonoBehaviour
             card.GetComponent<RectTransform>(),
             card.GetComponent<CanvasScaler>()
         );
-        AudioSource.PlayClipAtPoint(
+        Manager.Sound.Play(
             Prefabs.GetSound(Prefabs.SoundType.CardFlip),
+            AudioSourceType.UI,
             transform.position
         );
         card.GetComponentInChildren<CardUIController>().MoveToPosition(nextPosition, 0.5f, 0, true);

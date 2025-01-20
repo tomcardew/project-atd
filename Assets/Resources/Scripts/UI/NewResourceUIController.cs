@@ -46,8 +46,9 @@ public class NewResourceUIController : MonoBehaviour
         float elapsedTime = 0;
 
         if (_resource.Sound != null)
-            AudioSource.PlayClipAtPoint(
+            Manager.Sound.Play(
                 Resources.Load<AudioClip>($"Sounds/{_resource.Sound}"),
+                AudioSourceType.Resources,
                 transform.position
             );
 
