@@ -112,6 +112,14 @@ public class CardsManager : MonoBehaviour
         deck.RemoveAt(0);
     }
 
+    public void Discard(int index)
+    {
+        Card c = hand[index];
+        discarded.Add(c);
+        hand.RemoveAt(index);
+        cardsHolder.MoveToDiscarded(index);
+    }
+
     private Card GetNextDrawCard()
     {
         if (deck.Count == 0)

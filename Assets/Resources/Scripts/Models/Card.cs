@@ -78,6 +78,28 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees_Droppable)
         );
 
+    public static Card DrawACard { get; } =
+        new Card(
+            "Draw A Card",
+            "Draw 1",
+            "HandActions/draw-a-card",
+            new CardResourceItem[] { },
+            Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard),
+            Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard_Droppable),
+            1
+        );
+
+    public static Card DiscardAllAndDraw5 { get; } =
+        new Card(
+            "Renewal",
+            "Discard all and draw 5",
+            "HandActions/discard-all-and-draw-5",
+            new CardResourceItem[] { new(ResourceType.Money, 10) },
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5),
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5_Droppable),
+            2
+        );
+
     public static Card ArcherTower { get; } =
         new Card(
             "Archer Tower",
@@ -178,7 +200,9 @@ public static class Cards
             MediumTrees,
             LargeTrees,
             RepairAnStructure,
-            AntitankSoldierTent
+            AntitankSoldierTent,
+            DrawACard,
+            DiscardAllAndDraw5
         };
 
     public static Card[] StartDeck { get; } =
@@ -194,6 +218,9 @@ public static class Cards
             SoldierTent,
             SmallTrees,
             SmallTrees,
+            DiscardAllAndDraw5,
+            DiscardAllAndDraw5,
+            DiscardAllAndDraw5
         };
 
     public static Card[] GetAvailableCardAtRound(int round)

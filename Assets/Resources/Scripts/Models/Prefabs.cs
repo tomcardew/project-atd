@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public static class Prefabs
 {
@@ -46,6 +47,14 @@ public static class Prefabs
         LargeTrees_Droppable,
         RepairAnStructure,
         RepairAnStructure_Droppable
+    }
+
+    public enum HandActionType
+    {
+        DrawACard,
+        DrawACard_Droppable,
+        DiscardAllAndDraw5,
+        DiscardAllAndDraw5_Droppable,
     }
 
     public enum ResourceType
@@ -242,6 +251,25 @@ public static class Prefabs
         {
             case AlertType.WaveIsComing:
                 return Resources.Load<GameObject>("Prefabs/UI/Alerts/WaveIsComing");
+            default:
+                return null;
+        }
+    }
+
+    public static GameObject GetPrefab(HandActionType handActionType)
+    {
+        switch (handActionType)
+        {
+            case HandActionType.DrawACard:
+                return Resources.Load<GameObject>("Prefabs/HandActions/DrawACard");
+            case HandActionType.DrawACard_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/DrawACard");
+            case HandActionType.DiscardAllAndDraw5:
+                return Resources.Load<GameObject>("Prefabs/HandActions/DiscardAllAndDraw5");
+            case HandActionType.DiscardAllAndDraw5_Droppable:
+                return Resources.Load<GameObject>(
+                    "Prefabs/HandActions/Droppables/DiscardAllAndDraw5"
+                );
             default:
                 return null;
         }
