@@ -80,7 +80,7 @@ public static class Cards
 
     public static Card DrawACard { get; } =
         new Card(
-            "Draw A Card",
+            "Draw",
             "Draw 1",
             "HandActions/draw-a-card",
             new CardResourceItem[] { },
