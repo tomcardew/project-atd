@@ -34,8 +34,9 @@ public class SniperTowerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Sniper tower detected an enemy {other.transform.parent.tag}");
-        if (other.transform.parent.CompareTag(Tags.Enemy))
+        GameObject obj = other.transform.parent.gameObject;
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (obj.CompareTag(Tags.Enemy) && dmg.armorLevel <= ArmorLevel.Light)
         {
             hasBeenEnabled = true;
         }
@@ -44,7 +45,13 @@ public class SniperTowerController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         GameObject obj = other.transform.parent.gameObject;
-        if (hasBeenEnabled && targetEnemy == null && obj.CompareTag(Tags.Enemy))
+        Damageable dmg = obj.GetComponentInChildren<Damageable>();
+        if (
+            hasBeenEnabled
+            && targetEnemy == null
+            && obj.CompareTag(Tags.Enemy)
+            && dmg.armorLevel <= ArmorLevel.Light
+        )
         {
             targetEnemy = obj;
         }

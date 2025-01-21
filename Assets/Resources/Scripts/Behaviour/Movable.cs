@@ -96,7 +96,7 @@ public abstract class Movable : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.contacts.Length > 1) // Check if colliding with more than 1 items
+        if (other.contacts.Length > 5) // Check if colliding with more than 5 items
         {
             if (timesHaveDisabledColliders > 10)
             {

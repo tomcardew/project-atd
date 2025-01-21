@@ -60,7 +60,7 @@ public class CardsManager : MonoBehaviour
         for (int i = 0; i < selected.Length; i++)
         {
             var item = selected[i];
-            SpawnCard(item, i);
+            CreateAndAddToHand(item, i);
         }
         for (int i = selected.Length; i < 5; i++)
         {
@@ -106,10 +106,36 @@ public class CardsManager : MonoBehaviour
     public void Draw()
     {
         var card = GetNextDrawCard();
-        SpawnCard(card, hand.Count);
+        CreateAndAddToHand(card, hand.Count);
 
         hand.Add(card);
         deck.RemoveAt(0);
+    }
+
+    public int FindIndexOfCardWithNameOnDeck(string name)
+    {
+        for (int i = 0; i < deck.Count; i++)
+        {
+            var c = deck[i];
+            if (c.name == name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void MoveDeckIndexToHand(int index)
+    {
+        if (index < 0 || index >= deck.Count)
+        {
+            return;
+        }
+        var card = deck[index];
+        hand.Add(card);
+        deck.RemoveAt(index);
+        deck = Utils.ShuffleList(deck);
+        CreateAndAddToHand(card, hand.Count - 1);
     }
 
     public void Discard(int index)
@@ -204,7 +230,7 @@ public class CardsManager : MonoBehaviour
         return _counters;
     }
 
-    private void SpawnCard(Card card, int index)
+    private void CreateAndAddToHand(Card card, int index)
     {
         // Instantiate the card UI prefab at the origin
         GameObject _card = Instantiate(
