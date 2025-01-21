@@ -26,12 +26,14 @@ public static class Prefabs
         House,
         ArcherTower,
         BomberTower,
+        SniperTower,
         Church,
         SoldierTent_Droppable,
         AntitankSoldierTent_Droppable,
         House_Droppable,
         ArcherTower_Droppable,
         BomberTower_Droppable,
+        SniperTower_Droppable,
         Church_Droppable
     }
 
@@ -146,6 +148,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/ArcherTower");
             case StructureType.BomberTower:
                 return Resources.Load<GameObject>("Prefabs/Structures/BomberTower");
+            case StructureType.SniperTower:
+                return Resources.Load<GameObject>("Prefabs/Structures/SniperTower");
             case StructureType.Church:
                 return Resources.Load<GameObject>("Prefabs/Structures/Church");
             case StructureType.SoldierTent_Droppable:
@@ -160,6 +164,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/ArcherTower");
             case StructureType.BomberTower_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/BomberTower");
+            case StructureType.SniperTower_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SniperTower");
             case StructureType.Church_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Church");
             default:

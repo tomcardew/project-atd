@@ -24,8 +24,8 @@ public static class Enemies
 {
     public static Unit Enemy { get; } = new Unit("Enemy", 1.0f, 0);
     public static Unit LargeEnemy { get; } = new Unit("LargeEnemy", 0.9f, 2);
-    public static Unit Assasin { get; } = new Unit("Assasin", 0.3f, 4);
-    public static Unit Tank { get; } = new Unit("Tank", 0.5f, 6);
+    public static Unit Assasin { get; } = new Unit("Assasin", 0.5f, 4);
+    public static Unit Tank { get; } = new Unit("Tank", 0.2f, 6);
 
     public static Unit GetUnit(Prefabs.EnemyType enemyType)
     {

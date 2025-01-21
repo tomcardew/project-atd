@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd058a5c93a0344f6a7573b7bf1090e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 0}
-  end: {fileID: 0}
-  lineWidth: 0.2
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0}
+  lineWidth: 0
   lineColor: {r: 0.87058824, g: 0.72156864, b: 0.5803922, a: 0.5882353}

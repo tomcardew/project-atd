@@ -122,6 +122,17 @@ public static class Cards
             4
         );
 
+    public static Card SniperTower { get; } =
+        new Card(
+            "Sniper Tower",
+            "Throw bombs and watch them explode",
+            "Structures/Sniper Tower",
+            new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 50) },
+            Prefabs.GetPrefab(Prefabs.StructureType.SniperTower),
+            Prefabs.GetPrefab(Prefabs.StructureType.SniperTower_Droppable),
+            4
+        );
+
     public static Card AntitankSoldierTent { get; } =
         new Card(
             "Antitank Soldier",
@@ -193,6 +204,7 @@ public static class Cards
             House,
             ArcherTower,
             BomberTower,
+            SniperTower,
             SoldierTent,
             // Church,
             PlantASeed,

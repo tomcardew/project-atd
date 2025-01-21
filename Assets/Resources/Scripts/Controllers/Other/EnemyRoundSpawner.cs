@@ -26,8 +26,25 @@ public class EnemyRoundSpawner : PrefabSpawner
         // Get the list of prefabs that can appear in the current round
         var availablePrefabs = GetUnlockedEnemies();
 
-        // Return a random prefab from the available prefabs
-        return availablePrefabs[Random.Range(0, availablePrefabs.Length)];
+        float totalWeight = 0f;
+        foreach (var weightedPrefab in availablePrefabs)
+        {
+            totalWeight += weightedPrefab.weight;
+        }
+
+        float randomValue = Random.Range(0f, totalWeight);
+        float cumulativeWeight = 0f;
+
+        foreach (var weightedPrefab in availablePrefabs)
+        {
+            cumulativeWeight += weightedPrefab.weight;
+            if (randomValue < cumulativeWeight)
+            {
+                return weightedPrefab.prefab;
+            }
+        }
+
+        return availablePrefabs[0].prefab;
     }
 
     private void HandleWaveEnd()
@@ -90,9 +107,9 @@ public class EnemyRoundSpawner : PrefabSpawner
         return 1 + (currentRound / 10); // Increase quantity multiplier by 0.1f
     }
 
-    private GameObject[] GetUnlockedEnemies()
+    private Unit[] GetUnlockedEnemies()
     {
         // Get the list of prefabs that can appear in the current round
-        return prefabs.Where(p => p.appearAtRound <= currentRound).Select(p => p.prefab).ToArray();
+        return prefabs.Where(p => p.appearAtRound <= currentRound).ToArray();
     }
 }
