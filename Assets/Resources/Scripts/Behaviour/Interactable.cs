@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Interactable
     : MonoBehaviour,
@@ -8,7 +9,12 @@ public class Interactable
         IPointerClickHandler
 {
     // Public properties
+    [Tooltip("SpriteRenderer is use for non-cards items")]
     public SpriteRenderer spriteRenderer;
+
+    [Tooltip("SpriteRenderer is use for cards items only")]
+    public Image image;
+
     public bool isTarget;
     public InteractionTarget target;
 
@@ -18,11 +24,24 @@ public class Interactable
 
     void Start()
     {
-        if (spriteRenderer == null)
+        switch (target)
         {
-            throw new System.Exception("SpriteRenderer is required");
+            case InteractionTarget.Card:
+                if (image == null)
+                {
+                    throw new System.Exception("Image is required");
+                }
+                originalColor = image.color;
+                break;
+            default:
+                if (spriteRenderer == null)
+                {
+                    throw new System.Exception("SpriteRenderer is required");
+                }
+                originalColor = spriteRenderer.color;
+                break;
         }
-        originalColor = spriteRenderer.color;
+
         Manager.Interactions.SelectingTargetStarted += OnSelectingTargetStarted;
         Manager.Interactions.SelectingTargetFinished += OnSelectingTargetFinished;
     }
@@ -35,7 +54,15 @@ public class Interactable
 
     private void ResetSpriteRenderer()
     {
-        spriteRenderer.color = originalColor;
+        switch (target)
+        {
+            case InteractionTarget.Card:
+                image.color = originalColor;
+                break;
+            default:
+                spriteRenderer.color = originalColor;
+                break;
+        }
     }
 
     private void OnSelectingTargetStarted(InteractionTarget target)
@@ -59,7 +86,15 @@ public class Interactable
     {
         if (isTarget && isSelectingTarget)
         {
-            spriteRenderer.color = Color.yellow;
+            switch (target)
+            {
+                case InteractionTarget.Card:
+                    image.color = Color.yellow;
+                    break;
+                default:
+                    spriteRenderer.color = Color.yellow;
+                    break;
+            }
             Manager.Cursor.SetSelectCursor();
         }
     }

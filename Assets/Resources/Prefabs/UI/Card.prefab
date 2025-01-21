@@ -920,6 +920,7 @@ GameObject:
   - component: {fileID: 3449912173601027246}
   - component: {fileID: 1954310321560089928}
   - component: {fileID: 4240778439073573876}
+  - component: {fileID: 5547480104865438407}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -1008,11 +1009,28 @@ MonoBehaviour:
     iconPath: 
     prefab: {fileID: 0}
     droppablePrefab: {fileID: 0}
+    appearsAtRound: 0
   index: 0
   icon: {fileID: 5226745878662580662}
   slotA: {fileID: 5169002715959315803}
   slotB: {fileID: 7672743889653162781}
   slotC: {fileID: 4500242769951973887}
+--- !u!114 &5547480104865438407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389222354833245970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3082de9ed3947bd9b23b2481a86190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  image: {fileID: 1954310321560089928}
+  isTarget: 1
+  target: 2
 --- !u!1 &7127999689665374818
 GameObject:
   m_ObjectHideFlags: 0

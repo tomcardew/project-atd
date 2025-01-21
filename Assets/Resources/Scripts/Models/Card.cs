@@ -89,6 +89,17 @@ public static class Cards
             1
         );
 
+    public static Card DiscardAndDraw { get; } =
+        new Card(
+            "Replace",
+            "Discard 1, then draw 1",
+            "HandActions/discard-and-draw",
+            new CardResourceItem[] { new(ResourceType.Money, 25) },
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw),
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw_Droppable),
+            1
+        );
+
     public static Card ArcherTower { get; } =
         new Card(
             "Archer Tower",
@@ -125,7 +136,7 @@ public static class Cards
     public static Card SniperTower { get; } =
         new Card(
             "Sniper Tower",
-            "Throw bombs and watch them explode",
+            "Instantly kill enemies from afar",
             "Structures/Sniper Tower",
             new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower),
@@ -158,9 +169,9 @@ public static class Cards
     public static Card BomberTower { get; } =
         new Card(
             "Bomber Tower",
-            "Throw bombs and watch them explode",
+            "Throw bombs at friends and enemyes",
             "Structures/BomberTower",
-            new CardResourceItem[] { new(ResourceType.Money, 120), new(ResourceType.Wood, 100) },
+            new CardResourceItem[] { new(ResourceType.Money, 90), new(ResourceType.Wood, 75) },
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable),
             7
@@ -214,7 +225,8 @@ public static class Cards
             RepairAnStructure,
             AntitankSoldierTent,
             DrawACard,
-            DiscardAllAndDraw5
+            DiscardAllAndDraw5,
+            DiscardAndDraw
         };
 
     public static Card[] StartDeck { get; } =

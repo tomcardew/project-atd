@@ -57,6 +57,8 @@ public static class Prefabs
         DrawACard_Droppable,
         DiscardAllAndDraw5,
         DiscardAllAndDraw5_Droppable,
+        DiscardAndDraw,
+        DiscardAndDraw_Droppable
     }
 
     public enum ResourceType
@@ -276,6 +278,10 @@ public static class Prefabs
                 return Resources.Load<GameObject>(
                     "Prefabs/HandActions/Droppables/DiscardAllAndDraw5"
                 );
+            case HandActionType.DiscardAndDraw:
+                return Resources.Load<GameObject>("Prefabs/HandActions/DiscardAndDraw");
+            case HandActionType.DiscardAndDraw_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/DiscardAndDraw");
             default:
                 return null;
         }
