@@ -3,7 +3,8 @@ using UnityEngine;
 public enum InteractionTarget
 {
     Structures,
-    Resources
+    Resources,
+    Card
 }
 
 public class InteractionsManager : MonoBehaviour

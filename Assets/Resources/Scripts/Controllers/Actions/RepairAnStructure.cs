@@ -1,26 +1,21 @@
 using UnityEngine;
 using System.Collections;
 
-public class RepairAnStructure : MonoBehaviour
+public class RepairAnStructure : TargetInteractor
 {
-    private void Start()
+    protected override InteractionTarget GetTarget()
     {
-        Manager.Interactions.SelectingTargetFinished += HandleSelectedTarget;
-        Manager.Interactions.TriggerSelectingTarget(InteractionTarget.Structures);
+        return InteractionTarget.Structures;
     }
 
-    private void OnDestroy()
-    {
-        Manager.Interactions.SelectingTargetFinished -= HandleSelectedTarget;
-    }
-
-    private void HandleSelectedTarget(GameObject selected)
+    protected override void InteractWithTarget(GameObject selected)
     {
         Damageable dmg = selected.GetComponentInChildren<Damageable>();
         if (dmg != null)
         {
             dmg.Repair();
         }
+
         Destroy(gameObject);
     }
 }
