@@ -14,17 +14,44 @@ public class CardUIController : MonoBehaviour
     public GameObject slotB;
     public GameObject slotC;
 
+    [Header("Card Resources")]
+    public Sprite normalCard;
+    public Sprite structureCard;
+    public Sprite actionCard;
+    public Sprite woodResource;
+
     // Private properties
     private TextMeshProUGUI title;
     private TextMeshProUGUI description;
+    private Image foregroundImage;
 
     private void Start()
     {
         GetComponentInParent<Canvas>().worldCamera = Camera.main;
+        foregroundImage = GetComponent<Image>();
 
         var labels = GetComponentsInChildren<TextMeshProUGUI>();
         title = labels[0];
         description = labels[1];
+
+        Sprite foreground;
+        switch (card.foregroundType)
+        {
+            case CardForegroundType.Structure:
+                foreground = structureCard;
+                break;
+            case CardForegroundType.Action:
+                foreground = actionCard;
+                break;
+            case CardForegroundType.WoodResource:
+                foreground = woodResource;
+                break;
+            case CardForegroundType.Normal:
+            default:
+                foreground = normalCard;
+                break;
+        }
+        foregroundImage.sprite = foreground;
 
         SetData();
     }

@@ -58,7 +58,13 @@ public static class Prefabs
         DiscardAllAndDraw5,
         DiscardAllAndDraw5_Droppable,
         DiscardAndDraw,
-        DiscardAndDraw_Droppable
+        DiscardAndDraw_Droppable,
+        AddTree,
+        AddTree_Droppable,
+        AddHouse,
+        AddHouse_Droppable,
+        AddSoldier,
+        AddSoldier_Droppable
     }
 
     public enum ResourceType
@@ -282,6 +288,18 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/HandActions/DiscardAndDraw");
             case HandActionType.DiscardAndDraw_Droppable:
                 return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/DiscardAndDraw");
+            case HandActionType.AddTree:
+                return Resources.Load<GameObject>("Prefabs/HandActions/AddTree");
+            case HandActionType.AddTree_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/AddTree");
+            case HandActionType.AddHouse:
+                return Resources.Load<GameObject>("Prefabs/HandActions/AddHouse");
+            case HandActionType.AddHouse_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/AddHouse");
+            case HandActionType.AddSoldier:
+                return Resources.Load<GameObject>("Prefabs/HandActions/AddSoldier");
+            case HandActionType.AddSoldier_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/AddSoldier");
             default:
                 return null;
         }
