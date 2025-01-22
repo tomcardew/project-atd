@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     // Private properties
     [NonSerialized]
     public int currentRound = 0;
+
+    [NonSerialized]
+    public Vector3 castlePosition;
 
     private EnemyRoundSpawner mainSpawner;
     private LineController lineController;
@@ -64,6 +68,14 @@ public class GameManager : MonoBehaviour
     public float CurrentWaveRestDuration
     {
         get { return waveRestDuration * waveRestDurationMultiplier; }
+    }
+
+    public void StartGame()
+    {
+        InstantiateEssentials();
+        timeBeforeNextWave = timeBeforeFirstWave;
+        waveRoutine = StartCoroutine(InternalWaveRoutine());
+        endGameRoutine = StartCoroutine(EndGameRoutine());
     }
 
     private void Update()
@@ -144,17 +156,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        waveRoutine = StartCoroutine(InternalWaveRoutine());
-        endGameRoutine = StartCoroutine(EndGameRoutine());
-        timeBeforeNextWave = timeBeforeFirstWave;
-        InstantiateEssentials();
-    }
-
     private void InstantiateEssentials()
     {
-        Vector3 castlePosition = Utils.GetPositionOnBorder(Camera.main, 2f, 300f);
+        castlePosition = Utils.GetPositionOnBorder(Camera.main, 2f, 300f);
         GameObject castle = Instantiate(
             Prefabs.GetPrefab(Prefabs.StructureType.Castle),
             castlePosition,
@@ -162,8 +166,8 @@ public class GameManager : MonoBehaviour
         );
         Vector3 entrance = castle.GetComponent<CastleController>().GetEntrancePosition();
 
-        Vector3 oppositePosition = Utils.GetOppositeCornerOutsideView(castlePosition, 3f);
-        mainSpawner = CreateMainSpawner(oppositePosition);
+        Vector3 spawnerPosition = Utils.GetOppositeCorner(castlePosition, true, 3f);
+        mainSpawner = CreateMainSpawner(spawnerPosition);
 
         lineController = CreateLineDrawer(mainSpawner.gameObject.transform.position, entrance);
         GenerateResources();
@@ -211,8 +215,8 @@ public class GameManager : MonoBehaviour
             {
                 position = Utils.GetRandomPositionInsideCamera(Camera.main, 3f);
             } while (
-                IsPositionOnLine(position, lineController.start, lineController.end)
-                || IsPositionTooClose(position, generatedPositions, 2f)
+                Utils.IsPositionOnLine(position, lineController.start, lineController.end)
+                || Utils.IsPositionTooClose(position, generatedPositions, 2f)
             );
 
             generatedPositions.Add(position);
@@ -224,34 +228,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private bool IsPositionOnLine(Vector3 position, Vector3 lineStart, Vector3 lineEnd)
-    {
-        float distance = Vector3.Distance(lineStart, lineEnd);
-        float distanceToStart = Vector3.Distance(position, lineStart);
-        float distanceToEnd = Vector3.Distance(position, lineEnd);
-
-        // Check if the position is close to the line within a small threshold
-        return Mathf.Abs(distance - (distanceToStart + distanceToEnd)) < 1f;
-    }
-
-    private bool IsPositionTooClose(Vector3 position, List<Vector3> positions, float minDistance)
-    {
-        foreach (Vector3 pos in positions)
-        {
-            if (Vector3.Distance(position, pos) < minDistance)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void ExitGame()
     {
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+        SceneManager.LoadScene("HomeMenu");
 #endif
     }
 }

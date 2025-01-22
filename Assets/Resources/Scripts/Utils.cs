@@ -549,7 +549,7 @@ public class Utils
         return position;
     }
 
-    public static Vector3 GetOppositeCornerOutsideView(Vector3 position, float offset = 2.0f)
+    public static Vector3 GetOppositeCorner(Vector3 position, bool outsideView, float offset = 2.0f)
     {
         Camera camera = Camera.main;
         Vector3 screenPoint = camera.WorldToViewportPoint(position);
@@ -557,8 +557,13 @@ public class Utils
         screenPoint.y = 1.0f - screenPoint.y;
         Vector3 oppositeCorner = camera.ViewportToWorldPoint(screenPoint);
 
-        // Ensure the position is outside the camera view
-        if (screenPoint.x >= 0 && screenPoint.x <= 1 && screenPoint.y >= 0 && screenPoint.y <= 1)
+        if (
+            outsideView
+            && screenPoint.x >= 0
+            && screenPoint.x <= 1
+            && screenPoint.y >= 0
+            && screenPoint.y <= 1
+        )
         {
             oppositeCorner += (oppositeCorner - position).normalized * offset;
         }
@@ -630,5 +635,31 @@ public class Utils
 
         // Return the nearest generator with capacity
         return sortedGenerators.FirstOrDefault();
+    }
+
+    public static bool IsPositionOnLine(Vector3 position, Vector3 lineStart, Vector3 lineEnd)
+    {
+        float distance = Vector3.Distance(lineStart, lineEnd);
+        float distanceToStart = Vector3.Distance(position, lineStart);
+        float distanceToEnd = Vector3.Distance(position, lineEnd);
+
+        // Check if the position is close to the line within a small threshold
+        return Mathf.Abs(distance - (distanceToStart + distanceToEnd)) < 1f;
+    }
+
+    public static bool IsPositionTooClose(
+        Vector3 position,
+        List<Vector3> positions,
+        float minDistance
+    )
+    {
+        foreach (Vector3 pos in positions)
+        {
+            if (Vector3.Distance(position, pos) < minDistance)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

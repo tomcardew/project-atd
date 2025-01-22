@@ -859,8 +859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resource: 1
-  workerCapacity: 6
-  totalResources: 20
+  workerCapacity: 5
+  totalResources: 50
   isInfinite: 0
   tiringRate: 0.1
   initialGenerationQuantity: 0.3

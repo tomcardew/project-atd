@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardResourceItem
@@ -74,7 +73,7 @@ public static class Cards
 
     public static Card SoldierTent { get; } =
         new Card(
-            "Soldier",
+            "Soldier Tent",
             "Add +1 soldier",
             "Structures/Soldier Tent",
             new CardResourceItem[] { new(ResourceType.Money, 20), new(ResourceType.Wood, 10) },
@@ -104,18 +103,8 @@ public static class Cards
             new CardResourceItem[] { },
             Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard),
             Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard_Droppable),
-            1
-        );
-
-    public static Card DiscardAndDraw { get; } =
-        new Card(
-            "Replace",
-            "Discard 1, then draw 1",
-            "HandActions/discard-and-draw",
-            new CardResourceItem[] { new(ResourceType.Money, 25) },
-            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw),
-            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw_Droppable),
-            1
+            1,
+            CardForegroundType.Normal
         );
 
     public static Card ArcherTower { get; } =
@@ -126,14 +115,14 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 40), new(ResourceType.Wood, 30) },
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
-            2,
+            1,
             CardForegroundType.Structure
         );
 
     public static Card AddTree { get; } =
         new Card(
             "Give Me Trees",
-            "Add a random Tree to your hand",
+            "Add a random Tree from your deck to your hand",
             "HandActions/add-tree",
             new CardResourceItem[] { new(ResourceType.Money, 15) },
             Prefabs.GetPrefab(Prefabs.HandActionType.AddTree),
@@ -144,8 +133,8 @@ public static class Cards
 
     public static Card AddHouse { get; } =
         new Card(
-            "Give Me Houses",
-            "Add a House to your hand",
+            "Give Me A House",
+            "Add a House from your deck to your hand",
             "HandActions/add-house",
             new CardResourceItem[] { new(ResourceType.Money, 10) },
             Prefabs.GetPrefab(Prefabs.HandActionType.AddHouse),
@@ -156,7 +145,7 @@ public static class Cards
     public static Card AddSoldier { get; } =
         new Card(
             "Open Recruitment",
-            "Add a Soldier Tent to your hand",
+            "Add a Soldier Tent from your deck to your hand",
             "HandActions/add-soldier",
             new CardResourceItem[] { new(ResourceType.Money, 10) },
             Prefabs.GetPrefab(Prefabs.HandActionType.AddSoldier),
@@ -174,6 +163,17 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.MediumTrees_Droppable),
             3,
             CardForegroundType.WoodResource
+        );
+    public static Card DiscardAndDraw { get; } =
+        new Card(
+            "Replace",
+            "Discard 1, then draw 1",
+            "HandActions/discard-and-draw",
+            new CardResourceItem[] { new(ResourceType.Money, 25) },
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw),
+            Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw_Droppable),
+            3,
+            CardForegroundType.Normal
         );
 
     public static Card DiscardAllAndDraw5 { get; } =
@@ -205,7 +205,7 @@ public static class Cards
             "Antitank Soldier",
             "Add +1 soldier with an antitank weapon",
             "Structures/AntitankSoldier Tent",
-            new CardResourceItem[] { new(ResourceType.Money, 100), new(ResourceType.Wood, 50) },
+            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
             5,
@@ -220,7 +220,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 60) },
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees_Droppable),
-            6,
+            5,
             CardForegroundType.WoodResource
         );
 
@@ -232,7 +232,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 90), new(ResourceType.Wood, 75) },
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable),
-            7,
+            6,
             CardForegroundType.Structure
         );
 
@@ -254,7 +254,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 100) },
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure),
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable),
-            9,
+            10,
             CardForegroundType.Action
         );
 

@@ -1,22 +1,13 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyRoundSpawner : PrefabSpawner
 {
     public int currentRound = 0; // Current round number
-    private List<Unit> prefabs; // List of all enemy prefabs
 
     public override void Init()
     {
-        prefabs = Enemies.GetAll().ToList();
         GameManager.OnWaveEnd += HandleWaveEnd; // Subscribe to the OnWaveEnd event
-    }
-
-    private void Update()
-    {
-        delayMultiplier = GetDelayMultiplier();
-        quantityMultiplier = GetQuantityMultiplier();
     }
 
     public override void DidSpawnPrefab(GameObject prefab) { }
@@ -24,13 +15,10 @@ public class EnemyRoundSpawner : PrefabSpawner
     public override GameObject GetPrefab()
     {
         // Get the list of prefabs that can appear in the current round
-        var availablePrefabs = GetUnlockedEnemies();
+        // and order it by weight
+        var availablePrefabs = GetUnlockedEnemies().OrderByDescending(c => c.weight).ToArray();
 
-        float totalWeight = 0f;
-        foreach (var weightedPrefab in availablePrefabs)
-        {
-            totalWeight += weightedPrefab.weight;
-        }
+        float totalWeight = availablePrefabs.Sum(c => c.weight);
 
         float randomValue = Random.Range(0f, totalWeight);
         float cumulativeWeight = 0f;
@@ -50,12 +38,12 @@ public class EnemyRoundSpawner : PrefabSpawner
     private void HandleWaveEnd()
     {
         // Update delay and quantity multiplier based on whether new cards were added
-        // delayMultiplier = GetDelayMultiplier(); // Decrease delay multiplier with a minimum of 0.1f
-        // quantityMultiplier = GetQuantityMultiplier(); // Increase quantity multiplier
+        delayMultiplier = GetDelayMultiplier(); // Decrease delay multiplier with a minimum of 0.1f
+        quantityMultiplier = GetQuantityMultiplier(); // Increase quantity multiplier
 
-        // Debug.Log(
-        //     $"Delay multiplier: {delayMultiplier}, Quantity multiplier: {quantityMultiplier}"
-        // );
+        Debug.Log(
+            $"Updated -> Delay multiplier: {delayMultiplier}, Quantity multiplier: {quantityMultiplier}"
+        );
     }
 
     private float GetDelayMultiplier()
@@ -110,6 +98,6 @@ public class EnemyRoundSpawner : PrefabSpawner
     private Unit[] GetUnlockedEnemies()
     {
         // Get the list of prefabs that can appear in the current round
-        return prefabs.Where(p => p.appearAtRound <= currentRound).ToArray();
+        return Enemies.GetAll().Where(p => p.appearAtRound <= currentRound).ToArray();
     }
 }
