@@ -139,7 +139,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.AddTree),
             Prefabs.GetPrefab(Prefabs.HandActionType.AddTree_Droppable),
             2,
-            CardForegroundType.WoodResource
+            CardForegroundType.Normal
         );
 
     public static Card AddHouse { get; } =
@@ -191,7 +191,7 @@ public static class Cards
     public static Card SniperTower { get; } =
         new Card(
             "Sniper Tower",
-            "Instantly kill enemies from afar",
+            "Instantly kill light enemies from afar",
             "Structures/Sniper Tower",
             new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower),
@@ -227,7 +227,7 @@ public static class Cards
     public static Card BomberTower { get; } =
         new Card(
             "Bomber Tower",
-            "Throw bombs at friends and enemyes",
+            "Throw bombs at friends and enemies",
             "Structures/BomberTower",
             new CardResourceItem[] { new(ResourceType.Money, 90), new(ResourceType.Wood, 75) },
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),

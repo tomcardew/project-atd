@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public delegate void WaveEventHandler();
     public static event WaveEventHandler OnWaveStart;
     public static event WaveEventHandler OnWaveEnd;
+    public static event WaveEventHandler OnRestStart;
+    public static event WaveEventHandler OnRestEnd;
 
     public float CurrentDelay
     {
@@ -100,10 +102,12 @@ public class GameManager : MonoBehaviour
             {
                 yield return null;
             }
+            OnRestStart?.Invoke();
             yield return new WaitForSeconds(CurrentWaveRestDuration);
             currentRound++;
             isOnRestTime = false;
             isOnWave = true;
+            OnRestEnd?.Invoke();
         }
     }
 
