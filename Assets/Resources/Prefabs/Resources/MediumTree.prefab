@@ -550,10 +550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: 1
   workerCapacity: 10
-  totalResources: 50
+  totalResources: 100
   isInfinite: 0
   tiringRate: 0.1
-  initialGenerationQuantity: 0.25
+  initialGenerationQuantity: 0.3
   generationQuantityMultiplier: 1
   initialGenerationDelay: 1
   generationDelayMultiplier: 1

@@ -879,10 +879,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: 1
   workerCapacity: 20
-  totalResources: 100
+  totalResources: 200
   isInfinite: 0
   tiringRate: 0.1
-  initialGenerationQuantity: 0.2
+  initialGenerationQuantity: 0.3
   generationQuantityMultiplier: 1
   initialGenerationDelay: 1
   generationDelayMultiplier: 1
