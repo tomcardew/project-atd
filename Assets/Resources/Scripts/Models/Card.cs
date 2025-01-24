@@ -74,7 +74,7 @@ public static class Cards
     public static Card SoldierTent { get; } =
         new Card(
             "Soldier Tent",
-            "Add +1 soldier",
+            "Add +1 Soldier",
             "Structures/Soldier Tent",
             new CardResourceItem[] { new(ResourceType.Money, 20), new(ResourceType.Wood, 10) },
             Prefabs.GetPrefab(Prefabs.StructureType.SoldierTent),
@@ -93,6 +93,18 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees_Droppable),
             0,
             CardForegroundType.WoodResource
+        );
+
+    public static Card Farm { get; } =
+        new Card(
+            "Farm",
+            "Generates food\nAdd +1 population",
+            "Structures/Farm",
+            new CardResourceItem[] { new(ResourceType.Money, 10), new(ResourceType.Wood, 15) },
+            Prefabs.GetPrefab(Prefabs.StructureType.Farm),
+            Prefabs.GetPrefab(Prefabs.StructureType.Farm_Droppable),
+            0,
+            CardForegroundType.Structure
         );
 
     public static Card DrawACard { get; } =
@@ -145,7 +157,7 @@ public static class Cards
     public static Card AddSoldier { get; } =
         new Card(
             "Open Recruitment",
-            "Add a Soldier Tent from your deck to your hand",
+            "Add a random soldier card from your deck to your hand",
             "HandActions/add-soldier",
             new CardResourceItem[] { new(ResourceType.Money, 10) },
             Prefabs.GetPrefab(Prefabs.HandActionType.AddSoldier),
@@ -203,7 +215,7 @@ public static class Cards
     public static Card AntitankSoldierTent { get; } =
         new Card(
             "Antitank Soldier",
-            "Add +1 soldier with an antitank weapon",
+            "Add +2 Antitank Soldier",
             "Structures/AntitankSoldier Tent",
             new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
@@ -251,10 +263,10 @@ public static class Cards
             "Repair An Structure",
             "Restore an structure's health back to 100%",
             "Actions/repair",
-            new CardResourceItem[] { new(ResourceType.Money, 100) },
+            new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 20) },
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure),
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable),
-            10,
+            8,
             CardForegroundType.Action
         );
 
@@ -274,6 +286,7 @@ public static class Cards
         new Card[]
         {
             House,
+            Farm,
             ArcherTower,
             BomberTower,
             SniperTower,
@@ -302,10 +315,10 @@ public static class Cards
             House,
             SoldierTent,
             SoldierTent,
-            SoldierTent,
-            SoldierTent,
             SmallTrees,
             SmallTrees,
+            Farm,
+            Farm
         };
 
     public static Card[] GetAvailableCardAtRound(int round)

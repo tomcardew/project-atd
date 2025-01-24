@@ -32,3 +32,7 @@ At the beginning of the wave, draw cards until you have 5.
 #### Wave Ends
 
 At the end of the wave, choose a card from a list of 3 and add it to your deck.
+
+### Food
+
+People need food to work. Each person and some structures require an amount of food every once in a while; without it they won't perform as usual.

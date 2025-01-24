@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using NUnit.Framework;
 
 public class ResourceGenerator : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class ResourceGenerator : MonoBehaviour
     public int totalResources; // max available resources to generate
     public bool isInfinite = false; // if the generator is infinite
     public float tiringRate = 0.1f; // how much workers get tired each generation
+    public float hungerRate = 0.05f; // how much workers get hungry each generation
     public float initialGenerationQuantity; // how many per worker
     public float generationQuantityMultiplier = 1.0f;
     public float initialGenerationDelay; // how often to generate
@@ -27,6 +30,7 @@ public class ResourceGenerator : MonoBehaviour
     private float load = 0;
     private NewResourceUIController newResourceUI;
     private UIHideShow pausedIndicator;
+    private UIHideShow lowCapacityIndicator;
 
     [SerializeField]
     private List<Person> workers;
@@ -34,6 +38,22 @@ public class ResourceGenerator : MonoBehaviour
     public bool HasCapacity
     {
         get { return workers.Count < workerCapacity; }
+    }
+
+    private bool _oldHasHungryWorkers = false;
+    public bool HasHungryWorkers
+    {
+        get
+        {
+            foreach (var worker in workers)
+            {
+                if (worker.hunger >= 1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     // Computed property to get the current generation quantity
@@ -58,7 +78,10 @@ public class ResourceGenerator : MonoBehaviour
             sliderBar = GetComponentInChildren<SliderController>();
         }
         newResourceUI = transform.parent.GetComponentInChildren<NewResourceUIController>();
-        pausedIndicator = transform.parent.GetComponentInChildren<UIHideShow>();
+        newResourceUI.resource = resource;
+        var indicators = transform.parent.GetComponentsInChildren<UIHideShow>();
+        pausedIndicator = indicators.Where(c => c.name == "Paused").First();
+        lowCapacityIndicator = indicators.Where(c => c.name == "LowCapacity").First();
         generationCoroutine = StartCoroutine(GenerationCoroutine());
     }
 
@@ -75,6 +98,18 @@ public class ResourceGenerator : MonoBehaviour
                 pausedIndicator.Hide();
             }
             _oldIsPaused = isPaused;
+        }
+        if (HasHungryWorkers != _oldHasHungryWorkers)
+        {
+            if (HasHungryWorkers)
+            {
+                lowCapacityIndicator.Show();
+            }
+            else
+            {
+                lowCapacityIndicator.Hide();
+            }
+            _oldHasHungryWorkers = HasHungryWorkers;
         }
     }
 
@@ -114,10 +149,16 @@ public class ResourceGenerator : MonoBehaviour
             for (int i = 0; i < workers.Count; i++)
             {
                 var worker = workers[i];
+                var _generationQuantity = CurrentGenerationQuantity;
+                if (worker.hunger >= 1)
+                {
+                    _generationQuantity *= 0.1f; // if there is no food, reduce generation by 90%
+                }
                 if (worker.rest > 0)
                 {
-                    load += CurrentGenerationQuantity;
+                    load += _generationQuantity;
                     worker.rest -= tiringRate;
+                    worker.hunger = Math.Min(worker.hunger + hungerRate, 1);
                 }
                 else
                 {

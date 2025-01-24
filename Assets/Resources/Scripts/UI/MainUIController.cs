@@ -7,6 +7,7 @@ public class MainUIController : MonoBehaviour
     // Private properties
     private VisualElement root; // Root element of the UI
     private Label moneyValue; // Label to display money value
+    private Label foodValue; // Label to display food value
     private Label woodValue; // Label to display wood value
     private Label faithValue; // Label to display faith value
     private Label populationValue; // Label to display population value
@@ -18,6 +19,7 @@ public class MainUIController : MonoBehaviour
         // Initialize UI elements
         root = GetComponent<UIDocument>().rootVisualElement;
         moneyValue = root.Q<Label>("MoneyValue");
+        foodValue = root.Q<Label>("FoodValue");
         woodValue = root.Q<Label>("WoodValue");
         faithValue = root.Q<Label>("FaithValue");
         populationValue = root.Q<Label>("PeopleValue");
@@ -39,6 +41,13 @@ public class MainUIController : MonoBehaviour
             moneyValue.text = Manager.Resources.GetResourceValue(ResourceType.Money).ToString();
             moneyValue.style.color = moneyLimitReached ? Color.red : Color.white;
             moneyValue.style.unityFontStyleAndWeight = moneyLimitReached
+                ? FontStyle.Bold
+                : FontStyle.Normal;
+
+            bool foodLimitReached = Manager.Resources.HasReachedLimit(ResourceType.Food);
+            foodValue.text = Manager.Resources.GetResourceValue(ResourceType.Food).ToString();
+            foodValue.style.color = foodLimitReached ? Color.red : Color.white;
+            foodValue.style.unityFontStyleAndWeight = foodLimitReached
                 ? FontStyle.Bold
                 : FontStyle.Normal;
 

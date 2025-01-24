@@ -28,13 +28,15 @@ public static class Prefabs
         BomberTower,
         SniperTower,
         Church,
+        Farm,
         SoldierTent_Droppable,
         AntitankSoldierTent_Droppable,
         House_Droppable,
         ArcherTower_Droppable,
         BomberTower_Droppable,
         SniperTower_Droppable,
-        Church_Droppable
+        Church_Droppable,
+        Farm_Droppable
     }
 
     public enum ActionType
@@ -160,6 +162,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/SniperTower");
             case StructureType.Church:
                 return Resources.Load<GameObject>("Prefabs/Structures/Church");
+            case StructureType.Farm:
+                return Resources.Load<GameObject>("Prefabs/Structures/Farm");
             case StructureType.SoldierTent_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierTent");
             case StructureType.AntitankSoldierTent_Droppable:
@@ -176,6 +180,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SniperTower");
             case StructureType.Church_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Church");
+            case StructureType.Farm_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Farm");
             default:
                 return null;
         }

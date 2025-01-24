@@ -5,6 +5,7 @@ public enum ResourceType
 {
     Money,
     Wood,
+    Food,
     Faith
 }
 
@@ -29,6 +30,8 @@ public static class ResourceList
 {
     public static Resource Money { get; } =
         new Resource("Money", ResourceType.Money, "Icon/coin", "coin");
+    public static Resource Food { get; } =
+        new Resource("Food", ResourceType.Food, "Icon/food", "food");
     public static Resource Wood { get; } =
         new Resource("Wood", ResourceType.Wood, "Icon/wood", "axe");
     public static Resource Faith { get; } =
@@ -41,6 +44,7 @@ public static class ResourceList
             ResourceType.Money => Money,
             ResourceType.Wood => Wood,
             ResourceType.Faith => Faith,
+            ResourceType.Food => Food,
             _ => throw new ArgumentException("Invalid resource type", nameof(type))
         };
     }

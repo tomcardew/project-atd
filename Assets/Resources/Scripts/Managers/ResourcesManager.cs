@@ -31,6 +31,7 @@ public class ResourcesManager : MonoBehaviour
         resources = new List<ResourceToQuantity>
         {
             new(ResourceType.Money, 0, 1000),
+            new(ResourceType.Food, 0, 1000),
             new(ResourceType.Wood, 0, 250),
             new(ResourceType.Faith, 0, 250),
         };
@@ -73,6 +74,11 @@ public class ResourcesManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public bool CanPay(ResourceType resource, int value)
+    {
+        return everythingFree || GetResourceValue(resource) >= value;
     }
 
     public void Pay(Card card)

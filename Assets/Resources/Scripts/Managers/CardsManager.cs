@@ -122,6 +122,21 @@ public class CardsManager : MonoBehaviour
         return -1;
     }
 
+    public int GetRandomCardWithNames(string[] names)
+    {
+        var matchingCards = deck.Select((card, index) => new { card, index })
+            .Where(x => names.Contains(x.card.name))
+            .ToList();
+
+        if (matchingCards.Count == 0)
+        {
+            return -1; // No matching card found
+        }
+
+        var randomIndex = Random.Range(0, matchingCards.Count);
+        return matchingCards[randomIndex].index;
+    }
+
     public void MoveDeckIndexToHand(int index)
     {
         if (index < 0 || index >= deck.Count)
