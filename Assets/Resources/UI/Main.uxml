@@ -21,7 +21,7 @@
                     </engine:VisualElement>
                     <engine:Label text="0&#10;" name="MoneyValue" class="bar-label" />
                 </engine:VisualElement>
-                <engine:VisualElement name="ItemContainer" style="flex-grow: 0; flex-direction: row; align-items: center; margin-right: 20px;">
+                <engine:VisualElement name="ItemContainer" style="flex-grow: 0; flex-direction: row; align-items: center; margin-right: 20px; display: none;">
                     <engine:VisualElement style="flex-grow: 0; width: 30px; height: 30px; background-image: none; flex-shrink: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; flex-direction: row; align-items: center; justify-content: flex-start; align-self: flex-end; align-content: flex-start; flex-wrap: nowrap;">
                         <engine:VisualElement name="Icon" style="flex-grow: 0; width: 100%; height: 100%; background-image: resource(&apos;Sprites/Icon/food&apos;); flex-shrink: 0; margin-right: 4px;" />
                     </engine:VisualElement>

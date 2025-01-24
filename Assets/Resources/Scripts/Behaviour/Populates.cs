@@ -37,7 +37,33 @@ public class Populates : MonoBehaviour
         "Wendy",
         "Xander",
         "Yara",
-        "Zane"
+        "Zane",
+        "Aaron",
+        "Bella",
+        "Cameron",
+        "Derek",
+        "Elena",
+        "Fiona",
+        "George",
+        "Holly",
+        "Ian",
+        "Jasmine",
+        "Kyle",
+        "Liam",
+        "Megan",
+        "Nathan",
+        "Olivia",
+        "Peter",
+        "Quinn",
+        "Riley",
+        "Sophie",
+        "Tom",
+        "Ursula",
+        "Violet",
+        "Will",
+        "Xenia",
+        "Yvonne",
+        "Zach"
     };
     private Coroutine restRoutine;
 
@@ -107,14 +133,6 @@ public class Populates : MonoBehaviour
         for (int i = 0; i < people.Count; i++)
         {
             Person person = people[i];
-            if (
-                person.hunger >= 1
-                && Manager.Resources.CanPay(ResourceType.Food, person.foodConsumption)
-            )
-            {
-                Manager.Resources.AddToResource(ResourceType.Food, -person.foodConsumption);
-                person.hunger = 0;
-            }
             person.rest += CurrentRestRecovery;
             if (person.rest >= 1)
             {
