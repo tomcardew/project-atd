@@ -98,7 +98,7 @@ public static class Cards
     public static Card Farm { get; } =
         new Card(
             "Farm",
-            "Generates food\nAdd +1 population",
+            "Generates food",
             "Structures/Farm",
             new CardResourceItem[] { new(ResourceType.Money, 10), new(ResourceType.Wood, 15) },
             Prefabs.GetPrefab(Prefabs.StructureType.Farm),
@@ -257,7 +257,17 @@ public static class Cards
     //         Prefabs.Structures.Church,
     //         Prefabs.Structures.Church_Droppable
     //     );
-
+    public static Card RepairShop { get; } =
+        new Card(
+            "Repairshop",
+            "Keep your structures in good shape",
+            "Structures/repair-shop",
+            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
+            Prefabs.GetPrefab(Prefabs.StructureType.RepairShop),
+            Prefabs.GetPrefab(Prefabs.StructureType.RepairShop_Droppable),
+            7,
+            CardType.Structure
+        );
     public static Card RepairAnStructure { get; } =
         new Card(
             "Repair An Structure",
@@ -304,6 +314,7 @@ public static class Cards
             AddTree,
             AddHouse,
             AddSoldier,
+            RepairShop
         };
 
     public static Card[] StartDeck { get; } =
@@ -317,8 +328,8 @@ public static class Cards
             SoldierTent,
             SmallTrees,
             SmallTrees,
+            SmallTrees,
             Farm,
-            Farm
         };
 
     public static Card[] GetAvailableCardAtRound(int round)
