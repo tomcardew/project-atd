@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 8195437586506350279}
   - component: {fileID: 5784013854770541194}
   - component: {fileID: 8602145545822272136}
+  - component: {fileID: 2542222367669783791}
   m_Layer: 0
   m_Name: House
   m_TagString: Structure
@@ -347,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2856197337860476421}
+  image: {fileID: 0}
   isTarget: 1
   target: 0
 --- !u!58 &8602145545822272136
@@ -385,6 +387,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.19
+--- !u!114 &2542222367669783791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067500788123488748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff92f6989c73d4ca4ad0219e6af71a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5895940787631550896
 GameObject:
   m_ObjectHideFlags: 0

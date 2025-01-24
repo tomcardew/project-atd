@@ -14,7 +14,7 @@ public class CardResourceItem
     }
 }
 
-public enum CardForegroundType
+public enum CardType
 {
     Normal,
     Structure,
@@ -33,7 +33,7 @@ public class Card
     public GameObject prefab;
     public GameObject droppablePrefab;
     public int appearsAtRound;
-    public CardForegroundType foregroundType;
+    public CardType foregroundType;
 
     public Card(
         string name,
@@ -43,7 +43,7 @@ public class Card
         GameObject prefab,
         GameObject droppablePrefab,
         int appearsAtRound = 0,
-        CardForegroundType foregroundType = CardForegroundType.Normal
+        CardType foregroundType = CardType.Normal
     )
     {
         this.name = name;
@@ -68,7 +68,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.House),
             Prefabs.GetPrefab(Prefabs.StructureType.House_Droppable),
             0,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card SoldierTent { get; } =
@@ -80,7 +80,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.SoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.SoldierTent_Droppable),
             0,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card SmallTrees { get; } =
@@ -92,7 +92,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.SmallTrees_Droppable),
             0,
-            CardForegroundType.WoodResource
+            CardType.WoodResource
         );
 
     public static Card Farm { get; } =
@@ -104,7 +104,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.Farm),
             Prefabs.GetPrefab(Prefabs.StructureType.Farm_Droppable),
             0,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card DrawACard { get; } =
@@ -116,7 +116,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard),
             Prefabs.GetPrefab(Prefabs.HandActionType.DrawACard_Droppable),
             1,
-            CardForegroundType.Normal
+            CardType.Normal
         );
 
     public static Card ArcherTower { get; } =
@@ -128,7 +128,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
             Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
             1,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card AddTree { get; } =
@@ -140,7 +140,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.AddTree),
             Prefabs.GetPrefab(Prefabs.HandActionType.AddTree_Droppable),
             2,
-            CardForegroundType.Normal
+            CardType.Normal
         );
 
     public static Card AddHouse { get; } =
@@ -174,7 +174,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.MediumTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.MediumTrees_Droppable),
             3,
-            CardForegroundType.WoodResource
+            CardType.WoodResource
         );
     public static Card DiscardAndDraw { get; } =
         new Card(
@@ -185,7 +185,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw_Droppable),
             3,
-            CardForegroundType.Normal
+            CardType.Normal
         );
 
     public static Card DiscardAllAndDraw5 { get; } =
@@ -197,7 +197,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5_Droppable),
             4,
-            CardForegroundType.Normal
+            CardType.Normal
         );
 
     public static Card SniperTower { get; } =
@@ -209,7 +209,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower),
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower_Droppable),
             4,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card AntitankSoldierTent { get; } =
@@ -221,7 +221,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
             5,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     public static Card LargeTrees { get; } =
@@ -233,7 +233,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees),
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees_Droppable),
             5,
-            CardForegroundType.WoodResource
+            CardType.WoodResource
         );
 
     public static Card BomberTower { get; } =
@@ -245,7 +245,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower),
             Prefabs.GetPrefab(Prefabs.StructureType.BomberTower_Droppable),
             6,
-            CardForegroundType.Structure
+            CardType.Structure
         );
 
     // public static Card Church { get; } =
@@ -267,7 +267,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure),
             Prefabs.GetPrefab(Prefabs.ActionType.RepairAnStructure_Droppable),
             8,
-            CardForegroundType.Action
+            CardType.Action
         );
 
     public static Card PlantASeed { get; } =
@@ -279,7 +279,7 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.PlantASeed),
             Prefabs.GetPrefab(Prefabs.ActionType.PlantASeed_Droppable),
             10,
-            CardForegroundType.Action
+            CardType.Action
         );
 
     public static Card[] AllCards { get; } =

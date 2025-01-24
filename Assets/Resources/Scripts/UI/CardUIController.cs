@@ -37,16 +37,16 @@ public class CardUIController : MonoBehaviour
         Sprite foreground;
         switch (card.foregroundType)
         {
-            case CardForegroundType.Structure:
+            case CardType.Structure:
                 foreground = structureCard;
                 break;
-            case CardForegroundType.Action:
+            case CardType.Action:
                 foreground = actionCard;
                 break;
-            case CardForegroundType.WoodResource:
+            case CardType.WoodResource:
                 foreground = woodResource;
                 break;
-            case CardForegroundType.Normal:
+            case CardType.Normal:
             default:
                 foreground = normalCard;
                 break;

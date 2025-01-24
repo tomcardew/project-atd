@@ -17,6 +17,8 @@ public abstract class Draggable
     public abstract void Drag(PointerEventData eventData);
     public abstract void DidEndDrag(PointerEventData eventData);
 
+    protected bool updateCursor = true;
+
     // Private properties
     [SerializeField]
     private Canvas canvas;
@@ -49,7 +51,10 @@ public abstract class Draggable
     public void OnBeginDrag(PointerEventData eventData)
     {
         DidBeginDrag(eventData);
-        Manager.Cursor.SetGrabCursor();
+        if (updateCursor)
+        {
+            Manager.Cursor.SetGrabCursor();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -72,16 +77,25 @@ public abstract class Draggable
     public void OnEndDrag(PointerEventData eventData)
     {
         DidEndDrag(eventData);
-        Manager.Cursor.SetDefaultCursor();
+        if (updateCursor)
+        {
+            Manager.Cursor.SetDefaultCursor();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Manager.Cursor.SetHandCursor();
+        if (updateCursor)
+        {
+            Manager.Cursor.SetHandCursor();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Manager.Cursor.SetDefaultCursor();
+        if (updateCursor)
+        {
+            Manager.Cursor.SetDefaultCursor();
+        }
     }
 }

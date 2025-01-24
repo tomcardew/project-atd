@@ -662,4 +662,38 @@ public class Utils
         }
         return false;
     }
+
+    public static Color GetForegroundTypeColor(CardType type)
+    {
+        switch (type)
+        {
+            case CardType.Normal:
+                return new Color(0.84f, 0.84f, 0.84f);
+            case CardType.Action:
+                return new Color(0.97f, 1f, 0.72f);
+            case CardType.Structure:
+                return new Color(0.72f, 0.74f, 1f);
+            case CardType.WoodResource:
+                return new Color(0.72f, 1f, 0.79f);
+            default:
+                return Color.black;
+        }
+    }
+
+    public static string GetForegroundTypeName(CardType type)
+    {
+        switch (type)
+        {
+            case CardType.Normal:
+                return "Hand Action";
+            case CardType.Action:
+                return "Action";
+            case CardType.Structure:
+                return "Structure";
+            case CardType.WoodResource:
+                return "Resource";
+            default:
+                return "Unknown";
+        }
+    }
 }

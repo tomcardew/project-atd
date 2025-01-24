@@ -103,11 +103,22 @@ public static class Prefabs
         AddCard
     }
 
+    public enum Boxes
+    {
+        DetailsBox,
+        TypeLabel,
+        Subtitle,
+        ContentLine,
+        NameContainer
+    }
+
     public enum SoundType
     {
         Alert,
         CardFlip,
-        CardDiscarded
+        CardDiscarded,
+        BoxEnter,
+        BoxExit
     }
 
     public static GameObject GetPrefab(UnitType unitType)
@@ -324,6 +335,25 @@ public static class Prefabs
         }
     }
 
+    public static GameObject GetPrefab(Boxes box)
+    {
+        switch (box)
+        {
+            case Boxes.DetailsBox:
+                return Resources.Load<GameObject>("Prefabs/UI/Boxes/DetailsBox");
+            case Boxes.ContentLine:
+                return Resources.Load<GameObject>("Prefabs/UI/Boxes/Components/ContentLine");
+            case Boxes.NameContainer:
+                return Resources.Load<GameObject>("Prefabs/UI/Boxes/Components/NameContainer");
+            case Boxes.Subtitle:
+                return Resources.Load<GameObject>("Prefabs/UI/Boxes/Components/Subtitle");
+            case Boxes.TypeLabel:
+                return Resources.Load<GameObject>("Prefabs/UI/Boxes/Components/TypeLabel");
+            default:
+                return null;
+        }
+    }
+
     public static AudioClip GetSound(SoundType soundType)
     {
         switch (soundType)
@@ -334,6 +364,10 @@ public static class Prefabs
                 return Resources.Load<AudioClip>("Sounds/cardflip");
             case SoundType.CardDiscarded:
                 return Resources.Load<AudioClip>("Sounds/discarded");
+            case SoundType.BoxEnter:
+                return Resources.Load<AudioClip>("Sounds/box-open");
+            case SoundType.BoxExit:
+                return Resources.Load<AudioClip>("Sounds/box-exit");
             default:
                 return null;
         }
