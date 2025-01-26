@@ -111,9 +111,24 @@ public class CardsManager : MonoBehaviour
 
     public int FindIndexOfCardWithNameOnDeck(string name)
     {
-        for (int i = 0; i < deck.Count; i++)
+        return FindIndexOfCardWithNameOnList(name, deck);
+    }
+
+    public int FindIndexOfCardWithNameOnHand(string name)
+    {
+        return FindIndexOfCardWithNameOnList(name, hand);
+    }
+
+    public int FindIndexOfCardWithNameOnDiscarded(string name)
+    {
+        return FindIndexOfCardWithNameOnList(name, discarded);
+    }
+
+    private int FindIndexOfCardWithNameOnList(string name, List<Card> list)
+    {
+        for (int i = 0; i < list.Count; i++)
         {
-            var c = deck[i];
+            var c = list[i];
             if (c.name == name)
             {
                 return i;
@@ -156,6 +171,32 @@ public class CardsManager : MonoBehaviour
         discarded.Add(c);
         hand.RemoveAt(index);
         cardsHolder.MoveToDiscarded(index);
+    }
+
+    public void DestroyCard(string name)
+    {
+        Debug.Log("Destroying card: " + name);
+        var index = FindIndexOfCardWithNameOnDiscarded(name);
+        if (index != -1)
+        {
+            Debug.Log($"Destroyed at {index} of discarded");
+            discarded.RemoveAt(index);
+            return;
+        }
+        index = FindIndexOfCardWithNameOnDeck(name);
+        if (index != -1)
+        {
+            Debug.Log($"Destroyed at {index} of deck");
+            deck.RemoveAt(index);
+            return;
+        }
+        index = FindIndexOfCardWithNameOnHand(name);
+        if (index != -1)
+        {
+            Debug.Log($"Destroyed at {index} of hand");
+            hand.RemoveAt(index);
+            return;
+        }
     }
 
     private Card GetNextDrawCard()

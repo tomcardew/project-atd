@@ -24,7 +24,6 @@ public class FarmController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Colliding with {other.gameObject.name}");
         ResourceGenerator rg = other.gameObject.GetComponent<ResourceGenerator>();
         if (rg != null)
         {

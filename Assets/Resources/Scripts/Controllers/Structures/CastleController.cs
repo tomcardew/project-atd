@@ -50,14 +50,18 @@ public class CastleController : MonoBehaviour
         return transform.position + entranceOffset;
     }
 
+    public int GetTaxValue()
+    {
+        return (int)(CurrentTax * Manager.Population.GetPopulation());
+    }
+
     // Tax collection routine
     private IEnumerator TaxRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(CurrentTaxDelay); // Wait for the current tax delay
-            float value = CurrentTax * Manager.Population.GetPopulation(); // Calculate the tax value
-            Manager.Resources.AddToResource(ResourceType.Money, (int)value); // Add the value to the resources
+            Manager.Resources.AddToResource(ResourceType.Money, GetTaxValue()); // Add the value to the resources
             newResourceUI.Show(); // Show the new resource UI
         }
     }

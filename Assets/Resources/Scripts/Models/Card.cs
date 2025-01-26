@@ -302,6 +302,18 @@ public static class Cards
             CardType.Action
         );
 
+    public static Card AdditionalTaxes { get; } =
+        new Card(
+            "Additional Taxes",
+            "Collect taxes, then destroy this card",
+            "Actions/additional-taxes",
+            new CardResourceItem[] { },
+            Prefabs.GetPrefab(Prefabs.ActionType.AdditionalTaxes),
+            Prefabs.GetPrefab(Prefabs.ActionType.AdditionalTaxes_Droppable),
+            9,
+            CardType.Action
+        );
+
     public static Card PlantASeed { get; } =
         new Card(
             "Plant A Seed",
@@ -339,6 +351,7 @@ public static class Cards
             RepairShop,
             SavingsAccount,
             Refund,
+            AdditionalTaxes,
         };
 
     public static Card[] StartDeck { get; } =
@@ -354,7 +367,6 @@ public static class Cards
             SmallTrees,
             SmallTrees,
             Farm,
-            SavingsAccount
         };
 
     public static Card[] GetAvailableCardAtRound(int round)

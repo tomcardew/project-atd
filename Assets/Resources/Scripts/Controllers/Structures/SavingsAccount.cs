@@ -5,9 +5,17 @@ public class SavingsAccount : MonoBehaviour
     public float initialPercent;
     public float percentMultiplier = 1f;
 
+    private NewResourceUIController newResourceUI;
+
     private float CurrentPercent
     {
         get { return initialPercent * percentMultiplier; }
+    }
+
+    private void Start()
+    {
+        newResourceUI = transform.GetComponentInChildren<NewResourceUIController>();
+        newResourceUI.resource = ResourceType.Money;
     }
 
     private void OnEnable()
@@ -23,7 +31,7 @@ public class SavingsAccount : MonoBehaviour
     private void OnWaveEnd()
     {
         var value = (int)(Manager.Resources.GetResourceValue(ResourceType.Money) * CurrentPercent);
-        Debug.Log($"Generated {value} money from savings account");
         Manager.Resources.AddToResource(ResourceType.Money, value);
+        newResourceUI.Show();
     }
 }

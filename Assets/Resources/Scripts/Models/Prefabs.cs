@@ -54,7 +54,9 @@ public static class Prefabs
         LargeTrees,
         LargeTrees_Droppable,
         RepairAnStructure,
-        RepairAnStructure_Droppable
+        RepairAnStructure_Droppable,
+        AdditionalTaxes,
+        AdditionalTaxes_Droppable,
     }
 
     public enum HandActionType
@@ -236,6 +238,10 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Actions/LargeTrees");
             case ActionType.LargeTrees_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Actions/Droppables/LargeTrees");
+            case ActionType.AdditionalTaxes:
+                return Resources.Load<GameObject>("Prefabs/Actions/AdditionalTaxes");
+            case ActionType.AdditionalTaxes_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Actions/Droppables/AdditionalTaxes");
             default:
                 return null;
         }
