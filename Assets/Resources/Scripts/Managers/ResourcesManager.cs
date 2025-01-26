@@ -42,6 +42,13 @@ public class ResourcesManager : MonoBehaviour
         if (r.Quantity + value <= r.Limit)
         {
             r.Quantity += value;
+            var _resource = ResourceList.GetResourceByType(resource);
+            if (_resource.Sound != null)
+                Manager.Sound.Play(
+                    Resources.Load<AudioClip>($"Sounds/{_resource.Sound}"),
+                    AudioSourceType.Resources,
+                    transform.position
+                );
         }
         else
         {

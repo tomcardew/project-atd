@@ -164,6 +164,17 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.HandActionType.AddSoldier_Droppable),
             2
         );
+    public static Card Refund { get; } =
+        new Card(
+            "Refund",
+            "Discard a card from your hand and gain back its Money cost",
+            "HandActions/refund",
+            new CardResourceItem[] { },
+            Prefabs.GetPrefab(Prefabs.HandActionType.Refund),
+            Prefabs.GetPrefab(Prefabs.HandActionType.Refund_Droppable),
+            2,
+            CardType.Normal
+        );
 
     public static Card MediumTrees { get; } =
         new Card(
@@ -176,15 +187,38 @@ public static class Cards
             3,
             CardType.WoodResource
         );
+
+    public static Card SavingsAccount { get; } =
+        new Card(
+            "Savings Account",
+            "At the end of each wave, gain 10% of your current money",
+            "Structures/SavingsAccount",
+            new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 15) },
+            Prefabs.GetPrefab(Prefabs.StructureType.SavingsAccount),
+            Prefabs.GetPrefab(Prefabs.StructureType.SavingsAccount_Droppable),
+            3,
+            CardType.Structure
+        );
+    public static Card AntitankSoldierTent { get; } =
+        new Card(
+            "Antitank Soldier",
+            "Add +2 Antitank Soldier",
+            "Structures/AntitankSoldier Tent",
+            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
+            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
+            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
+            3,
+            CardType.Structure
+        );
     public static Card DiscardAndDraw { get; } =
         new Card(
             "Replace",
-            "Discard 1, then draw 1",
+            "Discard 1 and draw 1",
             "HandActions/discard-and-draw",
             new CardResourceItem[] { new(ResourceType.Money, 25) },
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAndDraw_Droppable),
-            3,
+            4,
             CardType.Normal
         );
 
@@ -196,7 +230,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 50) },
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5_Droppable),
-            3,
+            4,
             CardType.Normal
         );
 
@@ -208,18 +242,6 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower),
             Prefabs.GetPrefab(Prefabs.StructureType.SniperTower_Droppable),
-            4,
-            CardType.Structure
-        );
-
-    public static Card AntitankSoldierTent { get; } =
-        new Card(
-            "Antitank Soldier",
-            "Add +2 Antitank Soldier",
-            "Structures/AntitankSoldier Tent",
-            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
-            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
-            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
             4,
             CardType.Structure
         );
@@ -314,7 +336,9 @@ public static class Cards
             AddTree,
             AddHouse,
             AddSoldier,
-            RepairShop
+            RepairShop,
+            SavingsAccount,
+            Refund,
         };
 
     public static Card[] StartDeck { get; } =
@@ -330,6 +354,7 @@ public static class Cards
             SmallTrees,
             SmallTrees,
             Farm,
+            SavingsAccount
         };
 
     public static Card[] GetAvailableCardAtRound(int round)

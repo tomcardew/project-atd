@@ -45,13 +45,6 @@ public class NewResourceUIController : MonoBehaviour
         float duration = 1.0f; // Mover más lento
         float elapsedTime = 0;
 
-        if (_resource.Sound != null)
-            Manager.Sound.Play(
-                Resources.Load<AudioClip>($"Sounds/{_resource.Sound}"),
-                AudioSourceType.Resources,
-                transform.position
-            );
-
         while (elapsedTime < duration)
         {
             transform.position = Vector3.Lerp(

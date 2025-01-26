@@ -30,6 +30,7 @@ public static class Prefabs
         Church,
         Farm,
         RepairShop,
+        SavingsAccount,
         SoldierTent_Droppable,
         AntitankSoldierTent_Droppable,
         House_Droppable,
@@ -39,6 +40,7 @@ public static class Prefabs
         Church_Droppable,
         Farm_Droppable,
         RepairShop_Droppable,
+        SavingsAccount_Droppable,
     }
 
     public enum ActionType
@@ -68,7 +70,9 @@ public static class Prefabs
         AddHouse,
         AddHouse_Droppable,
         AddSoldier,
-        AddSoldier_Droppable
+        AddSoldier_Droppable,
+        Refund,
+        Refund_Droppable
     }
 
     public enum ResourceType
@@ -179,6 +183,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/Farm");
             case StructureType.RepairShop:
                 return Resources.Load<GameObject>("Prefabs/Structures/RepairShop");
+            case StructureType.SavingsAccount:
+                return Resources.Load<GameObject>("Prefabs/Structures/SavingsAccount");
             case StructureType.SoldierTent_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SoldierTent");
             case StructureType.AntitankSoldierTent_Droppable:
@@ -199,6 +205,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/Farm");
             case StructureType.RepairShop_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/RepairShop");
+            case StructureType.SavingsAccount_Droppable:
+                return Resources.Load<GameObject>("Prefabs/Structures/Droppables/SavingsAccount");
             default:
                 return null;
         }
@@ -323,6 +331,10 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/HandActions/AddSoldier");
             case HandActionType.AddSoldier_Droppable:
                 return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/AddSoldier");
+            case HandActionType.Refund:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Refund");
+            case HandActionType.Refund_Droppable:
+                return Resources.Load<GameObject>("Prefabs/HandActions/Droppables/Refund");
             default:
                 return null;
         }
