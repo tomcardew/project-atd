@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 9218573911666560128}
   - component: {fileID: 6500691388700194605}
   - component: {fileID: 4893994228663879518}
+  - component: {fileID: -4523609094674512551}
   m_Layer: 0
   m_Name: MediumTree
   m_TagString: Resource
@@ -157,7 +158,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2894304579035725101}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -186,6 +187,33 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.6
+--- !u!50 &-4523609094674512551
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894304579035725101}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &3738244368326467417
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +670,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4193289525723417907}
   - component: {fileID: 1934490519020679474}
-  m_Layer: 0
+  - component: {fileID: 1624839986319890103}
+  - component: {fileID: 521375382698170843}
+  m_Layer: 12
   m_Name: ResourceGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +711,6 @@ MonoBehaviour:
   totalResources: 100
   isInfinite: 0
   tiringRate: 0.1
-  hungerRate: 0.05
   initialGenerationQuantity: 0.3
   generationQuantityMultiplier: 1
   initialGenerationDelay: 1
@@ -689,7 +718,73 @@ MonoBehaviour:
   emptyPrefab: {fileID: 7605683604948318217, guid: d3fe79dbf5fe641888776413a23b7446, type: 3}
   sliderBar: {fileID: 967556027520575702}
   isPaused: 0
+  multipliers: []
+  currentQuantity: 0
+  currentDelay: 0
   workers: []
+--- !u!58 &1624839986319890103
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063248933296653596}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.6
+--- !u!50 &521375382698170843
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063248933296653596}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &7329971598988906432
 GameObject:
   m_ObjectHideFlags: 0

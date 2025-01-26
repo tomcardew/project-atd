@@ -100,6 +100,10 @@ MonoBehaviour:
   generationDelayMultiplier: 1
   emptyPrefab: {fileID: 0}
   sliderBar: {fileID: 5936990426116933474}
+  isPaused: 0
+  multipliers: []
+  currentQuantity: 0
+  currentDelay: 0
   workers: []
 --- !u!1 &591171734648805196
 GameObject:
@@ -684,6 +688,9 @@ MonoBehaviour:
   initialLife: 50
   lifeMultiplier: 1
   healtbar: {fileID: 2554215920430177878}
+  armorLevel: 0
+  repairable: 1
+  receivedDamage: 0
 --- !u!1 &5481974974562170542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8940727814930128796}
+  image: {fileID: 0}
   isTarget: 1
   target: 0
 --- !u!1 &9057899130390377215

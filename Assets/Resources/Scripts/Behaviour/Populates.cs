@@ -149,10 +149,6 @@ public class Populates : MonoBehaviour
                     p.target = generator.transform.position;
                     people.RemoveAt(i);
                 }
-                else
-                {
-                    Debug.LogWarning("No available resource generator found");
-                }
             }
         }
     }

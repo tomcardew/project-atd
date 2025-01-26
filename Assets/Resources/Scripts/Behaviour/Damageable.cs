@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ArmorLevel
@@ -15,6 +16,10 @@ public class Damageable : MonoBehaviour
     public float lifeMultiplier = 1f; // Multiplier to adjust the life
     public SliderController healtbar; // Reference to the health bar
     public ArmorLevel armorLevel; // Armor level of the object
+    public bool repairable = false; // If the object can be repaired
+
+    [NonSerialized]
+    public bool isUnderRepair = false; // If the object is under repair
 
     // Private properties
     private GameObject parent; // Reference to the parent GameObject

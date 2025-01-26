@@ -605,6 +605,7 @@ MonoBehaviour:
   lifeMultiplier: 1
   healtbar: {fileID: 7786723460889297359}
   armorLevel: 0
+  repairable: 1
   receivedDamage: 0
 --- !u!1 &6913607454531857190
 GameObject:

@@ -5,30 +5,14 @@ using UnityEngine;
 
 public class Utils
 {
-    /// <summary>
-    /// The RotateVector2 function rotates a Vector2 by a specified angle using a Quaternion rotation.
-    /// </summary>
-    /// <param name="Vector2">A Vector2 represents a 2D vector with x and y components. It is commonly
-    /// used in game development and graphics programming to represent positions, directions,
-    /// velocities, and more in a 2D space.</param>
-    /// <param name="angle">The `angle` parameter represents the amount by which you want to rotate the
-    /// input vector. It is specified in degrees.</param>
-    /// <returns>
-    /// The method `RotateVector2` returns a new `Vector2` that is the result of rotating the input
-    /// `vector` by the specified `angle` using a `Quaternion` rotation.
-    /// </returns>
+    // Rotates a Vector2 by a specified angle using a Quaternion rotation.
     public static Vector2 RotateVector2(Vector2 vector, float angle)
     {
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
         return rotation * vector;
     }
 
-    /// <summary>
-    /// Returns a random position on the perimeter of a circle.
-    /// </summary>
-    /// <param name="center">The center of the circle as a Vector2.</param>
-    /// <param name="radius">The radius of the circle.</param>
-    /// <returns>A random Vector2 position on the circle's perimeter.</returns>
+    // Returns a random position on the perimeter of a circle.
     public static Vector2 GetRandomPositionOnCirclePerimeter(Vector2 center, float radius)
     {
         // Generate a random angle in radians
@@ -42,26 +26,7 @@ public class Utils
         return new Vector2(x, y);
     }
 
-    /// <summary>
-    /// The function finds the nearest GameObject with a specific tag within a certain maximum distance
-    /// from a given origin Transform.
-    /// </summary>
-    /// <param name="Transform">The `Transform` parameter in the `FindTheNearestGameObjectsWithTag`
-    /// method represents the starting point or origin from which you want to find the nearest game
-    /// object with a specific tag within a certain maximum distance. The `origin` parameter is a
-    /// reference to a `Transform` component that holds the</param>
-    /// <param name="tag">The `tag` parameter in the `FindTheNearestGameObjectsWithTag` method is a
-    /// string that represents the tag of the GameObjects you want to search for. When calling this
-    /// method, you would provide a specific tag value to filter and find the nearest GameObject with
-    /// that tag from the specified origin</param>
-    /// <param name="maxDistance">The `maxDistance` parameter in the `FindTheNearestGameObjectsWithTag`
-    /// method represents the maximum distance from the `origin` within which you want to find the
-    /// nearest game object with the specified tag. This distance is used to filter out game objects
-    /// that are beyond this range from the `origin</param>
-    /// <returns>
-    /// the GameObject that is nearest to the specified origin Transform and has the specified tag
-    /// within the maximum distance specified.
-    /// </returns>
+    // Finds the nearest GameObject with a specific tag within a certain maximum distance from a given origin Transform.
     public static GameObject FindTheNearestGameObjectWithTag(
         Transform origin,
         string tag,
@@ -86,19 +51,8 @@ public class Utils
         return nearestObj;
     }
 
-    /// <summary>
-    /// The function finds the nearest Movable GameObject with a specific internal name within a certain maximum distance
-    /// from a given origin Transform.
-    /// </summary>
-    /// <param name="origin">The starting point or origin from which you want to find the nearest Movable GameObject.</param>
-    /// <param name="name">The internal name of the Movable GameObject you want to find.</param>
-    /// <param name="distance">The maximum distance from the origin within which you want to find the Movable GameObject.</param>
-    /// <returns>The nearest Movable GameObject with the specified internal name.</returns>
-    public static GameObject FindMovableGameObjectsWithInternalName(
-        Transform origin,
-        string name,
-        float distance = float.MaxValue
-    )
+    // Finds the nearest Movable GameObject with a specific internal name within a certain maximum distance from a given origin Transform.
+    public static GameObject FindMovableGameObjectsWithInternalName(Transform origin, string name)
     {
         Movable[] movables = GameObject.FindObjectsByType<Movable>(FindObjectsSortMode.None);
         Movable found = movables
@@ -112,24 +66,7 @@ public class Utils
         return null;
     }
 
-    /// <summary>
-    /// The function `FindAllNearGameObjectsWithTag` finds all game objects with a specified tag within
-    /// a certain maximum distance from a given origin point.
-    /// </summary>
-    /// <param name="Transform">A Transform represents the position, rotation, and scale of an object in
-    /// Unity. It is commonly used to manipulate the position and orientation of GameObjects in a
-    /// scene.</param>
-    /// <param name="tag">The `tag` parameter in the `FindAllNearGameObjectsWithTag` method is a string
-    /// that represents the tag of the GameObjects you want to find. GameObjects in Unity can be
-    /// assigned tags to categorize them for easier identification and manipulation in scripts.</param>
-    /// <param name="maxDistance">The `maxDistance` parameter in the `FindAllNearGameObjectsWithTag`
-    /// method represents the maximum distance from the `origin` within which you want to find game
-    /// objects with the specified tag. This distance is used to filter out game objects that are
-    /// farther away than the specified maximum distance.</param>
-    /// <returns>
-    /// An array of GameObjects that are within a specified maximum distance from a given origin
-    /// Transform and have a specified tag.
-    /// </returns>
+    // Finds all game objects with a specified tag within a certain maximum distance from a given origin point.
     public static GameObject[] FindAllNearGameObjectsWithTag(
         Transform origin,
         string tag,
@@ -152,23 +89,7 @@ public class Utils
         return nearObjects.ToArray();
     }
 
-    /// <summary>
-    /// The function generates a trigger collider with a specified radius at a given position within a
-    /// specified transform.
-    /// </summary>
-    /// <param name="Transform">A Transform component that represents the parent object where the
-    /// trigger collider will be created.</param>
-    /// <param name="Vector3">A Vector3 is a data structure in Unity that represents a point or
-    /// direction in 3D space. It consists of three float values: x, y, and z. These values can be used
-    /// to store positions, rotations, scales, or directions in a 3D environment.</param>
-    /// <param name="radius">The `radius` parameter in the `GenerateTriggerCollider` method represents
-    /// the radius of the CircleCollider2D that will be added to the GameObject. This radius determines
-    /// the size of the circular trigger collider that will be created around the specified
-    /// position.</param>
-    /// <returns>
-    /// The method `GenerateTriggerCollider` returns a GameObject that represents a trigger collider
-    /// with a circle shape.
-    /// </returns>
+    // Generates a trigger collider with a specified radius at a given position within a specified transform.
     public static GameObject GenerateTriggerCollider(
         Transform transform,
         Vector3 position,
@@ -185,11 +106,7 @@ public class Utils
         return triggerColliderObject;
     }
 
-    /// <summary>
-    /// Returns a random position within the camera's visible area.
-    /// </summary>
-    /// <param name="camera">The camera to calculate the visible area.</param>
-    /// <returns>A random position within the visible area.</returns>
+    // Returns a random position within the camera's visible area.
     public static Vector3 GetRandomPositionInsideCamera(
         Camera camera,
         float bottomOffset = 1f,
@@ -223,6 +140,7 @@ public class Utils
         return new Vector3(randomX, randomY, 0f);
     }
 
+    // Returns a random position outside the camera's visible area.
     public static Vector2 GetRandomPositionOutsideCamera(Camera camera)
     {
         Vector2 screenBounds = camera.ScreenToWorldPoint(
@@ -243,15 +161,7 @@ public class Utils
         return new Vector2(x, y);
     }
 
-    /// <summary>
-    /// The function `SpriteToTexture2D` converts a Unity `Sprite` object into a `Texture2D` object.
-    /// </summary>
-    /// <param name="Sprite">The `SpriteToTexture2D` method you provided converts a Sprite object into a
-    /// Texture2D object. The parameters used in the method are:</param>
-    /// <returns>
-    /// The method `SpriteToTexture2D` returns a `Texture2D` object that represents the sprite converted
-    /// into a texture.
-    /// </returns>
+    // Converts a Unity Sprite object into a Texture2D object.
     public static Texture2D SpriteToTexture2D(Sprite sprite)
     {
         // Create a new Texture2D with the same dimensions as the sprite
@@ -272,25 +182,7 @@ public class Utils
         return texture;
     }
 
-    /// <summary>
-    /// The function ResizeTexture resizes a given Texture2D to a new width and height using bilinear
-    /// filtering.
-    /// </summary>
-    /// <param name="Texture2D">The `Texture2D` class in Unity represents a 2D texture that can be used
-    /// for rendering on objects in the scene. It contains pixel data that defines the color and
-    /// transparency of each texel (texture element).</param>
-    /// <param name="newWidth">The `newWidth` parameter in the `ResizeTexture` method represents the
-    /// desired width of the new resized texture that you want to create from the original
-    /// `sourceTexture`. This parameter specifies the number of pixels in the horizontal direction for
-    /// the resized texture.</param>
-    /// <param name="newHeight">The `newHeight` parameter in the `ResizeTexture` method represents the
-    /// desired height of the new resized texture that you want to create based on the original
-    /// `sourceTexture`. This parameter specifies the number of pixels in the vertical direction for the
-    /// resized texture.</param>
-    /// <returns>
-    /// The method `ResizeTexture` returns a new `Texture2D` object that has been resized based on the
-    /// input parameters `newWidth` and `newHeight`.
-    /// </returns>
+    // Resizes a given Texture2D to a new width and height using bilinear filtering.
     public static Texture2D ResizeTexture(Texture2D sourceTexture, int newWidth, int newHeight)
     {
         // Create a new, empty Texture2D with the desired dimensions
@@ -320,32 +212,7 @@ public class Utils
         return resizedTexture;
     }
 
-    /// <summary>
-    /// The CalculateRate function calculates a rate based on the input value, with interpolation
-    /// between max and min values within specified ranges.
-    /// </summary>
-    /// <param name="value">The `value` parameter represents the value for which you want to calculate
-    /// the rate. It is the input value for which you want to determine the rate between the `max` and
-    /// `min` values based on the `baseValue` and `maxValue`.</param>
-    /// <param name="max">The `max` parameter in the `CalculateRate` method represents the maximum rate
-    /// value that can be returned. It is used in the calculation to determine the rate based on the
-    /// input values and conditions specified in the method.</param>
-    /// <param name="min">The `min` parameter in the `CalculateRate` method represents the minimum rate
-    /// value that can be returned by the calculation. It is used in the interpolation process to
-    /// determine the rate based on the input `value` relative to the `baseValue` and
-    /// `maxValue`.</param>
-    /// <param name="baseValue">The `baseValue` parameter in the `CalculateRate` method represents the
-    /// starting point from which the rate calculation will be based. It is a reference value that helps
-    /// determine the interpolation between the `max` and `min` values based on the input
-    /// `value`.</param>
-    /// <param name="maxValue">The `maxValue` parameter in the `CalculateRate` method represents the
-    /// maximum possible value that `value` can take. This parameter is used in the calculation to
-    /// determine the rate between the `max` and `min` values based on the relationship between `value`,
-    /// `baseValue`, and `</param>
-    /// <returns>
-    /// The CalculateRate method returns a float value that represents the interpolated rate between the
-    /// max and min values based on the input parameters provided.
-    /// </returns>
+    // Calculates a rate based on the input value, with interpolation between max and min values within specified ranges.
     public static float CalculateRate(
         float value,
         float max,
@@ -377,26 +244,7 @@ public class Utils
         return max - t * (max - min);
     }
 
-    /// <summary>
-    /// The function finds the nearest GameObject with any of the specified tags within a certain maximum distance
-    /// from a given origin Transform.
-    /// </summary>
-    /// <param name="Transform">The `Transform` parameter in the `FindTheNearestGameObjectWithTags`
-    /// method represents the starting point or origin from which you want to find the nearest game
-    /// object with any of the specified tags within a certain maximum distance. The `origin` parameter is a
-    /// reference to a `Transform` component that holds the</param>
-    /// <param name="tags">The `tags` parameter in the `FindTheNearestGameObjectWithTags` method is an array
-    /// of strings that represents the tags of the GameObjects you want to search for. When calling this
-    /// method, you would provide specific tag values to filter and find the nearest GameObject with
-    /// any of those tags from the specified origin</param>
-    /// <param name="maxDistance">The `maxDistance` parameter in the `FindTheNearestGameObjectWithTags`
-    /// method represents the maximum distance from the `origin` within which you want to find the
-    /// nearest game object with any of the specified tags. This distance is used to filter out game objects
-    /// that are beyond this range from the `origin</param>
-    /// <returns>
-    /// the GameObject that is nearest to the specified origin Transform and has any of the specified tags
-    /// within the maximum distance specified.
-    /// </returns>
+    // Finds the nearest GameObject with any of the specified tags within a certain maximum distance from a given origin Transform.
     public static GameObject FindTheNearestGameObjectWithTags(
         Transform origin,
         string[] tags,
@@ -424,6 +272,7 @@ public class Utils
         return nearestObj;
     }
 
+    // Finds the nearest GameObject with a target armor level within a certain maximum distance from a given origin Transform.
     public static GameObject FindTheNearestObjectWithTargetArmorLevel(
         Transform origin,
         ArmorLevel targetArmorLevel,
@@ -460,14 +309,7 @@ public class Utils
         return nearestObj;
     }
 
-    /// <summary>
-    /// The function `FindAllNearObjectsOfType` finds all objects of a specified type within
-    /// a certain maximum distance from a given origin point.
-    /// </summary>
-    /// <typeparam name="T">The type of objects to find.</typeparam>
-    /// <param name="origin">The starting point or origin from which you want to find the nearest objects.</param>
-    /// <param name="maxDistance">The maximum distance from the origin within which you want to find objects.</param>
-    /// <returns>An array of objects of the specified type that are within the specified maximum distance from the origin.</returns>
+    // Finds all objects of a specified type within a certain maximum distance from a given origin point.
     public static T[] FindAllNearObjectsOfType<T>(Vector3 origin, float maxDistance)
         where T : Component
     {
@@ -487,12 +329,7 @@ public class Utils
         return nearObjects.ToArray();
     }
 
-    /// <summary>
-    /// Returns a random position on the Camera visible area perimeter with an offset towards the center.
-    /// </summary>
-    /// <param name="camera">The camera to calculate the visible area.</param>
-    /// <param name="offset">The offset towards the center.</param>
-    /// <returns>A random position on the perimeter with an offset towards the center.</returns>
+    // Returns a random position on the Camera visible area perimeter with an offset towards the center.
     public static Vector3 GetPositionOnBorder(Camera camera, float offset, float uiHeight = 100f)
     {
         if (camera == null)
@@ -549,6 +386,7 @@ public class Utils
         return position;
     }
 
+    // Returns the opposite corner of a given position, optionally outside the camera view.
     public static Vector3 GetOppositeCorner(Vector3 position, bool outsideView, float offset = 2.0f)
     {
         Camera camera = Camera.main;
@@ -571,10 +409,7 @@ public class Utils
         return oppositeCorner;
     }
 
-    /// <summary>
-    /// Destroys all children of the specified GameObject.
-    /// </summary>
-    /// <param name="parent">The parent GameObject whose children will be destroyed.</param>
+    // Destroys all children of the specified GameObject.
     public static void DestroyAllChildren(GameObject parent)
     {
         foreach (Transform child in parent.transform)
@@ -583,11 +418,7 @@ public class Utils
         }
     }
 
-    /// <summary>
-    /// Shuffles a list of any type using the Fisher-Yates algorithm.
-    /// </summary>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
-    /// <param name="list">The list to shuffle.</param>
+    // Shuffles a list of any type using the Fisher-Yates algorithm.
     public static List<T> ShuffleList<T>(List<T> list)
     {
         List<T> _list = new List<T>(list);
@@ -603,7 +434,7 @@ public class Utils
         return _list;
     }
 
-    // Rotate towards the target direction
+    // Rotates towards the target direction.
     public static void RotateTowardsTarget(Vector3 target, Transform transform, float offset = 0f)
     {
         if (target != null)
@@ -614,13 +445,7 @@ public class Utils
         }
     }
 
-    /// <summary>
-    /// Finds an available ResourceGenerator within a specified range that has capacity for more workers.
-    /// </summary>
-    /// <param name="position">The position from which to search for nearby ResourceGenerators.</param>
-    /// <returns>
-    /// A ResourceGenerator that has capacity for more workers, or null if no such generator is found.
-    /// </returns>
+    // Finds an available ResourceGenerator within a specified range that has capacity for more workers.
     public static ResourceGenerator GetAvailableResource(Vector3 position, float range = 10f)
     {
         ResourceGenerator[] generators = FindAllNearObjectsOfType<ResourceGenerator>(
@@ -637,6 +462,7 @@ public class Utils
         return sortedGenerators.FirstOrDefault();
     }
 
+    // Checks if a position is on a line defined by two points.
     public static bool IsPositionOnLine(Vector3 position, Vector3 lineStart, Vector3 lineEnd)
     {
         float distance = Vector3.Distance(lineStart, lineEnd);
@@ -647,6 +473,7 @@ public class Utils
         return Mathf.Abs(distance - (distanceToStart + distanceToEnd)) < 1f;
     }
 
+    // Checks if a position is too close to any position in a list of positions.
     public static bool IsPositionTooClose(
         Vector3 position,
         List<Vector3> positions,
@@ -663,6 +490,7 @@ public class Utils
         return false;
     }
 
+    // Gets the color associated with a specific CardType.
     public static Color GetForegroundTypeColor(CardType type)
     {
         switch (type)
@@ -680,6 +508,7 @@ public class Utils
         }
     }
 
+    // Gets the name associated with a specific CardType.
     public static string GetForegroundTypeName(CardType type)
     {
         switch (type)
@@ -695,5 +524,11 @@ public class Utils
             default:
                 return "Unknown";
         }
+    }
+
+    // Gets the total value of multipliers for a specific key.
+    public static float GetMultipliersValue(List<MultiplierItem> multipliers, string key)
+    {
+        return multipliers.Where(m => m.key == key).Sum(m => m.value);
     }
 }

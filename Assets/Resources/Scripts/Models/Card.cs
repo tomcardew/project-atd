@@ -98,7 +98,7 @@ public static class Cards
     public static Card Farm { get; } =
         new Card(
             "Farm",
-            "Generates food",
+            "Increase the generation quantity and reduce the generation delay of nearby resources",
             "Structures/Farm",
             new CardResourceItem[] { new(ResourceType.Money, 10), new(ResourceType.Wood, 15) },
             Prefabs.GetPrefab(Prefabs.StructureType.Farm),
@@ -196,7 +196,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 50) },
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5),
             Prefabs.GetPrefab(Prefabs.HandActionType.DiscardAllAndDraw5_Droppable),
-            4,
+            3,
             CardType.Normal
         );
 
@@ -220,7 +220,7 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
             Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
-            5,
+            4,
             CardType.Structure
         );
 
@@ -259,8 +259,8 @@ public static class Cards
     //     );
     public static Card RepairShop { get; } =
         new Card(
-            "Repairshop",
-            "Keep your structures in good shape",
+            "Repair Shop",
+            "Continuosly repair damaged structures.\nIt consumes wood.",
             "Structures/repair-shop",
             new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
             Prefabs.GetPrefab(Prefabs.StructureType.RepairShop),
@@ -326,7 +326,7 @@ public static class Cards
             House,
             SoldierTent,
             SoldierTent,
-            SmallTrees,
+            SoldierTent,
             SmallTrees,
             SmallTrees,
             Farm,

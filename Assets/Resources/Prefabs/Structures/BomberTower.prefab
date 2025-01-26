@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8026670401250480810}
+  image: {fileID: 0}
   isTarget: 1
   target: 0
 --- !u!1 &2590380576334403461
@@ -425,6 +426,8 @@ MonoBehaviour:
   initialLife: 30
   lifeMultiplier: 1
   healtbar: {fileID: 1231939056110686854}
+  armorLevel: 0
+  repairable: 1
   receivedDamage: 0
 --- !u!50 &610317058870911350
 Rigidbody2D:

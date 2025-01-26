@@ -1,7 +1,16 @@
 using UnityEngine;
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+
+[Serializable]
+public struct MultiplierItem
+{
+    public string id;
+    public string key;
+    public float value;
+}
 
 public class ResourceGenerator : MonoBehaviour
 {
@@ -18,9 +27,15 @@ public class ResourceGenerator : MonoBehaviour
     public GameObject emptyPrefab;
     public SliderController sliderBar; // Reference to the health bar
     public bool isPaused = false;
-    private bool _oldIsPaused = false;
+
+    // MULTIPLIERS
+    public List<MultiplierItem> multipliers;
+
+    public float currentQuantity = 0f;
+    public float currentDelay = 0f;
 
     // Private properties
+    private bool _oldIsPaused = false;
     private Coroutine generationCoroutine;
     private int remainingResources;
     private float load = 0;
@@ -38,18 +53,39 @@ public class ResourceGenerator : MonoBehaviour
     // Computed property to get the current generation quantity
     private float CurrentGenerationQuantity
     {
-        get { return initialGenerationQuantity * generationQuantityMultiplier; }
+        get
+        {
+            return initialGenerationQuantity
+                * (
+                    generationQuantityMultiplier
+                    + Utils.GetMultipliersValue(
+                        multipliers,
+                        MultiplierTags.ResourceGenerator.GenerationQuantity
+                    )
+                );
+        }
     }
 
     // Computed property to get the current generation delay
     private float CurrentGenerationDelay
     {
-        get { return initialGenerationDelay * generationDelayMultiplier; }
+        get
+        {
+            return initialGenerationDelay
+                * (
+                    generationQuantityMultiplier
+                    + Utils.GetMultipliersValue(
+                        multipliers,
+                        MultiplierTags.ResourceGenerator.GenerationDelay
+                    )
+                );
+        }
     }
 
     private void Start()
     {
         // Initialize the resource and start the generation coroutine
+        multipliers = new();
         remainingResources = totalResources;
         if (sliderBar == null)
         {
@@ -64,6 +100,8 @@ public class ResourceGenerator : MonoBehaviour
 
     private void Update()
     {
+        currentDelay = CurrentGenerationDelay;
+        currentQuantity = CurrentGenerationQuantity;
         if (isPaused != _oldIsPaused)
         {
             if (isPaused)

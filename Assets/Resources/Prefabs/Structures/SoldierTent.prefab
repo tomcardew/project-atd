@@ -560,6 +560,8 @@ MonoBehaviour:
   initialLife: 30
   lifeMultiplier: 1
   healtbar: {fileID: 8158810942515313440}
+  armorLevel: 0
+  repairable: 1
   receivedDamage: 0
 --- !u!1 &5904373625771020790
 GameObject:
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 9053133225263916392}
+  image: {fileID: 0}
   isTarget: 1
   target: 0
 --- !u!1 &6248455813823155601

@@ -460,6 +460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3594084451548930754}
+  - component: {fileID: 7357853547395774798}
   m_Layer: 0
   m_Name: RepairShop
   m_TagString: Structure
@@ -485,6 +486,24 @@ Transform:
   - {fileID: 3560810772675234058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7357853547395774798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018908833969141393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d8ca7bd856e4dd6bcac72a08d29eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialRepairRate: 1
+  repairRateMultiplier: 1
+  initialRepairDelay: 1
+  repairDelayMultiplier: 1
+  initialWoodConsumption: 1
+  woodConsumptionMultiplier: 1
 --- !u!1 &5652875777121060266
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +617,7 @@ MonoBehaviour:
   lifeMultiplier: 1
   healtbar: {fileID: 8472466106854360834}
   armorLevel: 0
+  repairable: 1
   receivedDamage: 0
 --- !u!1 &6888224034312842478
 GameObject:
