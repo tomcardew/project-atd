@@ -277,7 +277,7 @@ public class CardsManager : MonoBehaviour
             new Vector3(1, 0, Camera.main.nearClipPlane)
         );
 
-        position += new Vector2(-0.8f, 1.6f);
+        position += new Vector2(-0.8f, 1.2f);
 
         _counters.transform.position = position;
         return _counters;

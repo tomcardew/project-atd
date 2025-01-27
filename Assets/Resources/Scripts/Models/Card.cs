@@ -119,15 +119,15 @@ public static class Cards
             CardType.Normal
         );
 
-    public static Card ArcherTower { get; } =
+    public static Card ArcherSoldierTent { get; } =
         new Card(
-            "Archer Tower",
-            "Throw arrows from the distance",
-            "Structures/ArcherTower",
-            new CardResourceItem[] { new(ResourceType.Money, 40), new(ResourceType.Wood, 30) },
-            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
-            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
-            1,
+            "Archer Soldier Tent",
+            "Add +3 Archer Soldiers",
+            "Structures/ArcherSoldier Tent",
+            new CardResourceItem[] { new(ResourceType.Money, 35), new(ResourceType.Wood, 30) },
+            Prefabs.GetPrefab(Prefabs.StructureType.ArcherSoldierTent),
+            Prefabs.GetPrefab(Prefabs.StructureType.ArcherSoldierTent_Droppable),
+            2,
             CardType.Structure
         );
 
@@ -176,6 +176,18 @@ public static class Cards
             CardType.Normal
         );
 
+    public static Card ArcherTower { get; } =
+        new Card(
+            "Archer Tower",
+            "Throw arrows from the distance",
+            "Structures/ArcherTower",
+            new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 45) },
+            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower),
+            Prefabs.GetPrefab(Prefabs.StructureType.ArcherTower_Droppable),
+            3,
+            CardType.Structure
+        );
+
     public static Card MediumTrees { get; } =
         new Card(
             "Medium Trees",
@@ -196,17 +208,6 @@ public static class Cards
             new CardResourceItem[] { new(ResourceType.Money, 50), new(ResourceType.Wood, 15) },
             Prefabs.GetPrefab(Prefabs.StructureType.SavingsAccount),
             Prefabs.GetPrefab(Prefabs.StructureType.SavingsAccount_Droppable),
-            3,
-            CardType.Structure
-        );
-    public static Card AntitankSoldierTent { get; } =
-        new Card(
-            "Antitank Soldier",
-            "Add +2 Antitank Soldier",
-            "Structures/AntitankSoldier Tent",
-            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
-            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
-            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
             3,
             CardType.Structure
         );
@@ -256,6 +257,18 @@ public static class Cards
             Prefabs.GetPrefab(Prefabs.ActionType.LargeTrees_Droppable),
             5,
             CardType.WoodResource
+        );
+
+    public static Card AntitankSoldierTent { get; } =
+        new Card(
+            "Antitank Soldier",
+            "Add +2 Antitank Soldier",
+            "Structures/AntitankSoldier Tent",
+            new CardResourceItem[] { new(ResourceType.Money, 75), new(ResourceType.Wood, 50) },
+            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent),
+            Prefabs.GetPrefab(Prefabs.StructureType.AntitankSoldierTent_Droppable),
+            6,
+            CardType.Structure
         );
 
     public static Card BomberTower { get; } =
@@ -352,6 +365,7 @@ public static class Cards
             SavingsAccount,
             Refund,
             AdditionalTaxes,
+            ArcherSoldierTent,
         };
 
     public static Card[] StartDeck { get; } =

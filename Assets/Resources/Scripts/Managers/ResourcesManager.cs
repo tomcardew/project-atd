@@ -30,7 +30,7 @@ public class ResourcesManager : MonoBehaviour
     {
         resources = new List<ResourceToQuantity>
         {
-            new(ResourceType.Money, 0, 1000),
+            new(ResourceType.Money, 0, 999),
             new(ResourceType.Wood, 0, 250),
             new(ResourceType.Faith, 0, 250),
         };

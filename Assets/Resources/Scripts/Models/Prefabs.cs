@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.XR;
 
 public static class Prefabs
 {
@@ -7,7 +6,8 @@ public static class Prefabs
     {
         Person,
         Soldier,
-        AntitankSoldier
+        AntitankSoldier,
+        ArcherSoldier,
     }
 
     public enum EnemyType
@@ -23,6 +23,7 @@ public static class Prefabs
         Castle,
         SoldierTent,
         AntitankSoldierTent,
+        ArcherSoldierTent,
         House,
         ArcherTower,
         BomberTower,
@@ -33,6 +34,7 @@ public static class Prefabs
         SavingsAccount,
         SoldierTent_Droppable,
         AntitankSoldierTent_Droppable,
+        ArcherSoldierTent_Droppable,
         House_Droppable,
         ArcherTower_Droppable,
         BomberTower_Droppable,
@@ -139,6 +141,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Units/Soldier");
             case UnitType.AntitankSoldier:
                 return Resources.Load<GameObject>("Prefabs/Units/AntitankSoldier");
+            case UnitType.ArcherSoldier:
+                return Resources.Load<GameObject>("Prefabs/Units/ArcherSoldier");
             default:
                 return null;
         }
@@ -171,6 +175,8 @@ public static class Prefabs
                 return Resources.Load<GameObject>("Prefabs/Structures/SoldierTent");
             case StructureType.AntitankSoldierTent:
                 return Resources.Load<GameObject>("Prefabs/Structures/AntitankSoldierTent");
+            case StructureType.ArcherSoldierTent:
+                return Resources.Load<GameObject>("Prefabs/Structures/ArcherSoldierTent");
             case StructureType.House:
                 return Resources.Load<GameObject>("Prefabs/Structures/House");
             case StructureType.ArcherTower:
@@ -192,6 +198,10 @@ public static class Prefabs
             case StructureType.AntitankSoldierTent_Droppable:
                 return Resources.Load<GameObject>(
                     "Prefabs/Structures/Droppables/AntitankSoldierTent"
+                );
+            case StructureType.ArcherSoldierTent_Droppable:
+                return Resources.Load<GameObject>(
+                    "Prefabs/Structures/Droppables/ArcherSoldierTent"
                 );
             case StructureType.House_Droppable:
                 return Resources.Load<GameObject>("Prefabs/Structures/Droppables/House");

@@ -102,7 +102,7 @@ public class CardHolderController : MonoBehaviour
         float _rate = rect.sizeDelta.y / rect.sizeDelta.x;
 
         // Calculate the offset for the card's position
-        Vector2 offset = new Vector2(0.1f + (1.5f * index), 0.5f);
+        Vector2 offset = new Vector2(0.1f + (1.5f * index), 0.1f);
         position += new Vector2(rect.localScale.x * _scaler, rect.localScale.y * _scaler * _rate);
         position += offset;
 
