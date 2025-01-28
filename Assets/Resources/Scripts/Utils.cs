@@ -109,8 +109,10 @@ public class Utils
     // Returns a random position within the camera's visible area.
     public static Vector3 GetRandomPositionInsideCamera(
         Camera camera,
-        float bottomOffset = 1f,
-        float uiHeight = 100f
+        float paddingLeft = 0f,
+        float paddingRight = 0f,
+        float paddingTop = 0f,
+        float paddingBottom = 0f
     )
     {
         if (camera == null)
@@ -125,17 +127,14 @@ public class Utils
 
         // Calculate the bounds of the visible area
         Vector3 cameraPosition = camera.transform.position;
-        float minX = cameraPosition.x - cameraWidth / 2;
-        float maxX = cameraPosition.x + cameraWidth / 2;
-        float minY = cameraPosition.y - cameraHeight / 2;
-        float maxY = cameraPosition.y + cameraHeight / 2;
+        float minX = cameraPosition.x - cameraWidth / 2 + paddingLeft;
+        float maxX = cameraPosition.x + cameraWidth / 2 - paddingRight;
+        float minY = cameraPosition.y - cameraHeight / 2 + paddingBottom;
+        float maxY = cameraPosition.y + cameraHeight / 2 - paddingTop;
 
-        // Adjust minY to account for the UI height
-        minY += uiHeight / Screen.height * cameraHeight;
-
-        // Generate a random position within the bounds, excluding the UI area
+        // Generate a random position within the bounds, excluding the padding area
         float randomX = UnityEngine.Random.Range(minX, maxX);
-        float randomY = UnityEngine.Random.Range(minY + bottomOffset, maxY);
+        float randomY = UnityEngine.Random.Range(minY, maxY);
 
         return new Vector3(randomX, randomY, 0f);
     }
@@ -330,7 +329,14 @@ public class Utils
     }
 
     // Returns a random position on the Camera visible area perimeter with an offset towards the center.
-    public static Vector3 GetPositionOnBorder(Camera camera, float offset, float uiHeight = 100f)
+    public static Vector3 GetPositionOnBorder(
+        Camera camera,
+        float offset,
+        float paddingLeft = 0f,
+        float paddingRight = 0f,
+        float paddingTop = 0f,
+        float paddingBottom = 0f
+    )
     {
         if (camera == null)
         {
@@ -344,13 +350,10 @@ public class Utils
 
         // Calculate the bounds of the visible area
         Vector3 cameraPosition = camera.transform.position;
-        float minX = cameraPosition.x - cameraWidth / 2;
-        float maxX = cameraPosition.x + cameraWidth / 2;
-        float minY = cameraPosition.y - cameraHeight / 2;
-        float maxY = cameraPosition.y + cameraHeight / 2;
-
-        // Adjust minY to account for the UI height
-        minY += uiHeight / Screen.height * cameraHeight;
+        float minX = cameraPosition.x - cameraWidth / 2 + paddingLeft;
+        float maxX = cameraPosition.x + cameraWidth / 2 - paddingRight;
+        float minY = cameraPosition.y - cameraHeight / 2 + paddingBottom;
+        float maxY = cameraPosition.y + cameraHeight / 2 - paddingTop;
 
         // Determine which side of the perimeter to place the position
         int side = UnityEngine.Random.Range(0, 1);

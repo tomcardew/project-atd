@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
 
     private void InstantiateEssentials()
     {
-        castlePosition = Utils.GetPositionOnBorder(Camera.main, 2f, 300f);
+        castlePosition = Utils.GetPositionOnBorder(Camera.main, 0f, 1f, 1f, 1f, 3f);
         GameObject castle = Instantiate(
             Prefabs.GetPrefab(Prefabs.StructureType.Castle),
             castlePosition,
@@ -213,11 +213,8 @@ public class GameManager : MonoBehaviour
             Vector3 position;
             do
             {
-                position = Utils.GetRandomPositionInsideCamera(Camera.main, 3f);
-            } while (
-                Utils.IsPositionOnLine(position, lineController.start, lineController.end)
-                || Utils.IsPositionTooClose(position, generatedPositions, 2f)
-            );
+                position = Utils.GetRandomPositionInsideCamera(Camera.main, 1f, 1f, 1f, 3f);
+            } while (Utils.IsPositionTooClose(position, generatedPositions, 0f));
 
             generatedPositions.Add(position);
             Instantiate(
